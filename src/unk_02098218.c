@@ -29,7 +29,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_02024220.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_020279FC.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F180.h"
@@ -218,7 +218,7 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
 
         {
             Pokemon * v2 = v0->unk_0C.unk_00;
-            UnkStruct_02025E6C * v3 = sub_02025E38(sub_0203D174(v1));
+            UnkStruct_02025E6C * v3 = PlayerData_GetProfileAddr(sub_0203D174(v1));
             int v4 = 6;
             int v5 = sub_0203A138(v1->unk_1C->unk_00);
             int v6 = 11;
@@ -247,7 +247,7 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
 
         v9 = GetMonData(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
 
-        v0->unk_08 = sub_0208712C(11, 1, v9, 10, sub_02025E44(sub_0203D174(v8)));
+        v0->unk_08 = sub_0208712C(11, 1, v9, 10, PlayerData_GetOptionsAddr(sub_0203D174(v8)));
         v0->unk_08->unk_10 = GetMonData(v0->unk_0C.unk_00, MON_DATA_111, NULL);
         v0->unk_08->unk_08 = GetMonData(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
         sub_02050A38(param0, &Unk_020F2DAC, v0->unk_08);

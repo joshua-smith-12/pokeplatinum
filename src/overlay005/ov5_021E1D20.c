@@ -25,7 +25,7 @@
 #include "unk_0201D670.h"
 #include "strbuf.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
 #include "unk_0202CBE4.h"
@@ -87,8 +87,8 @@ static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const UnkStruct_0203C
         param0->unk_00 = 0;
     }
 
-    param0->unk_08 = sub_02025E38(v0);
-    param0->unk_0C = sub_02025E5C(v0);
+    param0->unk_08 = PlayerData_GetProfileAddr(v0);
+    param0->unk_0C = PlayerData_GetIGTAddr(v0);
 }
 
 static void ov5_021E1D6C (UnkStruct_0200B358 * param0, const UnkStruct_ov5_021E1D20 * param1)

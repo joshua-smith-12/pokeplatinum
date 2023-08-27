@@ -69,7 +69,7 @@
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_020279FC.h"
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"
@@ -708,7 +708,7 @@ int ov69_0225C700 (UnkStruct_020067E8 * param0, int * param1)
     memset(v0, 0, sizeof(UnkStruct_ov69_0225CE64));
 
     v0->unk_0C = sub_0202C878(v1->unk_04);
-    v0->unk_10 = sub_02025E44(v1->unk_04);
+    v0->unk_10 = PlayerData_GetOptionsAddr(v1->unk_04);
     v0->unk_14 = sub_0202C8C0(v0->unk_0C);
     v0->unk_18 = sub_0202C8C4(v0->unk_0C);
     v0->unk_1C = v1->unk_08;
@@ -1964,7 +1964,7 @@ static void ov69_0225DD60 (UnkStruct_ov69_0225DDC8 * param0, UnkStruct_ov69_0225
     {
         UnkStruct_020279FC * v0;
 
-        v0 = sub_02025E44(param3);
+        v0 = PlayerData_GetOptionsAddr(param3);
         param0->unk_08 = sub_02027AC0(v0);
     }
 

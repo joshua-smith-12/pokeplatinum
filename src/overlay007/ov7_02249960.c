@@ -31,7 +31,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020329E0.h"
 #include "unk_02033200.h"
@@ -163,8 +163,8 @@ static void ov7_02249960 (int param0, BOOL param1)
         sub_0205D8F4(Unk_ov7_0224F5A0->unk_68->unk_08, &Unk_ov7_0224F5A0->unk_40, 3);
     }
 
-    sub_0205D944(&Unk_ov7_0224F5A0->unk_40, sub_02025E44(Unk_ov7_0224F5A0->unk_68->unk_0C));
-    Unk_ov7_0224F5A0->unk_94 = sub_0205D994(&Unk_ov7_0224F5A0->unk_40, Unk_ov7_0224F5A0->unk_00[5], sub_02025E44(Unk_ov7_0224F5A0->unk_68->unk_0C), 1);
+    sub_0205D944(&Unk_ov7_0224F5A0->unk_40, PlayerData_GetOptionsAddr(Unk_ov7_0224F5A0->unk_68->unk_0C));
+    Unk_ov7_0224F5A0->unk_94 = sub_0205D994(&Unk_ov7_0224F5A0->unk_40, Unk_ov7_0224F5A0->unk_00[5], PlayerData_GetOptionsAddr(Unk_ov7_0224F5A0->unk_68->unk_0C), 1);
 }
 
 static void ov7_02249A10 (UnkStruct_ov84_02240FA8 param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5)
@@ -198,7 +198,7 @@ static void ov7_02249AB4 (UnkStruct_0203CDB0 * param0)
     Unk_ov7_0224F5A0->unk_68 = param0;
     Unk_ov7_0224F5A0->unk_97 = 0;
     Unk_ov7_0224F5A0->unk_74 = sub_0200B144(1, 26, 353, 4);
-    Unk_ov7_0224F5A0->unk_78 = sub_02025E38(sub_0203D174(Unk_ov7_0224F5A0->unk_68));
+    Unk_ov7_0224F5A0->unk_78 = PlayerData_GetProfileAddr(sub_0203D174(Unk_ov7_0224F5A0->unk_68));
     Unk_ov7_0224F5A0->unk_7C = sub_02025E6C(4);
 
     sub_0201A7A0(&Unk_ov7_0224F5A0->unk_20);
@@ -570,7 +570,7 @@ asm static void ov7_0224A128 (UnkStruct_0201CD38 * param0, void * param1)
               ldr r0, [r0, #0]
     ldr r0, [r0, #0x68]
     ldr r0, [r0, #0xc]
-    bl sub_02025E44
+    bl PlayerData_GetOptionsAddr
     add r1, r0, #0
     ldr r0, = Unk_ov7_0224F5A0
               ldr r0, [r0, #0]

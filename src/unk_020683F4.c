@@ -29,7 +29,7 @@
 #include "unk_02018340.h"
 #include "strbuf.h"
 #include "unk_0202440C.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
 #include "map_header.h"
@@ -345,7 +345,7 @@ static void sub_02068630 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     v2->unk_00 = Party_GetFromSavedata(v0->unk_0C);
     v2->unk_04 = sub_0207D990(v0->unk_0C);
     v2->unk_08 = sub_02028430(v0->unk_0C);
-    v2->unk_0C = sub_02025E44(v0->unk_0C);
+    v2->unk_0C = PlayerData_GetOptionsAddr(v0->unk_0C);
     v2->unk_10 = sub_0202440C(v0->unk_0C);
     v2->unk_18 = &v1->unk_24C;
     v2->unk_21 = 0;
@@ -598,7 +598,7 @@ static void sub_02068A34 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     v2->unk_00 = Party_GetFromSavedata(v0->unk_0C);
     v2->unk_04 = sub_0207D990(v0->unk_0C);
     v2->unk_08 = sub_02028430(v0->unk_0C);
-    v2->unk_0C = sub_02025E44(v0->unk_0C);
+    v2->unk_0C = PlayerData_GetOptionsAddr(v0->unk_0C);
     v2->unk_18 = &v1->unk_24C;
     v2->unk_21 = 0;
     v2->unk_20 = 6;
@@ -956,7 +956,7 @@ static BOOL sub_02068F48 (UnkStruct_020508D4 * param0)
         sub_0205D8F4(v0->unk_08, &v1->unk_00, 3);
 
         {
-            const UnkStruct_020279FC * v2 = sub_02025E44(v0->unk_0C);
+            const UnkStruct_020279FC * v2 = PlayerData_GetOptionsAddr(v0->unk_0C);
 
             sub_0205D944(&v1->unk_00, v2);
             v1->unk_14 = sub_0205D994(&v1->unk_00, v1->unk_10, v2, 1);
@@ -998,7 +998,7 @@ static void sub_02068FEC (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     v2->unk_00 = Party_GetFromSavedata(v0->unk_0C);
     v2->unk_04 = sub_0207D990(v0->unk_0C);
     v2->unk_08 = sub_02028430(v0->unk_0C);
-    v2->unk_0C = sub_02025E44(v0->unk_0C);
+    v2->unk_0C = PlayerData_GetOptionsAddr(v0->unk_0C);
     v2->unk_10 = sub_0202440C(v0->unk_0C);
     v2->unk_18 = &v1->unk_24C;
     v2->unk_21 = 0;
@@ -1198,7 +1198,7 @@ static void sub_020692E4 (UnkStruct_02068870 * param0, u32 param1)
     v0->unk_16 = 0;
     v0->unk_10 = Strbuf_Init(128, 11);
 
-    sub_0207CD34(sub_02025E38(param0->unk_00->unk_0C), v0->unk_10, param0->unk_28, param1, 11);
+    sub_0207CD34(PlayerData_GetProfileAddr(param0->unk_00->unk_0C), v0->unk_10, param0->unk_28, param1, 11);
     sub_02050904(param0->unk_00, sub_02068F48, v0);
 }
 

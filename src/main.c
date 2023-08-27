@@ -29,7 +29,7 @@
 #include "unk_02022844.h"
 #include "unk_0202419C.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_0202CC64.h"
 #include "unk_02034198.h"
 #include "unk_020366A0.h"
@@ -82,7 +82,7 @@ void NitroMain (void)
     Unk_02101D28.unk_10.unk_00 = -1;
     Unk_02101D28.unk_10.unk_08 = sub_020244AC();
 
-    sub_02003B60(sub_0202CC98(Unk_02101D28.unk_10.unk_08), sub_02025E44(Unk_02101D28.unk_10.unk_08));
+    sub_02003B60(sub_0202CC98(Unk_02101D28.unk_10.unk_08), PlayerData_GetOptionsAddr(Unk_02101D28.unk_10.unk_08));
     sub_02022844();
 
     if (sub_02038FFC(3) == DWC_INIT_RESULT_DESTROY_OTHER_SETTING) {

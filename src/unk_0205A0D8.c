@@ -33,7 +33,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_0202602C.h"
 #include "unk_0202D778.h"
 #include "unk_020329E0.h"
@@ -136,11 +136,11 @@ static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, UnkStruct_0203CDB0 * para
     v0 = Heap_AllocFromHeapAtEnd(param5, sizeof(UnkStruct_02098D38));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_02098D38));
-    sub_0208E9C0(v0, sub_02025E38(param1->unk_0C));
+    sub_0208E9C0(v0, PlayerData_GetProfileAddr(param1->unk_0C));
 
     v0->unk_1C = sub_0207A274(v1);
     v0->unk_2C = sub_0208C324(v1);
-    v0->unk_04 = sub_02025E44(v1);
+    v0->unk_04 = PlayerData_GetOptionsAddr(v1);
     v0->unk_00 = param2;
     v0->unk_11 = 1;
     v0->unk_14 = param3;
@@ -162,7 +162,7 @@ static void sub_0205A164 (UnkStruct_0205A0D8 * param0, int param1)
 
     MI_CpuClear8(v1, sizeof(UnkStruct_02098C44));
 
-    v1->unk_0C = sub_02025E44(param0->unk_24->unk_0C);
+    v1->unk_0C = PlayerData_GetOptionsAddr(param0->unk_24->unk_0C);
     v1->unk_14 = (void *)param0->unk_24->unk_B0;
     v1->unk_00 = Party_GetFromSavedata(param0->unk_24->unk_0C);
     v1->unk_04 = sub_0207D990(param0->unk_24->unk_0C);
@@ -627,12 +627,12 @@ static int sub_0205AA50 (UnkStruct_0205A0D8 * param0, const Strbuf *param1)
 
     if (sub_0201A7CC(v0) == 0) {
         sub_0205D8F4(param0->unk_24->unk_08, v0, 3);
-        sub_0205D944(v0, sub_02025E44(param0->unk_24->unk_0C));
+        sub_0205D944(v0, PlayerData_GetOptionsAddr(param0->unk_24->unk_0C));
     } else {
         sub_0205D988(v0);
     }
 
-    return sub_0205D994(v0, (Strbuf *)param1, sub_02025E44(param0->unk_24->unk_0C), 1);
+    return sub_0205D994(v0, (Strbuf *)param1, PlayerData_GetOptionsAddr(param0->unk_24->unk_0C), 1);
 }
 
 static void sub_0205AAA0 (UnkStruct_0205A0D8 * param0, BOOL param1)
@@ -1029,9 +1029,9 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
         sub_0200B498(v1->unk_18, 0, sub_02032EE8(v1->unk_24));
         sub_0200C388(v1->unk_18, v1->unk_04, v1->unk_00);
         sub_0205D8F4(v0->unk_08, &v1->unk_08, 3);
-        sub_0205D944(&v1->unk_08, sub_02025E44(v0->unk_0C));
+        sub_0205D944(&v1->unk_08, PlayerData_GetOptionsAddr(v0->unk_0C));
 
-        v1->unk_20 = sub_0205D994(&v1->unk_08, v1->unk_04, sub_02025E44(v0->unk_0C), 1);
+        v1->unk_20 = sub_0205D994(&v1->unk_08, v1->unk_04, PlayerData_GetOptionsAddr(v0->unk_0C), 1);
         v1->unk_28++;
         break;
     case 1:

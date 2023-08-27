@@ -43,7 +43,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202854C.h"
 #include "unk_02034198.h"
@@ -498,7 +498,7 @@ static void ov23_0224F7F4 (UnkStruct_ov23_02250CD4 * param0)
 
         for (v4 = 0; v4 < NELEMS(Unk_ov23_02256924); v4++) {
             if (v4 == v1) {
-                const UnkStruct_02025E6C * v5 = sub_02025E38(sub_0203D174(param0->unk_0C));
+                const UnkStruct_02025E6C * v5 = PlayerData_GetProfileAddr(sub_0203D174(param0->unk_0C));
                 Strbuf* v6 = sub_02025F04(v5, 4);
 
                 sub_02013A6C(param0->unk_40, v6, Unk_ov23_02256924[v4].unk_04);
@@ -1419,7 +1419,7 @@ static void ov23_02250A14 (UnkStruct_ov23_02250CD4 * param0)
 {
     ov23_0224FB7C(param0);
     ov23_02253968();
-    ov23_02253834(param0->unk_0C->unk_08, sub_02025E38(sub_0203D174(param0->unk_0C)), ov23_02250A0C, param0, 1);
+    ov23_02253834(param0->unk_0C->unk_08, PlayerData_GetProfileAddr(sub_0203D174(param0->unk_0C)), ov23_02250A0C, param0, 1);
     param0->unk_2AA = 10;
 }
 

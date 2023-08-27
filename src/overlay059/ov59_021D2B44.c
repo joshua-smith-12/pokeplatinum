@@ -12,7 +12,7 @@
 #include "heap.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020329E0.h"
 #include "overlay059/ov59_021D2B44.h"
@@ -151,7 +151,7 @@ static BOOL ov59_021D2B5C (int param0, int param1)
 static void ov59_021D2B90 (UnkStruct_021C0794 * param0, UnkStruct_0202E794 * param1, UnkStruct_0202E768 * param2, int param3, int param4, int param5)
 {
     int v0;
-    UnkStruct_02025E6C * v1 = sub_02025E38(param0);
+    UnkStruct_02025E6C * v1 = PlayerData_GetProfileAddr(param0);
 
     for (v0 = 0; v0 < param3; v0++, param1++) {
         MI_CpuClearFast(param1, sizeof(UnkStruct_0202E794));

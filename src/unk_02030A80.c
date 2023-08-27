@@ -19,7 +19,7 @@
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020277A4.h"
 #include "unk_0202C858.h"
@@ -45,7 +45,7 @@ void sub_02030A98 (UnkStruct_02030A80 * param0)
 
 void sub_02030AA0 (UnkStruct_02030A80 * param0, UnkStruct_021C0794 * param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param1);
+    UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr(param1);
     UnkStruct_0202C878 * v1 = sub_0202C878(param1);
     UnkStruct_02025CCC * v2 = sub_02025CCC(param1);
     const UnkStruct_0202783C * v3 = sub_02027848(param1);

@@ -45,7 +45,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "overlay005/ov5_021DDBE8.h"
 #include "overlay005/ov5_021E22B0.h"
@@ -2970,7 +2970,7 @@ void ov5_021E585C (UnkStruct_0201CD38 * param0, void * param1)
 
 static u32 ov5_021E5880 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param0->unk_0C);
+    UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr(param0->unk_0C);
 
     return sub_02025F30(v0);
 }

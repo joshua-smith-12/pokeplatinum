@@ -60,7 +60,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "unk_02030EA4.h"
@@ -455,7 +455,7 @@ static void ov68_0225C91C (UnkStruct_ov68_0225C91C * param0, UnkStruct_021C0794 
 {
     UnkStruct_020279FC * v0;
 
-    v0 = sub_02025E44(param1);
+    v0 = PlayerData_GetOptionsAddr(param1);
     param0->unk_1A4 = NARC_ctor(186, param2);
 
     sub_0201DBEC(32, param2);
@@ -923,7 +923,7 @@ static void ov68_0225D128 (UnkStruct_ov68_0225D128 * param0, UnkStruct_ov68_0225
     {
         UnkStruct_020279FC * v0;
 
-        v0 = sub_02025E44(param2);
+        v0 = PlayerData_GetOptionsAddr(param2);
         param0->unk_04 = sub_02027AC0(v0);
     }
 }

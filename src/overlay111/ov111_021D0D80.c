@@ -52,7 +52,7 @@
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_020279FC.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "overlay111/ov111_021D2F80.h"
@@ -347,7 +347,7 @@ int ov111_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     v1->unk_168 = v2->unk_00;
     v1->unk_09 = v2->unk_04;
     v1->unk_3D8 = &v2->unk_14;
-    v1->unk_164 = sub_02025E44(v1->unk_168);
+    v1->unk_164 = PlayerData_GetOptionsAddr(v1->unk_168);
     v1->unk_3DC = &v2->unk_08[0];
     v1->unk_3E0 = &v2->unk_0E[0];
 

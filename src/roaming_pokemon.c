@@ -13,7 +13,7 @@
 #include "struct_defs/struct_0206C638.h"
 
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202D7A8.h"
 #include "roaming_pokemon.h"
@@ -290,7 +290,7 @@ void RoamingPokemon_ActivateSlot (UnkStruct_021C0794 * saveData, const u8 slot)
     sub_0202D980(v1, 4, species);
     sub_0202D980(v1, 6, level);
 
-    v4 = sub_02025E38(saveData);
+    v4 = PlayerData_GetProfileAddr(saveData);
     v0 = AllocMonZeroed(4);
 
     ZeroMonData(v0);

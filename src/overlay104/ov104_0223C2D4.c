@@ -47,7 +47,7 @@
 #include "gx_layers.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
 #include "unk_0209B6F8.h"
@@ -128,7 +128,7 @@ UnkStruct_ov104_0223C4CC * ov104_0223C2D4 (UnkStruct_0209B75C * param0)
     UnkStruct_ov104_02230BE4 * v3 = sub_0209B970(param0);
     const UnkStruct_02025E6C * v4;
 
-    v4 = sub_02025E38(v3->unk_08);
+    v4 = PlayerData_GetProfileAddr(v3->unk_08);
     v2 = v3->unk_24;
 
     sub_02017798(NULL, NULL);

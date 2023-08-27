@@ -42,7 +42,7 @@
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "unk_0202854C.h"
@@ -196,8 +196,8 @@ void ov7_0224CDA4 (UnkStruct_020508D4 * param0, UnkStruct_0203CDB0 * param1, u16
     v0->unk_00 = param1->unk_08;
 
     v0->unk_298 = Strbuf_Init((24 * 2 * 2), 11);
-    v0->unk_270 = sub_02025E38(param1->unk_0C);
-    v0->unk_278 = sub_02025E44(param1->unk_0C);
+    v0->unk_270 = PlayerData_GetProfileAddr(param1->unk_0C);
+    v0->unk_278 = PlayerData_GetOptionsAddr(param1->unk_0C);
     v0->unk_280 = sub_0202CD88(param1->unk_0C);
     v0->unk_288 = sub_020507E4(param1->unk_0C);
     v0->unk_28C = param4;

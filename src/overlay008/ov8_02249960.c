@@ -38,7 +38,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_02020020.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020277A4.h"
 #include "unk_02027F50.h"
@@ -2941,9 +2941,9 @@ static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
             sub_0200B1B8(v2->unk_48, 12, v2->unk_4C);
             sub_0205D8F4(v1->unk_08, v2->unk_44, 3);
             sub_0200E084(v2->unk_44, 0);
-            sub_0205D944(v2->unk_44, sub_02025E44(v1->unk_0C));
+            sub_0205D944(v2->unk_44, PlayerData_GetOptionsAddr(v1->unk_0C));
 
-            v2->unk_40 = sub_0205D994(v2->unk_44, v2->unk_4C, sub_02025E44(v1->unk_0C), 1);
+            v2->unk_40 = sub_0205D994(v2->unk_44, v2->unk_4C, PlayerData_GetOptionsAddr(v1->unk_0C), 1);
         }
         break;
     case 11:
@@ -4001,7 +4001,7 @@ static void ov8_0224C3B4 (UnkStruct_ov8_0224C444 * param0)
 
     {
         char v2 = 109;
-        BOOL v3 = sub_02025F34(sub_02025E38(param0->unk_00->unk_0C), 4);
+        BOOL v3 = sub_02025F34(PlayerData_GetProfileAddr(param0->unk_00->unk_0C), 4);
 
         if (v3 == 1) {
             v2 = 91;

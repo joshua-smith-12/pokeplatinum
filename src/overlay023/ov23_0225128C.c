@@ -32,7 +32,7 @@
 #include "unk_02018340.h"
 #include "unk_02020020.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_0202854C.h"
 #include "unk_020329E0.h"
 #include "unk_02033200.h"
@@ -711,7 +711,7 @@ static void ov23_02251C04 (UnkStruct_0201CD38 * param0, void * param1)
     case 6:
         ov23_0224FB7C(param1);
         ov23_02254044(ov23_022421BC());
-        v0->unk_270 = ov23_02253C64(v0->unk_0C->unk_08, sub_02025E38(sub_0203D174(v0->unk_0C)), sub_020298B0(sub_0203D174(v0->unk_0C)), NULL, NULL);
+        v0->unk_270 = ov23_02253C64(v0->unk_0C->unk_08, PlayerData_GetProfileAddr(sub_0203D174(v0->unk_0C)), sub_020298B0(sub_0203D174(v0->unk_0C)), NULL, NULL);
         v0->unk_2AA = 7;
         break;
     case 7:

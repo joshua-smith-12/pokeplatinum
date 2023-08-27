@@ -11,7 +11,7 @@
 #include "unk_020021B0.h"
 #include "unk_0201D15C.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202C858.h"
 #include "unk_02030CE8.h"
@@ -112,7 +112,7 @@ u32 sub_02030D98 (UnkStruct_021C0794 * param0, int param1)
 static void sub_02030DD0 (UnkStruct_021C0794 * param0, UnkStruct_ov96_0223B574 * param1)
 {
     UnkStruct_0202C878 * v0 = sub_0202C878(param0);
-    UnkStruct_02025E6C * v1 = sub_02025E38(param0);
+    UnkStruct_02025E6C * v1 = PlayerData_GetProfileAddr(param0);
     char * v2 = sub_02030D50(param0);
 
     MI_CpuClear8(param1, sizeof(UnkStruct_ov96_0223B574));

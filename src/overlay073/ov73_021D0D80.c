@@ -56,7 +56,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020277A4.h"
 #include "unk_020279FC.h"
@@ -155,7 +155,7 @@ int ov73_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     v0->unk_00 = v1;
     v0->unk_04 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
-    v0->unk_08 = sub_02025E44(v0->unk_04);
+    v0->unk_08 = PlayerData_GetOptionsAddr(v0->unk_04);
     v0->unk_0C = 0;
     v0->unk_10 = 0;
     v0->unk_14 = NULL;
@@ -254,8 +254,8 @@ int ov73_021D0F7C (UnkStruct_020067E8 * param0, int * param1)
     Heap_FreeToHeap(v0->unk_B8);
     Heap_FreeToHeap(v0->unk_BC);
 
-    sub_02025EE0(sub_02025E38(v0->unk_04), v0->unk_70->unk_18);
-    sub_02025F2C(sub_02025E38(v0->unk_04), v0->unk_70->unk_04);
+    sub_02025EE0(PlayerData_GetProfileAddr(v0->unk_04), v0->unk_70->unk_18);
+    sub_02025F2C(PlayerData_GetProfileAddr(v0->unk_04), v0->unk_70->unk_04);
 
     {
         UnkStruct_0202783C * v2 = sub_0202783C(v0->unk_04);

@@ -15,7 +15,7 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02030EE0.h"
 #include "unk_0203266C.h"
 #include "unk_02032798.h"
@@ -163,7 +163,7 @@ static void sub_020366A0 (UnkStruct_021C0794 * param0, int param1)
     Unk_021C07D4->unk_40 = 50;
     Unk_021C07D4->unk_4E = 1;
     Unk_021C07D4->unk_28 = param0;
-    Unk_021C07D4->unk_2C = sub_02025E38(param0);
+    Unk_021C07D4->unk_2C = PlayerData_GetProfileAddr(param0);
     Unk_021C07D4->unk_46 = 1 + 1;
     Unk_021C07D4->unk_48 = 0;
     Unk_021C07D4->unk_53 = 0;
@@ -2224,7 +2224,7 @@ static void sub_020386B4 (void)
 
 void * sub_0203871C (UnkStruct_021C0794 * param0, int param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param0);
+    UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr(param0);
 
     if (sub_02035E38()) {
         return NULL;
@@ -2246,7 +2246,7 @@ void * sub_0203871C (UnkStruct_021C0794 * param0, int param1)
 
 void sub_0203878C (UnkStruct_021C0794 * param0, const void * param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param0);
+    UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr(param0);
 
     if (sub_02035E38()) {
         return;

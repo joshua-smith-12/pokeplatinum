@@ -61,7 +61,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_020279FC.h"
 #include "unk_0202ACE0.h"
 #include "unk_020329E0.h"
@@ -884,7 +884,7 @@ UnkStruct_02025E6C * ov114_0225C7CC (const UnkStruct_ov114_0225C76C * param0, u3
         v0 = ov114_0225C76C(param0, param1);
 
         if (v0 == param0->unk_09) {
-            return sub_02025E38(param0->unk_00);
+            return PlayerData_GetProfileAddr(param0->unk_00);
         }
 
         return sub_02032EE8(param1);
@@ -1536,7 +1536,7 @@ static void ov114_0225D254 (UnkStruct_ov114_0225D084 * param0, u32 param1, UnkSt
 
 static void ov114_0225D290 (UnkStruct_ov114_0225D338 * param0, UnkStruct_ov114_0225CEF0 * param1, UnkStruct_021C0794 * param2, BOOL param3, u32 param4)
 {
-    u32 v0 = sub_02027B50(sub_02025E44(param2));
+    u32 v0 = sub_02027B50(PlayerData_GetOptionsAddr(param2));
     u32 v1;
     int v2;
     u8 v3;

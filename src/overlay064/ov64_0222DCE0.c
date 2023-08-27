@@ -77,7 +77,7 @@
 #include "unk_020218BC.h"
 #include "unk_0202309C.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "unk_0202ACE0.h"
@@ -1077,7 +1077,7 @@ static void ov64_0222E620 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
 {
     int v0;
 
-    v0 = sub_02027B50(sub_02025E44(param1->unk_00));
+    v0 = sub_02027B50(PlayerData_GetOptionsAddr(param1->unk_00));
 
     sub_02002E98(0, 7 * 0x20, param2);
     sub_0200DD0C(param0->unk_00, Unk_ov64_02232258[1], (1 + 9), 8, v0, param2);
@@ -1501,7 +1501,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     ldr r1, [sp, #0x14]
     str r0, [r1, #0x38]
     ldr r0, [r5, #0]
-    bl sub_02025E44
+    bl PlayerData_GetOptionsAddr
     bl sub_02027AC0
     ldr r1, [sp, #0x14]
     str r0, [r1, #0x34]
@@ -1514,7 +1514,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     bl Strbuf_Init
     str r0, [sp, #0x24]
     ldr r0, [r5, #0]
-    bl sub_02025E38
+    bl PlayerData_GetProfileAddr
     add r2, r0, #0
     mov r1, #0x62
     ldr r0, [sp, #0x18]
@@ -1753,7 +1753,7 @@ static BOOL ov64_0222F068 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222
 
 static void ov64_0222F09C (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
-    param0->unk_DC = sub_02027AC0(sub_02025E44(param1->unk_00));
+    param0->unk_DC = sub_02027AC0(PlayerData_GetOptionsAddr(param1->unk_00));
     ov64_0222F414(param0, param1, param2, param3);
 }
 
@@ -2837,7 +2837,7 @@ static int ov64_0223044C (UnkStruct_ov64_02230444 * param0, UnkStruct_ov64_0222D
         v0[2] = 4;
         v0[3] = 0;
 
-        param0->unk_08 = sub_02089400(param4, 12, v0, sub_02025E44(param2->unk_00), 0, 0);
+        param0->unk_08 = sub_02089400(param4, 12, v0, PlayerData_GetOptionsAddr(param2->unk_00), 0, 0);
         ov64_0222DFD0(param1);
         param0->unk_00 = sub_020067E8(&Unk_020F2DAC, param0->unk_04, param4);
         param2->unk_04 = 1;
@@ -2922,7 +2922,7 @@ static UnkStruct_0208737C * ov64_022305DC (UnkStruct_ov64_02230444 * param0, Unk
 {
     UnkStruct_0208737C * v0;
 
-    v0 = sub_0208712C(param2, 7, 0, 7, sub_02025E44(param1->unk_00));
+    v0 = sub_0208712C(param2, 7, 0, 7, PlayerData_GetOptionsAddr(param1->unk_00));
 
     if (param1->unk_34.unk_04 == 1) {
         {
@@ -3151,7 +3151,7 @@ static void ov64_02230804 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_0222
 
 static void ov64_0223081C (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2)
 {
-    sub_0200B498(param2->unk_214, 0, sub_02025E38(param1->unk_00));
+    sub_0200B498(param2->unk_214, 0, PlayerData_GetProfileAddr(param1->unk_00));
     ov64_0222E738(param2, 46);
 
     sub_020198C0(param2->unk_00, Unk_ov64_02232258[2], param0->unk_24->rawData, 0, 0, param0->unk_24->screenWidth / 8, param0->unk_24->screenHeight / 8);

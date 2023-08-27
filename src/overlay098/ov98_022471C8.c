@@ -53,7 +53,7 @@
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_020279FC.h"
 #include "unk_0202ACE0.h"
 #include "unk_02030CE8.h"
@@ -2184,7 +2184,7 @@ static int ov98_02249238 (UnkStruct_ov98_02247704 * param0)
         v0 = sub_020246E0(param0->unk_00->unk_04);
 
         if (v0 == 2) {
-            sub_0200B498(param0->unk_20, 0, sub_02025E38(param0->unk_00->unk_04));
+            sub_0200B498(param0->unk_20, 0, PlayerData_GetProfileAddr(param0->unk_00->unk_04));
             ov98_02249714(param0, param0->unk_34, 33, 0, 0xf0f);
             sub_02005748(1563);
         } else {

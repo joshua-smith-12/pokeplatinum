@@ -83,7 +83,7 @@
 #include "unk_02023FCC.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "unk_020366A0.h"
@@ -630,7 +630,7 @@ int ov70_0225D9A4 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002AE4(0);
     sub_02002B20(0);
 
-    v0->unk_458 = sub_02025E38(v1->unk_00);
+    v0->unk_458 = PlayerData_GetProfileAddr(v1->unk_00);
     ov70_0225E4EC(&v0->unk_3C, v1->unk_00, 112);
     v0->unk_44C = ov70_0225C858(112);
 
@@ -1317,7 +1317,7 @@ static void ov70_0225E4EC (UnkStruct_ov70_0225E4EC * param0, UnkStruct_021C0794 
         UnkStruct_020279FC * v1;
         u8 v2;
 
-        v1 = sub_02025E44(param1);
+        v1 = PlayerData_GetOptionsAddr(param1);
         v2 = sub_02027B50(v1);
 
         sub_02002E7C(0, 5 * 32, param2);
@@ -1551,7 +1551,7 @@ static void ov70_0225E9C8 (UnkStruct_ov70_0225E9C8 * param0, UnkStruct_ov70_0225
     {
         UnkStruct_020279FC * v0;
 
-        v0 = sub_02025E44(param2);
+        v0 = PlayerData_GetOptionsAddr(param2);
         param0->unk_14 = sub_02027AC0(v0);
     }
 }

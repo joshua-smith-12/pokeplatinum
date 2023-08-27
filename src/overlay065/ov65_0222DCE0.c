@@ -80,7 +80,7 @@
 #include "strbuf.h"
 #include "unk_02023FCC.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
 #include "unk_020279FC.h"
@@ -1479,7 +1479,7 @@ static void ov65_0222ECA8 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1)
     sub_0200710C(param1, 11, v0, 4, 0, 0, 0, 54);
 
     {
-        int v1 = sub_02027B50(sub_02025E44(param0->unk_160));
+        int v1 = sub_02027B50(PlayerData_GetOptionsAddr(param0->unk_160));
 
         sub_0200DD0C(v0, 2, (512 - (18 + 12)), 10, v1, 54);
         sub_0200DAA4(v0, 2, ((512 - (18 + 12)) - 9), 11, 0, 54);
@@ -1807,7 +1807,7 @@ static int ov65_0222F490 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static void ov65_0222F4C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param0->unk_160);
+    UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr(param0->unk_160);
     UnkStruct_02026324 * v1 = sub_02027560(param0->unk_160);
     Party * v2 = Party_GetFromSavedata(param0->unk_160);
     UnkStruct_0202C878 * v3 = sub_0202C878(param0->unk_160);
@@ -2308,7 +2308,7 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
 {
     int v0, v1, v2;
     int v3;
-    UnkStruct_02025E6C * v4 = sub_02025E38(param0->unk_160);
+    UnkStruct_02025E6C * v4 = PlayerData_GetProfileAddr(param0->unk_160);
     Strbuf* v5 = sub_02025F04(v4, 54);
     u32 v6;
 
@@ -4738,7 +4738,7 @@ static int ov65_02232B28 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static void ov65_02232B58 (UnkStruct_ov65_0222EBE0 * param0, int param1, BOOL param2)
 {
-    u8 v0 = sub_02027AC0(sub_02025E44(param0->unk_160));
+    u8 v0 = sub_02027AC0(PlayerData_GetOptionsAddr(param0->unk_160));
 
     ov65_02232F50(param0);
 

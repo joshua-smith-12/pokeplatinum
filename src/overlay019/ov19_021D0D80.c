@@ -54,7 +54,7 @@
 #include "unk_02023FCC.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_020279FC.h"
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"
@@ -890,7 +890,7 @@ static void ov19_021D1C84 (UnkStruct_ov19_021D5DF8 * param0)
     param0->unk_12C.unk_20 = sub_0202D79C(param0->unk_11C);
 
     sub_0208D720(&(param0->unk_12C), v0);
-    sub_0208E9C0(&(param0->unk_12C), sub_02025E38(param0->unk_11C));
+    sub_0208E9C0(&(param0->unk_12C), PlayerData_GetProfileAddr(param0->unk_11C));
 }
 
 static int ov19_021D1DAC (UnkStruct_ov19_021D5DF8 * param0)
@@ -3314,7 +3314,7 @@ static void ov19_021D4BE0 (UnkStruct_ov19_021D5DF8 * param0, UnkStruct_02042434 
     param0->unk_120 = sub_02024420(param1->unk_00);
     param0->unk_11C = param1->unk_00;
     param0->unk_124 = Party_GetFromSavedata(param1->unk_00);
-    param0->unk_1A4 = sub_02025E44(param1->unk_00);
+    param0->unk_1A4 = PlayerData_GetOptionsAddr(param1->unk_00);
     param0->unk_118 = param1;
     param1->unk_08 = 0;
     param0->unk_18C = sub_0200B144(0, 26, 19, 9);

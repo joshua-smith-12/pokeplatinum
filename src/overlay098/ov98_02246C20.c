@@ -20,7 +20,7 @@
 #include "heap.h"
 #include "error_handling.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02030CE8.h"
 #include "unk_02033200.h"
 #include "unk_02038FFC.h"
@@ -105,7 +105,7 @@ int ov98_02246C20 (UnkStruct_020067E8 * param0, int * param1)
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov98_02246E88), 108);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02246E88));
     v0->unk_04 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
-    v0->unk_08 = sub_02025E44(v0->unk_04);
+    v0->unk_08 = PlayerData_GetOptionsAddr(v0->unk_04);
     v0->unk_114 = Strbuf_Init(100, 108);
     v0->unk_118 = Strbuf_Init(100, 108);
     sub_02004550(17, 1175, 1);
@@ -355,7 +355,7 @@ asm void * ov98_02246FC4 (UnkStruct_ov98_02246E88 * param0)
     str r0, [sp, #0x10]
     str r0, [sp, #0x14]
     ldr r0, [r4, #4]
-    bl sub_02025E44
+    bl PlayerData_GetOptionsAddr
     add r3, r0, #0
     mov r0, #4
     str r0, [sp]
@@ -442,7 +442,7 @@ asm void * ov98_02247070 (UnkStruct_ov98_02246E88 * param0)
     str r0, [sp, #0x18]
     str r0, [sp, #0x1c]
     ldr r0, [r4, #4]
-    bl sub_02025E44
+    bl PlayerData_GetOptionsAddr
     add r3, r0, #0
     mov r0, #5
     str r0, [sp]
@@ -510,7 +510,7 @@ asm void * ov98_022470F8 (UnkStruct_ov98_02246E88 * param0)
     str r0, [sp, #0x10]
     str r0, [sp, #0x14]
     ldr r0, [r4, #4]
-    bl sub_02025E44
+    bl PlayerData_GetOptionsAddr
     add r3, r0, #0
     mov r0, #6
     str r0, [sp]

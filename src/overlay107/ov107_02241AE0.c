@@ -61,7 +61,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "unk_020302D0.h"
@@ -489,7 +489,7 @@ int ov107_02241AE0 (UnkStruct_020067E8 * param0, int * param1)
     v1->unk_1D4 = sub_0203041C(v1->unk_1CC);
     v1->unk_09 = v2->unk_04;
     v1->unk_438 = &v2->unk_20;
-    v1->unk_1C8 = sub_02025E44(v1->unk_1CC);
+    v1->unk_1C8 = PlayerData_GetOptionsAddr(v1->unk_1CC);
     v1->unk_43C = v2->unk_18;
     v1->unk_12 = 0xff;
     v1->unk_49A = v2->unk_28;
@@ -3064,7 +3064,7 @@ static void ov107_02244A8C (UnkStruct_ov107_02241D6C * param0, u32 param1, BoxPo
 
 static void ov107_02244A98 (UnkStruct_ov107_02241D6C * param0, u32 param1)
 {
-    sub_0200B498(param0->unk_24, param1, sub_02025E38(param0->unk_1CC));
+    sub_0200B498(param0->unk_24, param1, PlayerData_GetProfileAddr(param0->unk_1CC));
     return;
 }
 
@@ -3074,7 +3074,7 @@ static void ov107_02244AB4 (UnkStruct_ov107_02241D6C * param0, UnkStruct_0205AA5
     const UnkStruct_02025E6C * v1;
     Strbuf* v2;
 
-    v1 = sub_02025E38(param0->unk_1CC);
+    v1 = PlayerData_GetProfileAddr(param0->unk_1CC);
     v2 = Strbuf_Init((7 + 1), 100);
 
     Strbuf_CopyChars(v2, sub_02025EF0(v1));
@@ -3632,7 +3632,7 @@ void ov107_022452F4 (UnkStruct_ov107_02241D6C * param0, u16 param1)
     UnkStruct_02025E6C * v2;
 
     v1 = 0;
-    v2 = sub_02025E38(param0->unk_1CC);
+    v2 = PlayerData_GetProfileAddr(param0->unk_1CC);
 
     param0->unk_444[v1] = param1;
     v1 += 1;

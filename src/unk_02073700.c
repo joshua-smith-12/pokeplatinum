@@ -9,7 +9,7 @@
 #include "struct_defs/struct_0202D314.h"
 #include "overlay096/struct_ov96_0223B450_sub1.h"
 
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202C858.h"
 #include "unk_0202D05C.h"
@@ -20,7 +20,7 @@ void sub_02073700(UnkStruct_021C0794 * param0, int param1, UnkStruct_ov96_0223B4
 void sub_02073700 (UnkStruct_021C0794 * param0, int param1, UnkStruct_ov96_0223B450_sub1 * param2)
 {
     int v0;
-    UnkStruct_02025E6C * v1 = sub_02025E38(param0);
+    UnkStruct_02025E6C * v1 = PlayerData_GetProfileAddr(param0);
     UnkStruct_0202C878 * v2 = sub_0202C878(param0);
     UnkStruct_0202D750 * v3 = sub_0202D750(param0);
 

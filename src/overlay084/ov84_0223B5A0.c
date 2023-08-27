@@ -51,7 +51,7 @@
 #include "gx_layers.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "unk_0202D7A8.h"
@@ -607,8 +607,8 @@ int ov84_0223B900 (UnkStruct_020067E8 * param0, int * param1)
 static void ov84_0223B9AC (UnkStruct_ov84_0223B5A0 * param0)
 {
     param0->unk_C8 = sub_0207D990(param0->unk_C4->unk_00);
-    param0->unk_CC = sub_02025E38(param0->unk_C4->unk_00);
-    param0->unk_D0 = sub_02025E44(param0->unk_C4->unk_00);
+    param0->unk_CC = PlayerData_GetProfileAddr(param0->unk_C4->unk_00);
+    param0->unk_D0 = PlayerData_GetOptionsAddr(param0->unk_C4->unk_00);
 }
 
 static UnkStruct_0202D7B0 * ov84_0223B9E4 (UnkStruct_ov84_0223B5A0 * param0)

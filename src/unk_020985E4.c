@@ -11,7 +11,7 @@
 
 #include "unk_0200F174.h"
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0203CC84.h"
 #include "unk_020508D4.h"
@@ -29,8 +29,8 @@ void sub_020985E4 (UnkStruct_020508D4 * param0, UnkStruct_021C0794 * param1)
     v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0209862C));
     v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_020985E4));
 
-    v1->unk_04 = sub_02025E44(param1);
-    v1->unk_08 = sub_02025E38(param1);
+    v1->unk_04 = PlayerData_GetOptionsAddr(param1);
+    v1->unk_08 = PlayerData_GetProfileAddr(param1);
     v1->unk_00 = sub_02025F30(v1->unk_08);
 
     v0->unk_00 = 0;

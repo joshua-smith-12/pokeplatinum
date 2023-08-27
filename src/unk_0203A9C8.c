@@ -57,7 +57,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
@@ -539,7 +539,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
             v7 = Strbuf_Init(8, 11);
             v8 = sub_0200B1EC(v2, Unk_020EA05C[v1->unk_30[v4]][0]);
 
-            sub_0200B498(v6, 0, sub_02025E38(v0->unk_0C));
+            sub_0200B498(v6, 0, PlayerData_GetProfileAddr(v0->unk_0C));
             sub_0200C388(v6, v7, v8);
             sub_02013A6C(v1->unk_24, v7, v1->unk_30[v4]);
             Strbuf_Free(v8);
@@ -575,7 +575,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
     v1->unk_20 = sub_02001AF4(&v3, 28, 4, v1->unk_28, 11, PAD_BUTTON_B | PAD_BUTTON_X);
 
     sub_0201A9A4(&v1->unk_00);
-    sub_0203B318(v1, v1->unk_30, v5, sub_02025F30(sub_02025E38(v0->unk_0C)));
+    sub_0203B318(v1, v1->unk_30, v5, sub_02025F30(PlayerData_GetProfileAddr(v0->unk_0C)));
 }
 
 static u32 sub_0203AFCC (UnkStruct_020708E0 * param0, u8 * param1)
@@ -943,7 +943,7 @@ static BOOL sub_0203B6A4 (UnkStruct_020508D4 * param0)
     v1 = sub_02050A64(param0);
     v2 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov21_021D0D80));
     v3 = sub_02027560(v0->unk_0C);
-    v4 = sub_02025E38(v0->unk_0C);
+    v4 = PlayerData_GetProfileAddr(v0->unk_0C);
     v5 = sub_020507E4(v0->unk_0C);
 
     v2->unk_00 = v3;
@@ -1029,7 +1029,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
         UnkStruct_02098D38 * v3 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098D38));
 
         v3->unk_00 = Party_GetFromSavedata(v0->unk_0C);
-        v3->unk_04 = sub_02025E44(v0->unk_0C);
+        v3->unk_04 = PlayerData_GetOptionsAddr(v0->unk_0C);
         v3->unk_11 = 1;
         v3->unk_14 = v2->unk_22;
         v3->unk_13 = (u8)Party_GetCurrentCount(v3->unk_00);
@@ -1041,7 +1041,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
         v3->unk_28 = NULL;
 
         sub_0208D720(v3, Unk_020EA02C);
-        sub_0208E9C0(v3, sub_02025E38(v0->unk_0C));
+        sub_0208E9C0(v3, PlayerData_GetProfileAddr(v0->unk_0C));
         sub_0203D334(v0, v3);
 
         v1->unk_25C = v3;
@@ -1053,7 +1053,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
         UnkStruct_02098D38 * v4 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098D38));
 
         v4->unk_00 = Party_GetFromSavedata(v0->unk_0C);
-        v4->unk_04 = sub_02025E44(v0->unk_0C);
+        v4->unk_04 = PlayerData_GetOptionsAddr(v0->unk_0C);
         v4->unk_11 = 1;
         v4->unk_14 = v2->unk_22;
         v4->unk_13 = 1;
@@ -1064,7 +1064,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
         v4->unk_28 = NULL;
 
         sub_0208D720(v4, Unk_020EA01C);
-        sub_0208E9C0(v4, sub_02025E38(v0->unk_0C));
+        sub_0208E9C0(v4, PlayerData_GetProfileAddr(v0->unk_0C));
         sub_0203D334(v0, v4);
 
         {
@@ -1084,7 +1084,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
         UnkStruct_02098D38 * v6 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098D38));
 
         v6->unk_00 = Party_GetFromSavedata(v0->unk_0C);
-        v6->unk_04 = sub_02025E44(v0->unk_0C);
+        v6->unk_04 = PlayerData_GetOptionsAddr(v0->unk_0C);
         v6->unk_11 = 1;
         v6->unk_14 = v2->unk_22;
         v6->unk_13 = 1;
@@ -1095,7 +1095,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
         v6->unk_28 = NULL;
 
         sub_0208D720(v6, Unk_020EA01C);
-        sub_0208E9C0(v6, sub_02025E38(v0->unk_0C));
+        sub_0208E9C0(v6, PlayerData_GetProfileAddr(v0->unk_0C));
         sub_0203D334(v0, v6);
 
         {
@@ -1153,7 +1153,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
         v1->unk_260 = (void *)v13;
 
         v11 = sub_0207D990(v0->unk_0C);
-        v12 = sub_02025E38(v0->unk_0C);
+        v12 = PlayerData_GetProfileAddr(v0->unk_0C);
         v1->unk_25C = sub_0207D824(v11, Unk_020EA020, 11);
 
         sub_0207CB2C(v1->unk_25C, v0->unk_0C, 1, v0->unk_98);
@@ -1315,7 +1315,7 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
         v6->unk_00 = Party_GetFromSavedata(v0->unk_0C);
         v6->unk_04 = sub_0207D990(v0->unk_0C);
         v6->unk_08 = sub_02028430(v0->unk_0C);
-        v6->unk_0C = sub_02025E44(v0->unk_0C);
+        v6->unk_0C = PlayerData_GetOptionsAddr(v0->unk_0C);
         v6->unk_18 = &v1->unk_24C;
         v6->unk_21 = 0;
         v6->unk_20 = 9;
@@ -1358,7 +1358,7 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
             v13->unk_00 = v7;
             v13->unk_04 = sub_0207D990(v0->unk_0C);
             v13->unk_08 = sub_02028430(v0->unk_0C);
-            v13->unk_0C = sub_02025E44(v0->unk_0C);
+            v13->unk_0C = PlayerData_GetOptionsAddr(v0->unk_0C);
             v13->unk_18 = &v1->unk_24C;
             v13->unk_21 = 0;
             v13->unk_24 = sub_0207CB94(v2);
@@ -1647,7 +1647,7 @@ static BOOL sub_0203C1C8 (UnkStruct_020508D4 * param0)
         v3->unk_00 = Party_GetFromSavedata(v0->unk_0C);
         v3->unk_04 = sub_0207D990(v0->unk_0C);
         v3->unk_08 = sub_02028430(v0->unk_0C);
-        v3->unk_0C = sub_02025E44(v0->unk_0C);
+        v3->unk_0C = PlayerData_GetOptionsAddr(v0->unk_0C);
         v3->unk_18 = &v1->unk_24C;
         v3->unk_21 = 0;
         v3->unk_1C = v0;
@@ -1871,7 +1871,7 @@ static void sub_0203C668 (UnkStruct_0203CDB0 * param0, UnkStruct_020708E0 * para
     v1->unk_00 = Party_GetFromSavedata(param0->unk_0C);
     v1->unk_04 = sub_0207D990(param0->unk_0C);
     v1->unk_08 = sub_02028430(param0->unk_0C);
-    v1->unk_0C = sub_02025E44(param0->unk_0C);
+    v1->unk_0C = PlayerData_GetOptionsAddr(param0->unk_0C);
     v1->unk_18 = &param1->unk_24C;
     v1->unk_21 = 0;
     v1->unk_24 = v0->unk_00;
@@ -1951,9 +1951,9 @@ static void sub_0203C7B8 (UnkStruct_020508D4 * param0)
     v4 = Party_GetPokemonBySlotIndex(v3, v2->unk_00);
 
     if (v2->unk_01 == 0) {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, sub_02025E44(v0->unk_0C), sub_0208C324(v0->unk_0C), sub_02027560(v0->unk_0C), sub_0207D990(v0->unk_0C), sub_0202CD88(v0->unk_0C), sub_02056B24(v0->unk_0C), v2->unk_08, 0x1, 73);
+        v5 = sub_0207AE68(v3, v4, v2->unk_04, PlayerData_GetOptionsAddr(v0->unk_0C), sub_0208C324(v0->unk_0C), sub_02027560(v0->unk_0C), sub_0207D990(v0->unk_0C), sub_0202CD88(v0->unk_0C), sub_02056B24(v0->unk_0C), v2->unk_08, 0x1, 73);
     } else {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, sub_02025E44(v0->unk_0C), sub_0208C324(v0->unk_0C), sub_02027560(v0->unk_0C), sub_0207D990(v0->unk_0C), sub_0202CD88(v0->unk_0C), sub_02056B24(v0->unk_0C), v2->unk_08, NULL, 73);
+        v5 = sub_0207AE68(v3, v4, v2->unk_04, PlayerData_GetOptionsAddr(v0->unk_0C), sub_0208C324(v0->unk_0C), sub_02027560(v0->unk_0C), sub_0207D990(v0->unk_0C), sub_0202CD88(v0->unk_0C), sub_02056B24(v0->unk_0C), v2->unk_08, NULL, 73);
     }
 
     {

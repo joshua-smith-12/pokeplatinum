@@ -22,7 +22,7 @@
 #include "heap.h"
 #include "unk_0201D0C8.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020277A4.h"
 #include "unk_0202B37C.h"
@@ -190,7 +190,7 @@ void sub_0200B4BC (UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_021C
 
 void sub_0200B4E4 (UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_021C0794 * param2)
 {
-    const UnkStruct_02025E6C * v0 = sub_02025E38((UnkStruct_021C0794 *)param2);
+    const UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr((UnkStruct_021C0794 *)param2);
     UnkStruct_0200B144 * v1;
 
     v1 = sub_0200B144(1, 26, 553, param0->unk_04);

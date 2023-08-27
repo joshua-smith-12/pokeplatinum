@@ -12,7 +12,7 @@
 
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020329E0.h"
 #include "unk_02034198.h"
@@ -725,7 +725,7 @@ u8 sub_0205E6B8 (void)
 
 u8 sub_0205E6D8 (UnkStruct_021C0794 * param0)
 {
-    if (sub_02025FCC(sub_02025E38(param0)) == 0) {
+    if (sub_02025FCC(PlayerData_GetProfileAddr(param0)) == 0) {
         return 1;
     }
 

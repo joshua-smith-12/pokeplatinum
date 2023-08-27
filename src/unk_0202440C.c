@@ -24,7 +24,7 @@
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_0202602C.h"
 #include "unk_020261E4.h"
 #include "unk_0202631C.h"
@@ -65,7 +65,7 @@
 
 const UnkStruct_020251A4 Unk_020E5894[] = {
     {0x0, 0x0, (UnkFuncPtr_020E5894)sub_02025CB0, (UnkFuncPtr_020E5894_1)sub_02025CB4},
-    {0x1, 0x0, (UnkFuncPtr_020E5894)sub_02025E08, (UnkFuncPtr_020E5894_1)sub_02025E0C},
+    {0x1, 0x0, (UnkFuncPtr_020E5894)PlayerData_sizeof, (UnkFuncPtr_020E5894_1)PlayerData_Init},
     {0x2, 0x0, (UnkFuncPtr_020E5894)Party_sizeof, (UnkFuncPtr_020E5894_1)sub_0207A008},
     {0x3, 0x0, (UnkFuncPtr_020E5894)sub_0207D3B8, (UnkFuncPtr_020E5894_1)sub_0207D3D8},
     {0x4, 0x0, (UnkFuncPtr_020E5894)sub_020507CC, (UnkFuncPtr_020E5894_1)sub_020507D4},

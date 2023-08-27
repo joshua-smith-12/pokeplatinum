@@ -52,7 +52,7 @@
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
 #include "unk_0202CBE4.h"
@@ -997,9 +997,9 @@ static int ov97_0222BD70 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_14 = sub_0202442C(v0->unk_04);
     v0->unk_11C = FX32_ONE * 0;
     v0->unk_120 = FX32_ONE * 0;
-    v0->unk_0C = sub_02025E38(v0->unk_04);
+    v0->unk_0C = PlayerData_GetProfileAddr(v0->unk_04);
     v0->unk_08 = sub_02027560(v0->unk_04);
-    v0->unk_10 = sub_02025E5C(v0->unk_04);
+    v0->unk_10 = PlayerData_GetIGTAddr(v0->unk_04);
     v0->unk_4C = sub_02027520(v0->unk_08);
     v0->unk_50 = sub_02025F58(v0->unk_0C);
     v0->unk_12C = 15;

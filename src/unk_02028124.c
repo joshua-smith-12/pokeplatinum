@@ -15,7 +15,7 @@
 #include "unk_02014A84.h"
 #include "heap.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_02028124.h"
 #include "unk_02073C2C.h"
@@ -102,7 +102,7 @@ void sub_020281AC (UnkStruct_0202818C * param0, u8 param1, u8 param2, UnkStruct_
 
     param0->unk_07 = param1;
     v9 = Party_GetFromSavedata(param3);
-    v8 = sub_02025E38(param3);
+    v8 = PlayerData_GetProfileAddr(param3);
 
     sub_020021B0(param0->unk_08, sub_02025EF0(v8));
 

@@ -8,7 +8,7 @@
 
 #include "unk_02017038.h"
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_0202F180.h"
 #include "unk_02054884.h"
 #include "unk_02073C2C.h"
@@ -36,7 +36,7 @@ BOOL sub_020548B0 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
     Party * v3;
     UnkStruct_02025E6C * v4;
 
-    v4 = sub_02025E38(param1);
+    v4 = PlayerData_GetProfileAddr(param1);
     v3 = Party_GetFromSavedata(param1);
     v1 = AllocMonZeroed(param0);
 
@@ -61,7 +61,7 @@ BOOL sub_02054930 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
 {
     int v0;
     BOOL v1;
-    UnkStruct_02025E6C * v2 = sub_02025E38(param1);
+    UnkStruct_02025E6C * v2 = PlayerData_GetProfileAddr(param1);
     Party * v3 = Party_GetFromSavedata(param1);
     Pokemon * v4 = AllocMonZeroed(32);
 

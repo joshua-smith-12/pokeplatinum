@@ -18,7 +18,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_020279FC.h"
 #include "unk_0203E880.h"
 #include "unk_0205D8CC.h"
@@ -111,7 +111,7 @@ void ov5_021DD530 (UnkStruct_0203E724 * param0, UnkStruct_0200B358 * param1, u8 
 
 static u8 ov5_021DD574 (UnkStruct_0203E724 * param0)
 {
-    return sub_02027AC0(sub_02025E44(param0->unk_34->unk_0C));
+    return sub_02027AC0(PlayerData_GetOptionsAddr(param0->unk_34->unk_0C));
 }
 
 static void ov5_021DD588 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021DD648 * param1)
@@ -138,7 +138,7 @@ static void ov5_021DD610 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021DD648 * 
 {
     if (*(param1->unk_10) == 0) {
         sub_0205D8F4(param0->unk_08, param1->unk_0C, 3);
-        sub_0205D944(param1->unk_0C, sub_02025E44(param0->unk_0C));
+        sub_0205D944(param1->unk_0C, PlayerData_GetOptionsAddr(param0->unk_0C));
         *(param1->unk_10) = 1;
     }
 

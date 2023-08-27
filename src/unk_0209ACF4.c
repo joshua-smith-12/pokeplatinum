@@ -25,7 +25,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_0202D05C.h"
 #include "unk_0203D1B8.h"
 #include "unk_020508D4.h"
@@ -273,13 +273,13 @@ static void sub_0209B084 (UnkStruct_0209AD84 * param0, int param1, BOOL param2)
 
     if (sub_0201A7CC(v0) == 0) {
         sub_0205D8F4(param0->unk_00->unk_08, v0, 3);
-        sub_0205D944(v0, sub_02025E44(param0->unk_00->unk_0C));
+        sub_0205D944(v0, PlayerData_GetOptionsAddr(param0->unk_00->unk_0C));
     } else {
         sub_0205D988(v0);
         sub_0200E060(v0, 0, 1024 - (18 + 12), 10);
     }
 
-    param0->unk_58 = sub_0205D994(v0, param0->unk_08, sub_02025E44(param0->unk_00->unk_0C), 1);
+    param0->unk_58 = sub_0205D994(v0, param0->unk_08, PlayerData_GetOptionsAddr(param0->unk_00->unk_0C), 1);
 }
 
 static BOOL sub_0209B100 (UnkStruct_0209AD84 * param0)

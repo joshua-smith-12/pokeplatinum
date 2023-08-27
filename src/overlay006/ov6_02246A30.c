@@ -10,7 +10,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 
 #include "unk_0201D15C.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
 #include "unk_020507CC.h"
@@ -133,7 +133,7 @@ static BOOL ov6_02246A9C (UnkStruct_0203CDB0 * param0)
 
 static BOOL ov6_02246AB0 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param0->unk_0C);
+    UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr(param0->unk_0C);
 
     if (sub_02025F58(v0) >= 5) {
         return 1;

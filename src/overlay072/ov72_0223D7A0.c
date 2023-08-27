@@ -59,7 +59,7 @@
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_020279FC.h"
 #include "unk_0202C7FC.h"
 #include "unk_0202CD50.h"
@@ -151,7 +151,7 @@ int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
 
             v0->unk_5BFC = (u8 *)sub_0202C840(sub_0202C834(v2));
             v0->unk_08 = (UnkStruct_0202CD88 *)sub_0202CD88((UnkStruct_021C0794 *)sub_02006840(param0));
-            v0->unk_0C = (UnkStruct_020279FC *)sub_02025E44((UnkStruct_021C0794 *)sub_02006840(param0));
+            v0->unk_0C = (UnkStruct_020279FC *)PlayerData_GetOptionsAddr((UnkStruct_021C0794 *)sub_02006840(param0));
         }
 
         ov72_0223DCA8(v0, v1);

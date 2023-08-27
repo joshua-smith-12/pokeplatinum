@@ -32,7 +32,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "overlay102/ov102_021D0D80.h"
 
 typedef struct {
@@ -79,7 +79,7 @@ int ov102_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
         v0->unk_08 = v2->unk_00;
         v0->unk_04 = v2->unk_04;
-        v0->unk_0C = sub_02025E38(v0->unk_08);
+        v0->unk_0C = PlayerData_GetProfileAddr(v0->unk_08);
     }
 
     sub_0200F344(0, 0x0);

@@ -50,7 +50,7 @@
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_02027F84.h"
 #include "unk_02033200.h"
@@ -246,7 +246,7 @@ UnkStruct_ov56_02256468 * ov56_02256410 (UnkStruct_0203CDB0 * param0)
     v0->unk_14 = param0->unk_08;
     v0->unk_04 = param0->unk_80;
     v0->unk_08 = param0->unk_7C;
-    v0->unk_10 = sub_02025E38(param0->unk_0C);
+    v0->unk_10 = PlayerData_GetProfileAddr(param0->unk_0C);
     v0->unk_00 = 0;
     v0->unk_2F8 = v1;
     v0->unk_2D4 = param0->unk_80->unk_478;

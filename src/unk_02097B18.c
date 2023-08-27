@@ -35,7 +35,7 @@
 #include "unk_02023FCC.h"
 #include "unk_02024220.h"
 #include "unk_0202440C.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_020279FC.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
@@ -434,7 +434,7 @@ void sub_020980DC (UnkStruct_020508D4 * param0, UnkStruct_021C0794 * param1)
     v0->unk_10 = param1;
     v0->unk_08 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02097F18));
     memset(v0->unk_08, 0, sizeof(UnkStruct_02097F18));
-    v0->unk_08->unk_24 = sub_02025E44(param1);
+    v0->unk_08->unk_24 = PlayerData_GetOptionsAddr(param1);
     v0->unk_08->unk_28 = param1;
     v0->unk_0C = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098C44));
     memset(v0->unk_0C, 0, sizeof(UnkStruct_02098C44));

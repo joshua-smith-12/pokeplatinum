@@ -62,7 +62,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_02024220.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "unk_020329E0.h"
@@ -391,7 +391,7 @@ int ov105_02241AE0 (UnkStruct_020067E8 * param0, int * param1)
     v1->unk_31C = v2->unk_08;
     v1->unk_320 = v2->unk_0C;
     v1->unk_330 = &v2->unk_10[0];
-    v1->unk_138 = sub_02025E44(v1->unk_13C);
+    v1->unk_138 = PlayerData_GetOptionsAddr(v1->unk_13C);
     v1->unk_14 = (4 * 2);
 
     if (ov105_022454F8(v1, 0) == 1) {
@@ -2176,7 +2176,7 @@ static BOOL ov105_02244424 (UnkStruct_ov105_02241FF4 * param0)
         ov105_02244F00(param0, 2, v2);
         ov105_0224628C(&param0->unk_50[5], sub_02027B50(param0->unk_138));
 
-        param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[5], 16, 1, 1, sub_02027AC0(sub_02025E44(param0->unk_13C)), 1, 2, 15, 1);
+        param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[5], 16, 1, 1, sub_02027AC0(PlayerData_GetOptionsAddr(param0->unk_13C)), 1, 2, 15, 1);
 
         sub_0201A9A4(&param0->unk_50[5]);
 
@@ -2718,7 +2718,7 @@ static void ov105_02244F0C (UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA5
     const UnkStruct_02025E6C * v1;
     Strbuf* v2;
 
-    v1 = sub_02025E38(param0->unk_13C);
+    v1 = PlayerData_GetProfileAddr(param0->unk_13C);
     v2 = Strbuf_Init((7 + 1), 93);
 
     sub_0201ADA4(param1, 0);
@@ -2980,7 +2980,7 @@ static void ov105_02245464 (UnkStruct_ov105_02241FF4 * param0)
     param0->unk_140->unk_2C = 0;
 
     sub_0208D720(param0->unk_140, Unk_ov105_022462DC);
-    sub_0208E9C0(param0->unk_140, sub_02025E38(param0->unk_13C));
+    sub_0208E9C0(param0->unk_140, PlayerData_GetProfileAddr(param0->unk_13C));
 
     return;
 }
@@ -3135,7 +3135,7 @@ void ov105_02245684 (UnkStruct_ov105_02241FF4 * param0, u16 param1)
 {
     UnkStruct_02025E6C * v0;
 
-    v0 = sub_02025E38(param0->unk_13C);
+    v0 = PlayerData_GetProfileAddr(param0->unk_13C);
     param0->unk_33C[0] = param1;
 
     return;

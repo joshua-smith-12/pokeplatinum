@@ -54,7 +54,7 @@
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
 #include "unk_02034198.h"
@@ -316,7 +316,7 @@ int ov108_02241AE0 (UnkStruct_020067E8 * param0, int * param1)
     v1->unk_426 = v2->unk_18;
     v1->unk_12 = v2->unk_07;
     v1->unk_3C4 = &v2->unk_38;
-    v1->unk_D8 = sub_02025E44(v1->unk_DC);
+    v1->unk_D8 = PlayerData_GetOptionsAddr(v1->unk_DC);
     v1->unk_3C8 = v2->unk_30;
     v1->unk_3CC = v2->unk_34;
     v1->unk_0E = 0xff;
@@ -1195,7 +1195,7 @@ void ov108_02242A7C (UnkStruct_ov108_02241DB0 * param0, u16 param1)
     UnkStruct_02025E6C * v2;
 
     v1 = 0;
-    v2 = sub_02025E38(param0->unk_DC);
+    v2 = PlayerData_GetProfileAddr(param0->unk_DC);
 
     param0->unk_3D4[v1] = param1;
 

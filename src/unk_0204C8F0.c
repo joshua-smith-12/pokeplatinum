@@ -10,7 +10,7 @@
 #include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_0205AA50.h"
 
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0203CC84.h"
 #include "unk_0203E724.h"
@@ -21,7 +21,7 @@
 
 BOOL sub_0204C8F0 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
     u32 v1;
 
     v1 = sub_0203E850(param0);
@@ -32,7 +32,7 @@ BOOL sub_0204C8F0 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C914 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
     u32 v1;
 
     v1 = sub_0203E850(param0);
@@ -43,7 +43,7 @@ BOOL sub_0204C914 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C938 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
     u32 v1;
 
     v1 = inline_02049538(param0);
@@ -54,7 +54,7 @@ BOOL sub_0204C938 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C968 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
     u16 * v1;
     u32 v2, v3;
 
@@ -73,7 +73,7 @@ BOOL sub_0204C968 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C9AC (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
     u16 * v1;
     u32 v2, v3;
 

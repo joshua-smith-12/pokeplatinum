@@ -15,7 +15,7 @@
 
 #include "unk_0200B358.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
 #include "unk_020298BC.h"
@@ -99,7 +99,7 @@ BOOL sub_02046CFC (UnkStruct_0203E724 * param0)
     Strbuf* v0;
     Pokemon * v1;
     void ** v2 = sub_0203F098(param0->unk_34, 20);
-    UnkStruct_02025E6C * v3 = sub_02025E38(sub_0203D174(param0->unk_34));
+    UnkStruct_02025E6C * v3 = PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
     u16 v4 = inline_02049538(param0);
     u16 v5 = inline_02049538(param0);
     u16 v6 = inline_02049538(param0);
@@ -119,7 +119,7 @@ BOOL sub_02046CFC (UnkStruct_0203E724 * param0)
     v8.unk_0C = v0;
     v8.unk_10 = v3;
     v8.unk_14 = sub_0202A750(param0->unk_34->unk_0C);
-    v8.unk_18 = sub_02025E44(param0->unk_34->unk_0C);
+    v8.unk_18 = PlayerData_GetOptionsAddr(param0->unk_34->unk_0C);
     v8.unk_1C = param0->unk_34->unk_0C;
     v8.unk_20 = sub_0202CC98(param0->unk_34->unk_0C);
 

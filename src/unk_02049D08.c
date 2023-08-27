@@ -25,7 +25,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_0202440C.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202B604.h"
 #include "unk_0202CD50.h"
@@ -373,7 +373,7 @@ UnkStruct_0204AFC4 * sub_0204A124 (UnkStruct_021C0794 * param0, u16 param1, u16 
         }
     }
 
-    v3->unk_11 = sub_02025F30(sub_02025E38(param0));
+    v3->unk_11 = sub_02025F30(PlayerData_GetProfileAddr(param0));
 
     if (v3->unk_0F != 5) {
         v4 = sub_0203068C(param0);

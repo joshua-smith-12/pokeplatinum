@@ -25,7 +25,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02025CB0.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020277A4.h"
 #include "unk_020279FC.h"
@@ -106,7 +106,7 @@ static int ov57_021D0DE0 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_021C0794 * v0 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
 
     ov57_021D0EAC(77, v0, 1);
-    sub_02017434(sub_02025E5C(v0));
+    sub_02017434(PlayerData_GetIGTAddr(v0));
 
     return 1;
 }
@@ -140,7 +140,7 @@ static int ov57_021D0E34 (UnkStruct_020067E8 * param0, int * param1)
         sub_02077B8C(Party_GetFromSavedata(v0));
     }
 
-    sub_02017434(sub_02025E5C(v0));
+    sub_02017434(PlayerData_GetIGTAddr(v0));
     return 1;
 }
 
@@ -407,7 +407,7 @@ static void ov57_021D0EAC (int param0, UnkStruct_021C0794 * param1, BOOL param2)
     sub_0202B40C(v4, 1, sub_0201D35C());
     sub_0206C008(param1);
 
-    v2 = sub_02025E38(param1);
+    v2 = PlayerData_GetProfileAddr(param1);
     v0 = sub_0201D35C();
 
     if (param2) {

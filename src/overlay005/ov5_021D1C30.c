@@ -20,7 +20,7 @@
 #include "overlay005/struct_ov5_021D219C.h"
 
 #include "unk_02005474.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020261E4.h"
 #include "unk_0202CD50.h"
@@ -745,7 +745,7 @@ u16 ov5_021D271C (UnkStruct_0203CDB0 * param0, u8 param1)
     }
 
     if (sub_0205EB74(param0->unk_3C) != 0x2) {
-        UnkStruct_02025E6C * v1 = sub_02025E38(param0->unk_0C);
+        UnkStruct_02025E6C * v1 = PlayerData_GetProfileAddr(param0->unk_0C);
         u32 v2 = sub_02061760(param0->unk_3C);
 
         if (ov5_021E0118(param0->unk_3C, v2, param1)

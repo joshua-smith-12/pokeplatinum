@@ -15,7 +15,7 @@
 #include "unk_0200AC5C.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202F180.h"
 #include "map_header.h"
@@ -133,7 +133,7 @@ void ov6_02246254 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1,
     param3->unk_04 = sub_02076B10(param5);
     param3->unk_08 = param1->unk_08;
     param3->unk_10 = 1;
-    param3->unk_14 = sub_02025E44(param0->unk_0C);
+    param3->unk_14 = PlayerData_GetOptionsAddr(param0->unk_0C);
 
     v4 = sub_02055BA8(param0);
 

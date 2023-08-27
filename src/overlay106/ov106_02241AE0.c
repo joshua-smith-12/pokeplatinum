@@ -56,7 +56,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_020279FC.h"
 #include "unk_02030108.h"
 #include "unk_02034198.h"
@@ -220,7 +220,7 @@ int ov106_02241AE0 (UnkStruct_020067E8 * param0, int * param1)
     v1->unk_B8 = v2->unk_00;
     v1->unk_09 = v2->unk_04;
     v1->unk_28C = &v2->unk_06;
-    v1->unk_B4 = sub_02025E44(v1->unk_B8);
+    v1->unk_B4 = PlayerData_GetOptionsAddr(v1->unk_B8);
     v1->unk_290 = v2->unk_0C;
     v1->unk_294 = v2->unk_08;
     v1->unk_298 = v2->unk_14;
@@ -511,7 +511,7 @@ static BOOL ov106_02241E5C (UnkStruct_ov106_02243118 * param0)
         break;
     case 4:
         ov106_02243758(&param0->unk_4C[0], sub_02027B50(param0->unk_B4));
-        param0->unk_0A = ov106_02242918(param0, &param0->unk_4C[0], 32, 1, 1, sub_02027AC0(sub_02025E44(param0->unk_B8)), 1, 2, 15, 1);
+        param0->unk_0A = ov106_02242918(param0, &param0->unk_4C[0], 32, 1, 1, sub_02027AC0(PlayerData_GetOptionsAddr(param0->unk_B8)), 1, 2, 15, 1);
         sub_0201A954(&param0->unk_4C[0]);
         param0->unk_08 = 5;
         break;
@@ -1238,7 +1238,7 @@ static void ov106_02242CA4 (UnkStruct_ov106_02243118 * param0)
     param0->unk_BC->unk_2C = sub_0208C324(param0->unk_B8);
 
     sub_0208D720(param0->unk_BC, Unk_ov106_02243798);
-    sub_0208E9C0(param0->unk_BC, sub_02025E38(param0->unk_B8));
+    sub_0208E9C0(param0->unk_BC, PlayerData_GetProfileAddr(param0->unk_B8));
 
     return;
 }
@@ -1525,7 +1525,7 @@ void ov106_02243118 (UnkStruct_ov106_02243118 * param0, u16 param1)
 {
     UnkStruct_02025E6C * v0;
 
-    v0 = sub_02025E38(param0->unk_B8);
+    v0 = PlayerData_GetProfileAddr(param0->unk_B8);
     param0->unk_2A0[0] = param1;
 
     return;

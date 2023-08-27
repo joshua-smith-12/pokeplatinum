@@ -14,7 +14,7 @@
 #include "struct_defs/struct_0203E724_t.h"
 
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_020261E4.h"
 #include "unk_0203CC84.h"
 #include "unk_0203E724.h"
@@ -66,7 +66,7 @@ BOOL sub_0204CAEC (UnkStruct_0203E724 * param0)
     UnkStruct_021C0794 * v1 = v0->unk_0C;
     UnkStruct_02026310 * v2 = (UnkStruct_02026310 *)(sub_020245BC(v1, 8));
     Party * v3 = Party_GetFromSavedata(v0->unk_0C);
-    UnkStruct_02025E6C * v4 = sub_02025E38(sub_0203D174(param0->unk_34));
+    UnkStruct_02025E6C * v4 = PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
 
     ov5_021E6EA8(v2, v3, v4);
     return 0;

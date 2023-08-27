@@ -11,7 +11,7 @@
 #include "struct_defs/struct_0202610C.h"
 
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202602C.h"
 #include "unk_0202854C.h"
@@ -59,7 +59,7 @@ static UnkStruct_021C07B4 * Unk_021C07B4;
 void sub_020329E0 (UnkStruct_021C0794 * param0, const UnkStruct_0202610C * param1)
 {
     int v0;
-    UnkStruct_02025E6C * v1 = sub_02025E38(param0);
+    UnkStruct_02025E6C * v1 = PlayerData_GetProfileAddr(param0);
 
     if (Unk_021C07B4) {
         return;
@@ -116,7 +116,7 @@ void sub_02032AC0 (void)
     if (Unk_021C07B4->unk_00) {
         v1 = Unk_021C07B4->unk_00;
     } else {
-        v1 = sub_02025E38(Unk_021C07B4->unk_08);
+        v1 = PlayerData_GetProfileAddr(Unk_021C07B4->unk_08);
     }
 
     sub_02025E80(v1, Unk_021C07B4->unk_33C[v0]);

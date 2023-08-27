@@ -15,7 +15,7 @@
 #include "unk_0200B358.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202B37C.h"
 #include "unk_0203D1B8.h"
@@ -98,7 +98,7 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
     case 6:
     {
         Strbuf* v14 = Strbuf_Init(64, 32);
-        UnkStruct_02025E6C * v15 = sub_02025E38(param0->unk_34->unk_0C);
+        UnkStruct_02025E6C * v15 = PlayerData_GetProfileAddr(param0->unk_34->unk_0C);
 
         sub_02025EF4(v15, v14);
         sub_0202B444(v1, 0, 1, v14);

@@ -23,7 +23,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020261E4.h"
 #include "unk_0202CC64.h"
@@ -2027,7 +2027,7 @@ static void ov5_021E62C4 (Party * param0, int param1, UnkStruct_02026218 * param
     u16 v3[10 + 1];
     UnkStruct_02026224 * v4 = sub_02026224(param2);
     BoxPokemon * v5 = sub_02026220(param2);
-    UnkStruct_02025E6C * v6 = sub_02025E38(param3);
+    UnkStruct_02025E6C * v6 = PlayerData_GetProfileAddr(param3);
 
     v2 = sub_02025EF0(v6);
     GetMonData(v1, MON_DATA_117, v3);

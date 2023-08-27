@@ -23,7 +23,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_02026150.h"
 #include "unk_0202631C.h"
@@ -571,7 +571,7 @@ void sub_0202FAFC (BattleParams * param0, UnkStruct_021C0794 * param1)
         param0->unk_194[v0] = v1->unk_00.unk_14C[v0];
     }
 
-    sub_02027A10(sub_02025E44(param1), param0->unk_108);
+    sub_02027A10(PlayerData_GetOptionsAddr(param1), param0->unk_108);
     param0->unk_108->unk_02_2 = v1->unk_1BE8.unk_02_2;
 
     if (param0->unk_108->unk_02_2 >= 20) {

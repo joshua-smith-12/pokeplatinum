@@ -8,7 +8,7 @@
 #include "struct_defs/struct_020279FC.h"
 
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_020279FC.h"
 
 UnkStruct_020279FC * sub_020279FC (u32 param0)
@@ -43,7 +43,7 @@ void sub_02027A68 (UnkStruct_021C0794 * param0, int param1)
     UnkStruct_020279FC * v0;
 
     if (param0 != NULL) {
-        param1 = sub_02027B30(sub_02025E44(param0));
+        param1 = sub_02027B30(PlayerData_GetOptionsAddr(param0));
     }
 
     switch (param1) {

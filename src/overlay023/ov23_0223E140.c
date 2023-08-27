@@ -54,7 +54,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
 #include "unk_0202854C.h"
@@ -1791,7 +1791,7 @@ static int ov23_0223F970 (UnkStruct_ov23_02256EB0 * param0)
 {
     UnkStruct_021C0794 * v0 = sub_0203D174(Unk_ov23_02257740->unk_00);
     UnkStruct_020298B0 * v1 = sub_020298B0(v0);
-    BOOL v2 = sub_02025F20(sub_02025E38(v0)) % 2;
+    BOOL v2 = sub_02025F20(PlayerData_GetProfileAddr(v0)) % 2;
     BOOL v3 = sub_02027474(sub_02027560(v0));
     int v4 = 0;
 

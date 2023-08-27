@@ -27,7 +27,7 @@
 #include "unk_0201D15C.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202C858.h"
 #include "unk_020329E0.h"
@@ -357,10 +357,10 @@ void ov104_0222E134 (UnkStruct_021C0794 * param0, Pokemon * param1)
     UnkStruct_0200B144 * v2;
     int v3;
     int v4 = 0;
-    UnkStruct_02025E6C * v5 = sub_02025E38(param0);
+    UnkStruct_02025E6C * v5 = PlayerData_GetProfileAddr(param0);
 
     v0 = GetMonData(param1, MON_DATA_OT_ID, NULL);
-    sub_02077EE4(param1, sub_02025E38(param0), 4, 0, 0, 11);
+    sub_02077EE4(param1, PlayerData_GetProfileAddr(param0), 4, 0, 0, 11);
 
     v3 = sub_0203A138(562);
     sub_0209304C(param1, v5, v4, v3, 11);

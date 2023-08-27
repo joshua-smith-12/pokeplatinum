@@ -34,7 +34,7 @@
 #include "strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
 #include "unk_0202CD50.h"
@@ -192,15 +192,15 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
     v0 = sub_02050A60(param0);
     v5 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0205300C));
     v3 = sub_020507E4(v0->unk_0C);
-    v4 = sub_02025E38(v0->unk_0C);
+    v4 = PlayerData_GetProfileAddr(v0->unk_0C);
     v1 = sub_0203A730(sub_0203A790(v0->unk_0C));
     v2 = sub_0203A72C(sub_0203A790(v0->unk_0C));
 
     v5->unk_00 = sub_0206A954(v3);
-    v5->unk_04.unk_00 = sub_02025E38(v0->unk_0C);
+    v5->unk_04.unk_00 = PlayerData_GetProfileAddr(v0->unk_0C);
     v5->unk_04.unk_04 = Party_GetFromSavedata(v0->unk_0C);
-    v5->unk_04.unk_08 = sub_02025E5C(v0->unk_0C);
-    v5->unk_10.unk_00 = sub_02025F30(sub_02025E38(v0->unk_0C));
+    v5->unk_04.unk_08 = PlayerData_GetIGTAddr(v0->unk_0C);
+    v5->unk_10.unk_00 = sub_02025F30(PlayerData_GetProfileAddr(v0->unk_0C));
     v5->unk_10.unk_04 = sub_0206A954(v3);
     v5->unk_10.unk_08 = sub_02027560(v0->unk_0C);
 
@@ -277,7 +277,7 @@ static void sub_02052F28 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
 
 static void sub_02052FA8 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * param1)
 {
-    UnkStruct_020279FC * v0 = sub_02025E44(param0->unk_0C);
+    UnkStruct_020279FC * v0 = PlayerData_GetOptionsAddr(param0->unk_0C);
 
     param1->unk_2C = sub_0200B010(26, 213, 15, 32);
 
@@ -308,7 +308,7 @@ static void sub_02053028 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
         UnkStruct_0200B358 * v1;
 
         v1 = sub_0200B358(4);
-        sub_0200B498(v1, 0, sub_02025E38(param0->unk_0C));
+        sub_0200B498(v1, 0, PlayerData_GetProfileAddr(param0->unk_0C));
         param1->unk_2C = sub_0200B29C(v1, v0, 16, 4);
         sub_0200B3F0(v1);
     } else {
@@ -316,7 +316,7 @@ static void sub_02053028 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
     }
 
     sub_0200B190(v0);
-    param1->unk_34 = sub_0205D994(&param1->unk_1C, param1->unk_2C, sub_02025E44(param0->unk_0C), 1);
+    param1->unk_34 = sub_0205D994(&param1->unk_1C, param1->unk_2C, PlayerData_GetOptionsAddr(param0->unk_0C), 1);
 }
 
 static void sub_02053098 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * param1)

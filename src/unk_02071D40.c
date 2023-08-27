@@ -17,7 +17,7 @@
 
 #include "unk_020021B0.h"
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
 #include "unk_0202854C.h"
@@ -53,7 +53,7 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
     UnkStruct_021C0794 * v2;
 
     v2 = sub_0203D174(param4);
-    v0 = sub_02025E38(v2);
+    v0 = PlayerData_GetProfileAddr(v2);
     v1 = sub_0202CD88(v2);
 
     param5->unk_05 = param3;
@@ -73,7 +73,7 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
         RTCTime v6;
         UnkStruct_02025E5C * v7;
 
-        v7 = sub_02025E5C(v2);
+        v7 = PlayerData_GetIGTAddr(v2);
 
         sub_02055BF4(param4, &v4, &v6);
         sub_02055C10(param4, &v5, &v6);

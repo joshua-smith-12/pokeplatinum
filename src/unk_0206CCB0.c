@@ -42,7 +42,7 @@
 #include "strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
 #include "unk_020277A4.h"
@@ -2172,7 +2172,7 @@ static BOOL sub_0206EA0C (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * 
 
 static int sub_0206EA10 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1, UnkStruct_ov6_022465F4 * param2)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0));
+    UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr(sub_0203D174(param0));
     int v1 = param0->unk_1C->unk_00;
 
     if ((v1 == 411) || ((v1 >= 412) && (v1 <= 417))) {
@@ -2742,7 +2742,7 @@ static int sub_0206EDAC (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     u16 v2, v3;
     u32 v4, v5;
     Strbuf* v6 = Strbuf_Init(22, 4);
-    UnkStruct_02025E6C * v7 = sub_02025E38(sub_0203D174(param0));
+    UnkStruct_02025E6C * v7 = PlayerData_GetProfileAddr(sub_0203D174(param0));
 
     v1 = sub_0202D834(param0->unk_0C);
     v2 = (sub_0201D2E8() % 29);
@@ -2967,7 +2967,7 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     u16 v1, v2;
     Pokemon * v3;
     Party * v4;
-    UnkStruct_02025E6C * v5 = sub_02025E38(param0->unk_0C);
+    UnkStruct_02025E6C * v5 = PlayerData_GetProfileAddr(param0->unk_0C);
     UnkStruct_02026324 * v6 = sub_02027560(param0->unk_0C);
 
     v4 = Party_GetFromSavedata(param0->unk_0C);
@@ -3021,7 +3021,7 @@ static int sub_0206F27C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 
 static BOOL sub_0206F280 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    if (sub_02025F34(sub_02025E38(param0->unk_0C), 0) == 1) {
+    if (sub_02025F34(PlayerData_GetProfileAddr(param0->unk_0C), 0) == 1) {
         return 1;
     } else {
         return 0;

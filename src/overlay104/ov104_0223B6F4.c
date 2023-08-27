@@ -18,7 +18,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_0203061C.h"
 #include "unk_020329E0.h"
@@ -308,7 +308,7 @@ void ov104_0223BA24 (Party * param0)
 
 void ov104_0223BA7C (UnkStruct_ov104_0223BA10 * param0, Pokemon * param1)
 {
-    sub_02077EE4(param1, sub_02025E38(param0->unk_04), 4, 0, 0, 11);
+    sub_02077EE4(param1, PlayerData_GetProfileAddr(param0->unk_04), 4, 0, 0, 11);
     return;
 }
 

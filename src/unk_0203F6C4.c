@@ -89,7 +89,7 @@
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02025E68.h"
 #include "unk_020261E4.h"
 #include "unk_0202631C.h"
@@ -2435,7 +2435,7 @@ static BOOL sub_020402B4 (UnkStruct_0203E724 * param0)
     u8 * v1 = sub_0203F098(v0, 6);
 
     sub_0205D8F4(v0->unk_08, sub_0203F098(v0, 1), 3);
-    sub_0205D944(sub_0203F098(v0, 1), sub_02025E44(param0->unk_34->unk_0C));
+    sub_0205D944(sub_0203F098(v0, 1), PlayerData_GetOptionsAddr(param0->unk_34->unk_0C));
 
     *v1 = 1;
     return 0;
@@ -2631,7 +2631,7 @@ static BOOL sub_020405DC (UnkStruct_0203E724 * param0)
     sub_0200B1B8(param0->unk_2C, v5, *v2);
     sub_0200C388(*v4, *v3, *v2);
 
-    *v1 = sub_0205D994(ov5_021E1B50(v0->unk_64), *v3, sub_02025E44(param0->unk_34->unk_0C), 1);
+    *v1 = sub_0205D994(ov5_021E1B50(v0->unk_64), *v3, PlayerData_GetOptionsAddr(param0->unk_34->unk_0C), 1);
 
     param0->unk_18[0] = v6;
     sub_0203E764(param0, sub_02040670);
@@ -4524,7 +4524,7 @@ static BOOL sub_020425E0 (UnkStruct_0203E724 * param0)
 
     *v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_020425E0));
     v0 = *v1;
-    v0->unk_04 = sub_02025E44(param0->unk_34->unk_0C);
+    v0->unk_04 = PlayerData_GetOptionsAddr(param0->unk_34->unk_0C);
 
     sub_0203E0C0(param0->unk_34, *v1);
     sub_0203E764(param0, sub_02041D60);
@@ -4953,7 +4953,7 @@ static BOOL sub_02042E64 (UnkStruct_0203E724 * param0)
     sub_020792F8(v5, v6, *v2, 11);
     sub_0201ADA4(sub_0203F098(v0, 1), 15);
 
-    *v4 = sub_0205D994(sub_0203F098(v0, 1), *v2, sub_02025E44(param0->unk_34->unk_0C), 1);
+    *v4 = sub_0205D994(sub_0203F098(v0, 1), *v2, PlayerData_GetOptionsAddr(param0->unk_34->unk_0C), 1);
     sub_0203E764(param0, sub_02040014);
 
     return 1;
@@ -5142,7 +5142,7 @@ static BOOL sub_02043250 (UnkStruct_0203E724 * param0)
 static BOOL sub_02043254 (UnkStruct_0203E724 * param0)
 {
     const UnkStruct_02026324 * v0 = sub_02027560(param0->unk_34->unk_0C);
-    const UnkStruct_02025E6C * v1 = sub_02025E38(param0->unk_34->unk_0C);
+    const UnkStruct_02025E6C * v1 = PlayerData_GetProfileAddr(param0->unk_34->unk_0C);
     u8 v2 = (*((param0)->unk_08++));
     u16 * v3 = inline_0204FCAC(param0);
     u16 v4;
@@ -5405,7 +5405,7 @@ static BOOL sub_02043748 (UnkStruct_0203E724 * param0)
     UnkStruct_02061AB4 ** v0 = sub_0203F098(param0->unk_34, 10);
     UnkStruct_0200B358 ** v1 = sub_0203F098(param0->unk_34, 15);
     u16 v2 = sub_0203E838(param0);
-    UnkStruct_02025E6C * v3 = sub_02025E38(sub_0203D174(param0->unk_34));
+    UnkStruct_02025E6C * v3 = PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
     UnkStruct_02014EC4 * v4 = sub_02014EC4(sub_0203D174(param0->unk_34));
     u16 v5;
 
@@ -5615,7 +5615,7 @@ static BOOL sub_02043A94 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043AA4 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
     UnkStruct_0200B358 ** v1 = sub_0203F098(param0->unk_34, 15);
 
     sub_0205C980(sub_02025F20(v0), sub_02025F30(v0), *v1);
@@ -5624,7 +5624,7 @@ static BOOL sub_02043AA4 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043AE0 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
     u16 v1 = inline_02049538(param0);
     u16 * v2 = inline_0204FCAC(param0);
 
@@ -5636,7 +5636,7 @@ static BOOL sub_02043AE0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043B48 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
     u16 v1 = inline_02049538(param0);
     u16 * v2 = inline_0204FCAC(param0);
 
@@ -5647,7 +5647,7 @@ static BOOL sub_02043B48 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043BA0 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
     u16 v1 = inline_02049538(param0);
 
     sub_02025F90(v0, v1);
@@ -5671,7 +5671,7 @@ static BOOL sub_02043BE0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043C0C (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    UnkStruct_02025E6C * v0 = PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_02025F30(v0);
@@ -6716,7 +6716,7 @@ static BOOL sub_02044DDC (UnkStruct_0203E724 * param0)
 
     if (v0 == 1) {
         sub_02027454(sub_02027560(param0->unk_34->unk_0C));
-        sub_02025FF8(sub_02025E38(param0->unk_34->unk_0C));
+        sub_02025FF8(PlayerData_GetProfileAddr(param0->unk_34->unk_0C));
     } else if (v0 == 2) {
         *v1 = sub_02027474(sub_02027560(param0->unk_34->unk_0C));
     } else {
@@ -6822,7 +6822,7 @@ static BOOL sub_0204504C (UnkStruct_0203E724 * param0)
 static BOOL sub_02045068 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_02025E6C * v1 = sub_02025E38(sub_0203D174(param0->unk_34));
+    UnkStruct_02025E6C * v1 = PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
     u16 * v2 = inline_0204FCAC(param0);
     UnkStruct_020797DC * v3 = sub_02024420(v0->unk_0C);
     u16 v4 = inline_02049538(param0);
@@ -7911,7 +7911,7 @@ static BOOL sub_020461E0 (UnkStruct_0203E724 * param0)
         v2->unk_00 = NULL;
     }
 
-    v2->unk_04 = sub_02025E44(param0->unk_34->unk_0C);
+    v2->unk_04 = PlayerData_GetOptionsAddr(param0->unk_34->unk_0C);
     v2->unk_24 = v1;
     v2->unk_08 = param0->unk_34->unk_0C;
     v2->unk_1C = param0->unk_34->unk_1C->unk_00;
