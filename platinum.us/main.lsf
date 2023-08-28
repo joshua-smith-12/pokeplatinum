@@ -104,14 +104,14 @@ Static main
 	Object main.nef.p/src_unk_0202440C.c.o
 	Object main.nef.p/src_unk_020244AC.c.o
 	Object main.nef.p/src_unk_02025CB0.c.o
-	Object main.nef.p/src_unk_02025E08.c.o
-	Object main.nef.p/src_unk_02025E68.c.o
+	Object main.nef.p/src_player_data.c.o
+	Object main.nef.p/src_player_profile.c.o
 	Object main.nef.p/src_unk_0202602C.c.o
 	Object main.nef.p/src_unk_02026150.c.o
 	Object main.nef.p/src_unk_020261E4.c.o
 	Object main.nef.p/src_unk_0202631C.c.o
 	Object main.nef.p/src_unk_020277A4.c.o
-	Object main.nef.p/src_unk_020279FC.c.o
+	Object main.nef.p/src_options.c.o
 	Object main.nef.p/src_unk_02027B70.c.o
 	Object main.nef.p/src_unk_02027F50.c.o
 	Object main.nef.p/src_unk_02027F84.c.o
@@ -126,7 +126,7 @@ Static main
 	Object main.nef.p/src_unk_0202C7FC.c.o
 	Object main.nef.p/src_unk_0202C858.c.o
 	Object main.nef.p/src_unk_0202C9F4.c.o
-	Object main.nef.p/src_unk_0202CBE4.c.o
+	Object main.nef.p/src_igt.c.o
 	Object main.nef.p/src_unk_0202CC64.c.o
 	Object main.nef.p/src_unk_0202CD50.c.o
 	Object main.nef.p/src_unk_0202D05C.c.o

@@ -16,7 +16,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_0202CBE4.h"
+#include "igt.h"
 #include "overlay071/ov71_0223C69C.h"
 
 static void ov71_0223CD64(UnkStruct_0205AA50 * param0, const u32 param1, const u32 param2, const u32 param3, Strbuf *param4, const u32 param5, const u8 param6, const int param7);
@@ -133,8 +133,8 @@ void ov71_0223C6F0 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
             u32 v7;
 
             if (param1->unk_04_1) {
-                sub_0200B60C(v4, 0, sub_0202CC58(param1->unk_18), 3, 1, 1);
-                sub_0200B60C(v4, 1, sub_0202CC5C(param1->unk_18), 2, 2, 1);
+                sub_0200B60C(v4, 0, IGT_GetHours(param1->unk_18), 3, 1, 1);
+                sub_0200B60C(v4, 1, IGT_GetMinutes(param1->unk_18), 2, 2, 1);
                 sub_0200B1B8(v1, 16, v3);
             } else {
                 sub_0200B60C(v4, 0, param1->unk_2A, 3, 1, 1);
@@ -555,7 +555,7 @@ void ov71_0223CDE8 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
 
     GF_ASSERT(param1->unk_18 != NULL);
 
-    v0 = sub_0202CC58(param1->unk_18);
+    v0 = IGT_GetHours(param1->unk_18);
 
     if (v0 > 999) {
         v0 = 999;
@@ -570,8 +570,8 @@ void ov71_0223CDE8 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
         Strbuf* v4 = Strbuf_Init(32, 25);
         UnkStruct_0200B358 * v5 = sub_0200B368((1 + 1), 32, 25);
 
-        sub_0200B60C(v5, 0, sub_0202CC58(param1->unk_18), 3, 1, 1);
-        sub_0200B60C(v5, 1, sub_0202CC5C(param1->unk_18), 2, 2, 1);
+        sub_0200B60C(v5, 0, IGT_GetHours(param1->unk_18), 3, 1, 1);
+        sub_0200B60C(v5, 1, IGT_GetMinutes(param1->unk_18), 2, 2, 1);
         sub_0200B1B8(v2, 16, v4);
         sub_0200C388(v5, v3, v4);
         v1 = (8 * 28) - sub_02002D7C(0, v3, 0);

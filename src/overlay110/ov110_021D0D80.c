@@ -15,7 +15,7 @@
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0203E564.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
@@ -36,7 +36,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_0202D05C.h"
 #include "unk_0202FF4C.h"
 #include "unk_020302D0.h"
@@ -62,7 +62,7 @@ typedef struct {
     Strbuf* unk_118;
     Strbuf* unk_11C;
     UnkStruct_02002F38 * unk_120;
-    const UnkStruct_020279FC * unk_124;
+    const Options * unk_124;
     UnkStruct_021C0794 * unk_128;
     UnkStruct_0203068C * unk_12C;
 } UnkStruct_ov110_021D0F78;
@@ -129,7 +129,7 @@ int ov110_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     v1->unk_05 = v2->unk_04;
     v1->unk_06 = v2->unk_05;
     v1->unk_08 = v2->unk_06;
-    v1->unk_124 = sub_02025E44(v1->unk_128);
+    v1->unk_124 = Save_PlayerData_GetOptionsAddr(v1->unk_128);
 
     ov110_021D1180(v1);
 

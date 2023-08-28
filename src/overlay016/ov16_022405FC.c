@@ -69,7 +69,7 @@
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "player_profile.h"
 #include "unk_02073C2C.h"
 #include "move_table.h"
 #include "unk_02079170.h"
@@ -3163,10 +3163,10 @@ static BOOL ov16_022432B4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
             v0 += ov16_022431BC(param0, param1, 3);
         }
 
-        sub_02025F94(ov16_0223E16C(param0, 0), v0);
+        PlayerProfile_AddMoney(ov16_0223E16C(param0, 0), v0);
     } else {
         v0 = ov16_0223F904(param0->unk_68[0], param0->unk_48[0]);
-        sub_02025FB8(ov16_0223E16C(param0, 0), v0);
+        PlayerProfile_SubMoney(ov16_0223E16C(param0, 0), v0);
     }
 
     if (v0) {
@@ -3535,7 +3535,7 @@ static BOOL ov16_022438A8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         param1->unk_130 = 0xffff;
     }
 
-    sub_02025F94(ov16_0223E16C(param0, 0), param1->unk_130);
+    PlayerProfile_AddMoney(ov16_0223E16C(param0, 0), param1->unk_130);
 
     return 0;
 }

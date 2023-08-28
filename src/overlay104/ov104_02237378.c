@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
@@ -31,7 +31,7 @@
 #include "heap.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02030494.h"
 #include "unk_020329E0.h"
 #include "unk_02051D8C.h"
@@ -321,7 +321,7 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
     int v11, v12, v13;
     UnkStruct_ov104_02230BE4 * v14;
     UnkStruct_ov104_0223C4CC * v15;
-    UnkStruct_02025E6C * v16;
+    PlayerProfile * v16;
     u8 v17 = (*((param0)->unk_1C++));
     u8 v18 = ov104_0222FC00(param0);
     u8 v19 = ov104_0222FC00(param0);
@@ -493,7 +493,7 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
             sub_0200BA40(param0->unk_00->unk_44, v18, v3->unk_78[ov104_02238498(v3, v19)]);
         } else {
             if (ov104_0223C000(v3->unk_10) == 0) {
-                v16 = sub_02025E38(v14->unk_08);
+                v16 = Save_PlayerData_GetProfileAddr(v14->unk_08);
             } else {
                 v16 = sub_02032EE8(v19);
             }

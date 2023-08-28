@@ -51,9 +51,9 @@
 #include "gx_layers.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "player_data.h"
+#include "player_profile.h"
+#include "options.h"
 #include "unk_0202D7A8.h"
 #include "unk_020393C8.h"
 #include "unk_020683F4.h"
@@ -415,7 +415,7 @@ int ov84_0223B5A0 (UnkStruct_020067E8 * param0, int * param1)
     ov84_0223B9AC(v0);
 
     v0->unk_00 = sub_02018340(6);
-    v0->unk_425 = sub_02025F30(v0->unk_CC);
+    v0->unk_425 = PlayerProfile_GetGender(v0->unk_CC);
 
     sub_0200F174(1, 3, 3, 0x0, 6, 1, 6);
     sub_02017DD4(3, 8);
@@ -607,8 +607,8 @@ int ov84_0223B900 (UnkStruct_020067E8 * param0, int * param1)
 static void ov84_0223B9AC (UnkStruct_ov84_0223B5A0 * param0)
 {
     param0->unk_C8 = sub_0207D990(param0->unk_C4->unk_00);
-    param0->unk_CC = sub_02025E38(param0->unk_C4->unk_00);
-    param0->unk_D0 = sub_02025E44(param0->unk_C4->unk_00);
+    param0->unk_CC = Save_PlayerData_GetProfileAddr(param0->unk_C4->unk_00);
+    param0->unk_D0 = Save_PlayerData_GetOptionsAddr(param0->unk_C4->unk_00);
 }
 
 static UnkStruct_0202D7B0 * ov84_0223B9E4 (UnkStruct_ov84_0223B5A0 * param0)
@@ -830,7 +830,7 @@ static void ov84_0223BC1C (UnkStruct_ov84_0223B5A0 * param0)
     sub_02007130(param0->unk_D4, 22, 0, 16 * 13 * 2, 32, 6);
     sub_02002E98(0, 11 * 32, 6);
     sub_0200DAA4(param0->unk_00, 0, 1024 - 9, 14, 0, 6);
-    sub_0200DD0C(param0->unk_00, 0, 1024 - 9 - (18 + 12), 12, sub_02027B50(param0->unk_D0), 6);
+    sub_0200DD0C(param0->unk_00, 0, 1024 - 9 - (18 + 12), 12, Options_GetFrame(param0->unk_D0), 6);
     sub_020070E8(param0->unk_D4, 15, param0->unk_00, 5, 0, 0, 0, 6);
     sub_02007130(param0->unk_D4, 16, 4, 0, 0, 6);
     sub_0200710C(param0->unk_D4, 17, param0->unk_00, 5, 0, 0, 0, 6);
@@ -2864,7 +2864,7 @@ static int ov84_0223E920 (UnkStruct_ov84_0223B5A0 * param0)
     }
 
     sub_02005748(1604);
-    sub_02025F94(param0->unk_CC, param0->unk_488 * param0->unk_48C);
+    PlayerProfile_AddMoney(param0->unk_CC, param0->unk_488 * param0->unk_48C);
 
     if (param0->unk_488 == 1) {
         if (param0->unk_C4->unk_75 != 0xff) {

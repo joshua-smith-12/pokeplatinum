@@ -14,7 +14,7 @@
 #include "struct_decls/struct_02015F84_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -30,7 +30,7 @@
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0201D738.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/pokemon.h"
 #include "struct_defs/trainer_data.h"
@@ -54,9 +54,9 @@
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "player_profile.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "options.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F1D4.h"
 #include "unk_02056720.h"
@@ -107,7 +107,7 @@ UnkStruct_0200B358 * ov16_0223E0D0(UnkStruct_0207ADB4 * param0);
 Strbuf* ov16_0223E0D4(UnkStruct_0207ADB4 * param0);
 u16 ov16_0223E0D8(UnkStruct_0207ADB4 * param0, int param1);
 TrainerData * ov16_0223E120(UnkStruct_0207ADB4 * param0, int param1);
-UnkStruct_02025E6C * ov16_0223E16C(UnkStruct_0207ADB4 * param0, int param1);
+PlayerProfile * ov16_0223E16C(UnkStruct_0207ADB4 * param0, int param1);
 UnkStruct_0207D3C0 * ov16_0223E1AC(UnkStruct_0207ADB4 * param0);
 UnkStruct_0207D99C * ov16_0223E1B0(UnkStruct_0207ADB4 * param0);
 u32 ov16_0223E1B4(UnkStruct_0207ADB4 * param0, int param1);
@@ -131,7 +131,7 @@ u8 ov16_0223ED60(UnkStruct_0207ADB4 * param0);
 u8 ov16_0223ED6C(UnkStruct_0207ADB4 * param0);
 int ov16_0223ED8C(UnkStruct_0207ADB4 * param0);
 void ov16_0223ED98(UnkStruct_0207ADB4 * param0, int param1);
-UnkStruct_020279FC * ov16_0223EDA4(UnkStruct_0207ADB4 * param0);
+Options * ov16_0223EDA4(UnkStruct_0207ADB4 * param0);
 BOOL ov16_0223EDAC(UnkStruct_0207ADB4 * param0);
 int ov16_0223EDE0(UnkStruct_0207ADB4 * param0);
 u8 ov16_0223EDF0(UnkStruct_0207ADB4 * param0);
@@ -198,7 +198,7 @@ void ov16_0223F858(UnkStruct_0207ADB4 * param0, u8 * param1);
 void ov16_0223F87C(UnkStruct_0207ADB4 * param0, u8 * param1);
 void ov16_0223F8AC(UnkStruct_0207ADB4 * param0, UnkStruct_02007C7C ** param1);
 void ov16_0223F8DC(UnkStruct_0207ADB4 * param0, int param1);
-u32 ov16_0223F904(Party * param0, UnkStruct_02025E6C * param1);
+u32 ov16_0223F904(Party * param0, PlayerProfile * param1);
 void ov16_0223F938(UnkStruct_0207ADB4 * param0, int param1);
 void ov16_0223F9A0(UnkStruct_0207ADB4 * param0, int param1);
 BOOL ov16_0223F9E0(UnkStruct_0207ADB4 * param0, int param1);
@@ -437,7 +437,7 @@ TrainerData * ov16_0223E120 (UnkStruct_0207ADB4 * param0, int param1)
     }
 }
 
-UnkStruct_02025E6C * ov16_0223E16C (UnkStruct_0207ADB4 * param0, int param1)
+PlayerProfile * ov16_0223E16C (UnkStruct_0207ADB4 * param0, int param1)
 {
     if ((param0->unk_2C & 0x8) || ((param0->unk_2C & 0x10) && (ov16_0223E1F8(param0, param1) & 0x1))) {
         return param0->unk_48[param1];
@@ -460,7 +460,7 @@ UnkStruct_0207D99C * ov16_0223E1B0 (UnkStruct_0207ADB4 * param0)
 
 u32 ov16_0223E1B4 (UnkStruct_0207ADB4 * param0, int param1)
 {
-    return sub_02025F30(param0->unk_48[param1]);
+    return PlayerProfile_GetGender(param0->unk_48[param1]);
 }
 
 int ov16_0223E1C4 (UnkStruct_0207ADB4 * param0, int param1)
@@ -1027,7 +1027,7 @@ void ov16_0223ED98 (UnkStruct_0207ADB4 * param0, int param1)
     param0->unk_2410 = param1;
 }
 
-UnkStruct_020279FC * ov16_0223EDA4 (UnkStruct_0207ADB4 * param0)
+Options * ov16_0223EDA4 (UnkStruct_0207ADB4 * param0)
 {
     return param0->unk_1B0;
 }
@@ -1038,12 +1038,12 @@ BOOL ov16_0223EDAC (UnkStruct_0207ADB4 * param0)
         return 1;
     }
 
-    return sub_02027AF8(param0->unk_1B0) == 0;
+    return Options_GetBattleScene(param0->unk_1B0) == 0;
 }
 
 int ov16_0223EDE0 (UnkStruct_0207ADB4 * param0)
 {
-    return sub_02027B50(param0->unk_1B0);
+    return Options_GetFrame(param0->unk_1B0);
 }
 
 u8 ov16_0223EDF0 (UnkStruct_0207ADB4 * param0)
@@ -1052,12 +1052,12 @@ u8 ov16_0223EDF0 (UnkStruct_0207ADB4 * param0)
         return 1;
     }
 
-    return sub_02027AC0(param0->unk_1B0);
+    return Options_GetTextFrameDelay(param0->unk_1B0);
 }
 
 int ov16_0223EE18 (UnkStruct_0207ADB4 * param0)
 {
-    return sub_02027B14(param0->unk_1B0);
+    return Options_GetBattleStyle(param0->unk_1B0);
 }
 
 UnkStruct_02015F84 * ov16_0223EE28 (UnkStruct_0207ADB4 * param0)
@@ -1669,7 +1669,7 @@ void ov16_0223F8DC (UnkStruct_0207ADB4 * param0, int param1)
     }
 }
 
-u32 ov16_0223F904 (Party * param0, UnkStruct_02025E6C * param1)
+u32 ov16_0223F904 (Party * param0, PlayerProfile * param1)
 {
     static const u8 v0[] = {
         2, 4, 6, 9, 12, 16, 20, 25, 30,
@@ -1677,9 +1677,9 @@ u32 ov16_0223F904 (Party * param0, UnkStruct_02025E6C * param1)
     u32 v1, v2;
     u8 v3;
 
-    v3 = sub_02025F58(param1);
+    v3 = PlayerProfile_CountBadges(param1);
     v1 = sub_02077550(param0) * 4 * v0[v3];
-    v2 = sub_02025F74(param1);
+    v2 = PlayerProfile_GetMoney(param1);
 
     if (v1 > v2) {
         v1 = v2;
@@ -1775,7 +1775,7 @@ u8 ov16_0223F9FC (UnkStruct_0207ADB4 * param0, int param1, int param2, int param
                 }
 
                 for (v7 = 0; v7 < 4; v7++) {
-                    if (sub_02025FCC(param0->unk_48[v7]) == 0) {
+                    if (PlayerProfile_GetVersion(param0->unk_48[v7]) == 0) {
                         break;
                     }
                 }

@@ -14,7 +14,7 @@
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
@@ -80,10 +80,10 @@
 #include "strbuf.h"
 #include "unk_02023FCC.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "options.h"
 #include "poffin.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202B604.h"
@@ -1479,7 +1479,7 @@ static void ov65_0222ECA8 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1)
     sub_0200710C(param1, 11, v0, 4, 0, 0, 0, 54);
 
     {
-        int v1 = sub_02027B50(sub_02025E44(param0->unk_160));
+        int v1 = Options_GetFrame(Save_PlayerData_GetOptionsAddr(param0->unk_160));
 
         sub_0200DD0C(v0, 2, (512 - (18 + 12)), 10, v1, 54);
         sub_0200DAA4(v0, 2, ((512 - (18 + 12)) - 9), 11, 0, 54);
@@ -1807,7 +1807,7 @@ static int ov65_0222F490 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static void ov65_0222F4C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param0->unk_160);
+    PlayerProfile * v0 = Save_PlayerData_GetProfileAddr(param0->unk_160);
     UnkStruct_02026324 * v1 = sub_02027560(param0->unk_160);
     Party * v2 = Party_GetFromSavedata(param0->unk_160);
     UnkStruct_0202C878 * v3 = sub_0202C878(param0->unk_160);
@@ -1824,16 +1824,16 @@ static void ov65_0222F4C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         param0->unk_04->unk_00.unk_0C[v5] = GetMonData(v6, MON_DATA_HELD_ITEM, NULL);
     }
 
-    param0->unk_04->unk_00.unk_18 = sub_02025FCC(v0);
-    param0->unk_04->unk_00.unk_19 = sub_02025FD8(v0);
+    param0->unk_04->unk_00.unk_18 = PlayerProfile_GetVersion(v0);
+    param0->unk_04->unk_00.unk_19 = PlayerProfile_GetLanguage(v0);
     param0->unk_04->unk_00.unk_1A = sub_02027474(v1);
     param0->unk_04->unk_00.unk_1B = 29;
 
     ov65_02232E70(param0, param1);
 
     param0->unk_04->unk_00.unk_1C = 0;
-    param0->unk_04->unk_00.unk_1D = sub_02025F8C(v0);
-    param0->unk_04->unk_00.unk_1E = sub_02025F30(v0);
+    param0->unk_04->unk_00.unk_1D = PlayerProfile_GetAvatar(v0);
+    param0->unk_04->unk_00.unk_1E = PlayerProfile_GetGender(v0);
     param0->unk_04->unk_00.unk_1F = sub_0202C8C0(v3);
     param0->unk_04->unk_00.unk_20 = sub_0202C8C4(v3);
     param0->unk_04->unk_00.unk_21 = 1;
@@ -2308,8 +2308,8 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
 {
     int v0, v1, v2;
     int v3;
-    UnkStruct_02025E6C * v4 = sub_02025E38(param0->unk_160);
-    Strbuf* v5 = sub_02025F04(v4, 54);
+    PlayerProfile * v4 = Save_PlayerData_GetProfileAddr(param0->unk_160);
+    Strbuf* v5 = PlayerProfile_GetName_NewString(v4, 54);
     u32 v6;
 
     if (!sub_0201A7CC(&param0->unk_340)) {
@@ -2319,7 +2319,7 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
 
     sub_0201ADA4(&param0->unk_340, 0);
 
-    v1 = sub_02025F30(v4);
+    v1 = PlayerProfile_GetGender(v4);
 
     if (v1 == 0) {
         v0 = ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0)));
@@ -4738,7 +4738,7 @@ static int ov65_02232B28 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static void ov65_02232B58 (UnkStruct_ov65_0222EBE0 * param0, int param1, BOOL param2)
 {
-    u8 v0 = sub_02027AC0(sub_02025E44(param0->unk_160));
+    u8 v0 = Options_GetTextFrameDelay(Save_PlayerData_GetOptionsAddr(param0->unk_160));
 
     ov65_02232F50(param0);
 
@@ -4813,9 +4813,9 @@ static void ov65_02232CA8 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static void ov65_02232DC0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     if (param1 != -1) {
-        UnkStruct_02025E6C * v0 = sub_02025E6C(54);
+        PlayerProfile * v0 = PlayerProfile_New(54);
 
-        sub_02025EC0(v0, sub_0202AEF0(param0->unk_00, param1));
+        PlayerProfile_SetName(v0, sub_0202AEF0(param0->unk_00, param1));
         sub_0200B498(param0->unk_164, 0, v0);
         Heap_FreeToHeap(v0);
     }
@@ -5482,14 +5482,14 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     mov r3, #0x68
     bl sub_0201D78C
     mov r0, #0x36
-    bl sub_02025E6C
+    bl PlayerProfile_New
     add r6, r0, #0
     ldr r0, [r5, #0]
     add r1, r4, #0
     bl sub_0202AF34
     add r1, r0, #0
     add r0, r6, #0
-    bl sub_02025EC0
+    bl PlayerProfile_SetName
     ldr r0, = 0xB18
     mov r1, #0
     ldr r0, [r5, r0]
@@ -6895,9 +6895,9 @@ static BOOL ov65_02234E8C (UnkStruct_ov65_02234E50 * param0, u32 param1, u32 par
 static void ov65_02234F68 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     if (param1 != -1) {
-        UnkStruct_02025E6C * v0 = sub_02025E6C(54);
+        PlayerProfile * v0 = PlayerProfile_New(54);
 
-        sub_02025EC0(v0, sub_0202AEF0(param0->unk_00, param1));
+        PlayerProfile_SetName(v0, sub_0202AEF0(param0->unk_00, param1));
         sub_0200B498(param0->unk_BE0.unk_00, 0, v0);
         Heap_FreeToHeap(v0);
     }

@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_02093BBC_H
 #define POKEPLATINUM_STRUCT_02093BBC_H
 
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_decls/player_profile_decl.h"
+#include "struct_defs/options.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_defs/pokemon.h"
@@ -17,8 +17,8 @@ typedef struct {
     int unk_14;
     const UnkStruct_02029D04 * unk_18;
     UnkStruct_02095C60 * unk_1C;
-    const UnkStruct_020279FC * unk_20;
-    const UnkStruct_02025E6C * unk_24;
+    const Options * unk_20;
+    const PlayerProfile * unk_24;
 } UnkStruct_02093BBC;
 
 #endif // POKEPLATINUM_STRUCT_02093BBC_H

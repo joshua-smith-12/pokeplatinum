@@ -25,8 +25,8 @@
 #include "gx_layers.h"
 #include "unk_02020020.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "player_profile.h"
+#include "options.h"
 #include "overlay100/ov100_021D44C0.h"
 #include "overlay100/ov100_021D46C8.h"
 
@@ -42,7 +42,7 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
     v2 = sub_0200B1EC(v1, param2);
 
     if (param2 == 22) {
-        Strbuf* v5 = sub_02025F04(param1->unk_08, 111);
+        Strbuf* v5 = PlayerProfile_GetName_NewString(param1->unk_08, 111);
         UnkStruct_0200B358 * v6 = sub_0200B358(111);
 
         sub_0200B48C(v6, 0, v5, 0, 1, GAME_LANGUAGE);
@@ -53,7 +53,7 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
         Strbuf_Copy(v3, v2);
     }
 
-    v4 = sub_02027AC0(param1->unk_04);
+    v4 = Options_GetTextFrameDelay(param1->unk_04);
     sub_0201ADA4(&param0->unk_30, 0xFF);
 
     v0 = sub_0201D738(&param0->unk_30, 1, v3, 0, 0, v4, NULL);

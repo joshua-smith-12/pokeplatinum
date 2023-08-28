@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -19,7 +19,7 @@
 
 #include "unk_0200AC5C.h"
 #include "heap.h"
-#include "unk_02025E68.h"
+#include "player_profile.h"
 #include "unk_0202D05C.h"
 #include "unk_020329E0.h"
 #include "unk_02049D08.h"
@@ -1040,8 +1040,8 @@ int ov104_0223A790 (u8 param0)
 
 static int ov104_0223A7AC (u8 param0)
 {
-    UnkStruct_02025E6C * v0;
-    UnkStruct_02025E6C * v1;
+    PlayerProfile * v0;
+    PlayerProfile * v1;
     u8 v2, v3;
 
     switch (param0) {
@@ -1059,8 +1059,8 @@ static int ov104_0223A7AC (u8 param0)
             GF_ASSERT(0);
         }
 
-        v2 = sub_02025FCC(v0);
-        v3 = sub_02025FCC(v1);
+        v2 = PlayerProfile_GetVersion(v0);
+        v3 = PlayerProfile_GetVersion(v1);
 
         if ((v2 == 0) || (v3 == 0)) {
             return 0;

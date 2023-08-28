@@ -2,9 +2,9 @@
 #define POKEPLATINUM_STRUCT_0203E0FC_H
 
 #include "struct_decls/struct_02025CCC_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -23,9 +23,9 @@ typedef struct {
     UnkStruct_02026324 * unk_10;
     UnkStruct_0202B370 * unk_14;
     UnkStruct_0202C878 * unk_18;
-    UnkStruct_02025E6C * unk_1C;
+    PlayerProfile * unk_1C;
     UnkStruct_021C0794 * unk_20;
-    UnkStruct_020279FC * unk_24;
+    Options * unk_24;
     UnkStruct_0202CD88 * unk_28;
     UnkStruct_0202B628 * unk_2C;
     UnkStruct_0207D3C0 * unk_30;

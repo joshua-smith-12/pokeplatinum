@@ -47,7 +47,7 @@
 #include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02023FCC.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_0202631C.h"
 #include "unk_0202F1D4.h"
 #include "unk_02030A80.h"
@@ -2709,7 +2709,7 @@ static BOOL ov62_02243FA8 (UnkStruct_0208C06C * param0)
         v2[0] = 2;
         v2[1] = 5;
         v2[2] = 5;
-        v0->unk_4AC = ov62_02246B00(102, 12, v2, sub_02025E44(param0->unk_830));
+        v0->unk_4AC = ov62_02246B00(102, 12, v2, Save_PlayerData_GetOptionsAddr(param0->unk_830));
         v1->unk_220.unk_00 = param0->unk_14.unk_00;
         v1->unk_220.unk_04 = param0->unk_14.unk_04;
         v1->unk_220.unk_08 = param0->unk_14.unk_08;

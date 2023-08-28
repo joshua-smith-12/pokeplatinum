@@ -12,9 +12,9 @@
 #include "struct_decls/struct_02015F84_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/pokemon.h"
@@ -72,7 +72,7 @@ UnkStruct_0200B358 * ov16_0223E0D0(UnkStruct_0207ADB4 * param0);
 Strbuf* ov16_0223E0D4(UnkStruct_0207ADB4 * param0);
 u16 ov16_0223E0D8(UnkStruct_0207ADB4 * param0, int param1);
 TrainerData * ov16_0223E120(UnkStruct_0207ADB4 * param0, int param1);
-UnkStruct_02025E6C * ov16_0223E16C(UnkStruct_0207ADB4 * param0, int param1);
+PlayerProfile * ov16_0223E16C(UnkStruct_0207ADB4 * param0, int param1);
 UnkStruct_0207D3C0 * ov16_0223E1AC(UnkStruct_0207ADB4 * param0);
 UnkStruct_0207D99C * ov16_0223E1B0(UnkStruct_0207ADB4 * param0);
 u32 ov16_0223E1B4(UnkStruct_0207ADB4 * param0, int param1);
@@ -96,7 +96,7 @@ u8 ov16_0223ED60(UnkStruct_0207ADB4 * param0);
 u8 ov16_0223ED6C(UnkStruct_0207ADB4 * param0);
 int ov16_0223ED8C(UnkStruct_0207ADB4 * param0);
 void ov16_0223ED98(UnkStruct_0207ADB4 * param0, int param1);
-UnkStruct_020279FC * ov16_0223EDA4(UnkStruct_0207ADB4 * param0);
+Options * ov16_0223EDA4(UnkStruct_0207ADB4 * param0);
 BOOL ov16_0223EDAC(UnkStruct_0207ADB4 * param0);
 int ov16_0223EDE0(UnkStruct_0207ADB4 * param0);
 u8 ov16_0223EDF0(UnkStruct_0207ADB4 * param0);
@@ -165,7 +165,7 @@ void ov16_0223F858(UnkStruct_0207ADB4 * param0, u8 * param1);
 void ov16_0223F87C(UnkStruct_0207ADB4 * param0, u8 * param1);
 void ov16_0223F8AC(UnkStruct_0207ADB4 * param0, UnkStruct_02007C7C ** param1);
 void ov16_0223F8DC(UnkStruct_0207ADB4 * param0, int param1);
-u32 ov16_0223F904(Party * param0, UnkStruct_02025E6C * param1);
+u32 ov16_0223F904(Party * param0, PlayerProfile * param1);
 void ov16_0223F938(UnkStruct_0207ADB4 * param0, int param1);
 void ov16_0223F9A0(UnkStruct_0207ADB4 * param0, int param1);
 BOOL ov16_0223F9E0(UnkStruct_0207ADB4 * param0, int param1);

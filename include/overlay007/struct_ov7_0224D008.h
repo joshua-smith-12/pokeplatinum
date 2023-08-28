@@ -11,8 +11,8 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_decls/player_profile_decl.h"
+#include "struct_defs/options.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -35,9 +35,9 @@ typedef struct {
     UnkStruct_ov5_021D30A8 unk_94;
     UnkStruct_02022550 * unk_25C[4];
     u16 unk_26C[2];
-    UnkStruct_02025E6C * unk_270;
+    PlayerProfile * unk_270;
     void * unk_274;
-    UnkStruct_020279FC * unk_278;
+    Options * unk_278;
     UnkStruct_0202B628 * unk_27C;
     UnkStruct_0202CD88 * unk_280;
     UnkStruct_021C0794 * unk_284;

@@ -17,7 +17,7 @@
 #include "struct_defs/struct_02098D38.h"
 
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_0202854C.h"
 #include "unk_0202B37C.h"
 #include "unk_0202D05C.h"
@@ -74,7 +74,7 @@ static int sub_0206B9D8 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param
     v1 = param1->unk_0C;
     MI_CpuClear8(v2, sizeof(UnkStruct_02098C44));
 
-    v2->unk_0C = sub_02025E44(v1);
+    v2->unk_0C = Save_PlayerData_GetOptionsAddr(v1);
     v2->unk_00 = Party_GetFromSavedata(v1);
     v2->unk_04 = sub_0207D990(v1);
     v2->unk_21 = 0;
@@ -136,7 +136,7 @@ static int sub_0206BAE0 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param
     v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(UnkStruct_02098D38));
     MI_CpuClear8(v0, sizeof(UnkStruct_02098D38));
 
-    v0->unk_04 = sub_02025E44(v1);
+    v0->unk_04 = Save_PlayerData_GetOptionsAddr(v1);
     v0->unk_00 = Party_GetFromSavedata(v1);
     v0->unk_1C = sub_0207A274(v1);
     v0->unk_2C = sub_0208C324(v1);
@@ -148,7 +148,7 @@ static int sub_0206BAE0 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param
     v0->unk_20 = sub_0202D79C(v1);
 
     sub_0208D720(v0, v2);
-    sub_0208E9C0(v0, sub_02025E38(v1));
+    sub_0208E9C0(v0, Save_PlayerData_GetProfileAddr(v1));
     sub_0203CD84(param1, &Unk_020F410C, v0);
     *(param0->unk_14) = v0;
 

@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
@@ -42,8 +42,8 @@
 #include "strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202631C.h"
 #include "unk_020277A4.h"
 #include "unk_02027B70.h"
@@ -620,18 +620,18 @@ void sub_0206D048 (UnkStruct_0202440C * param0, Pokemon * param1)
     sub_02025C84(27);
 }
 
-void sub_0206D088 (UnkStruct_0202440C * param0, u8 param1, const UnkStruct_02025E6C * param2)
+void sub_0206D088 (UnkStruct_0202440C * param0, u8 param1, const PlayerProfile * param2)
 {
     UnkStruct_0202E81C * v0 = sub_0202E81C(param0);
 
     v0->unk_00 = 1;
     v0->unk_01 = param1;
 
-    sub_020021B0(v0->unk_06, sub_02025EF0(param2));
+    sub_020021B0(v0->unk_06, PlayerProfile_GetName(param2));
 
-    v0->unk_03 = sub_02025FD8(param2);
-    v0->unk_04 = sub_02025FCC(param2);
-    v0->unk_02 = sub_02025F30(param2);
+    v0->unk_03 = PlayerProfile_GetLanguage(param2);
+    v0->unk_04 = PlayerProfile_GetVersion(param2);
+    v0->unk_02 = PlayerProfile_GetGender(param2);
 
     sub_02025C84(27);
 }
@@ -1180,24 +1180,24 @@ static BOOL sub_0206DA50 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * 
     return sub_02026FE8(sub_02027560(param0->unk_0C), v0->unk_00);
 }
 
-static void sub_0206DA6C (UnkStruct_0206DA6C * param0, const UnkStruct_02025E6C * param1)
+static void sub_0206DA6C (UnkStruct_0206DA6C * param0, const PlayerProfile * param1)
 {
-    param0->unk_00 = sub_02025E68();
-    sub_02025E80(param1, (UnkStruct_02025E6C *)param0->unk_04);
+    param0->unk_00 = PlayerProfile_sizeof();
+    PlayerProfile_Copy(param1, (PlayerProfile *)param0->unk_04);
 }
 
 static void sub_0206DA84 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1, UnkStruct_ov6_022465F4 * param2)
 {
     UnkStruct_0206DA6C * v0 = (UnkStruct_0206DA6C *)ov6_02246498(param2);
-    UnkStruct_02025E6C * v1 = (UnkStruct_02025E6C *)&v0->unk_04;
+    PlayerProfile * v1 = (PlayerProfile *)&v0->unk_04;
 
-    GF_ASSERT(sub_02025E68() == v0->unk_00);
+    GF_ASSERT(PlayerProfile_sizeof() == v0->unk_00);
 
     sub_0206CDD0(param1, 0, param2);
     sub_0200B498(param1, 1, v1);
 }
 
-void sub_0206DAB8 (UnkStruct_0203CDB0 * param0, const UnkStruct_02025E6C * param1)
+void sub_0206DAB8 (UnkStruct_0203CDB0 * param0, const PlayerProfile * param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206DA6C * v1 = &v0.val15;
@@ -1206,7 +1206,7 @@ void sub_0206DAB8 (UnkStruct_0203CDB0 * param0, const UnkStruct_02025E6C * param
     sub_0206CD70(param0, 2, 22, v1);
 }
 
-void sub_0206DAD4 (UnkStruct_0203CDB0 * param0, const UnkStruct_02025E6C * param1)
+void sub_0206DAD4 (UnkStruct_0203CDB0 * param0, const PlayerProfile * param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206DA6C * v1 = &v0.val15;
@@ -2172,7 +2172,7 @@ static BOOL sub_0206EA0C (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * 
 
 static int sub_0206EA10 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1, UnkStruct_ov6_022465F4 * param2)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0));
+    PlayerProfile * v0 = Save_PlayerData_GetProfileAddr(sub_0203D174(param0));
     int v1 = param0->unk_1C->unk_00;
 
     if ((v1 == 411) || ((v1 >= 412) && (v1 <= 417))) {
@@ -2742,7 +2742,7 @@ static int sub_0206EDAC (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     u16 v2, v3;
     u32 v4, v5;
     Strbuf* v6 = Strbuf_Init(22, 4);
-    UnkStruct_02025E6C * v7 = sub_02025E38(sub_0203D174(param0));
+    PlayerProfile * v7 = Save_PlayerData_GetProfileAddr(sub_0203D174(param0));
 
     v1 = sub_0202D834(param0->unk_0C);
     v2 = (sub_0201D2E8() % 29);
@@ -2758,7 +2758,7 @@ static int sub_0206EDAC (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
             v4 = sub_0202D93C(v0, 4);
             v5 = sub_0202D93C(v0, 3);
 
-            sub_0206CE74(param1, 1, v4, sub_02075DAC(v4, v5), sub_02025FD8(v7), sub_02025FCC(v7));
+            sub_0206CE74(param1, 1, v4, sub_02075DAC(v4, v5), PlayerProfile_GetLanguage(v7), PlayerProfile_GetVersion(v7));
             break;
         }
     }
@@ -2967,13 +2967,13 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     u16 v1, v2;
     Pokemon * v3;
     Party * v4;
-    UnkStruct_02025E6C * v5 = sub_02025E38(param0->unk_0C);
+    PlayerProfile * v5 = Save_PlayerData_GetProfileAddr(param0->unk_0C);
     UnkStruct_02026324 * v6 = sub_02027560(param0->unk_0C);
 
     v4 = Party_GetFromSavedata(param0->unk_0C);
     v3 = Party_GetPokemonBySlotIndex(v4, sub_0205E1B4(param0->unk_0C));
 
-    sub_0206CE74(param1, 0, GetMonData(v3, MON_DATA_SPECIES, NULL), GetMonData(v3, MON_DATA_111, NULL), sub_02025FD8(v5), sub_02025FCC(v5));
+    sub_0206CE74(param1, 0, GetMonData(v3, MON_DATA_SPECIES, NULL), GetMonData(v3, MON_DATA_111, NULL), PlayerProfile_GetLanguage(v5), PlayerProfile_GetVersion(v5));
     sub_0200BFAC(param1, 1, (sub_0201D2E8() % 100));
 
     v1 = (sub_0201D2E8() % (493 - 2) + 1);
@@ -3021,7 +3021,7 @@ static int sub_0206F27C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 
 static BOOL sub_0206F280 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    if (sub_02025F34(sub_02025E38(param0->unk_0C), 0) == 1) {
+    if (PlayerProfile_TestBadgeFlag(Save_PlayerData_GetProfileAddr(param0->unk_0C), 0) == 1) {
         return 1;
     } else {
         return 0;

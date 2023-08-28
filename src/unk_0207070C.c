@@ -16,8 +16,8 @@
 #include "functypes/funcptr_02084808.h"
 
 #include "heap.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202B604.h"
 #include "map_header.h"
 #include "unk_0203A6DC.h"
@@ -118,7 +118,7 @@ static inline BOOL inline_020708AC (const UnkStruct_02070950 * param0, int param
 
 static inline BOOL inline_02070950 (const UnkStruct_02070950 * param0, int param1)
 {
-    return sub_02025F34(sub_02025E38(param0->unk_04->unk_0C), param1);
+    return PlayerProfile_TestBadgeFlag(Save_PlayerData_GetProfileAddr(param0->unk_04->unk_0C), param1);
 }
 
 static inline BOOL inline_02070A24 (const UnkStruct_02070950 * param0)

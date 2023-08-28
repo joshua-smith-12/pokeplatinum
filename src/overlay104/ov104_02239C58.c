@@ -13,7 +13,7 @@
 #include "struct_defs/struct_0209BBA4.h"
 
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02028124.h"
 #include "unk_0202D778.h"
 #include "party.h"
@@ -115,7 +115,7 @@ static void ov104_02239D1C (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
     param1->unk_A8->unk_00 = Party_GetFromSavedata(param1->unk_00);
     param1->unk_A8->unk_04 = sub_0207D990(param1->unk_00);
     param1->unk_A8->unk_08 = sub_02028430(param1->unk_00);
-    param1->unk_A8->unk_0C = sub_02025E44(param1->unk_00);
+    param1->unk_A8->unk_0C = Save_PlayerData_GetOptionsAddr(param1->unk_00);
     param1->unk_A8->unk_21 = 0;
 
     if (param1->unk_A0 == 1) {
@@ -198,7 +198,7 @@ static void ov104_02239FB0 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
     param1->unk_AC = Heap_AllocFromHeapAtEnd(param3, sizeof(UnkStruct_02098D38));
     MI_CpuClear8(param1->unk_AC, sizeof(UnkStruct_02098D38));
 
-    param1->unk_AC->unk_04 = sub_02025E44(param1->unk_00);
+    param1->unk_AC->unk_04 = Save_PlayerData_GetOptionsAddr(param1->unk_00);
     param1->unk_AC->unk_00 = Party_GetFromSavedata(param1->unk_00);
     param1->unk_AC->unk_1C = sub_0207A274(param1->unk_00);
     param1->unk_AC->unk_2C = sub_0208C324(param1->unk_00);
@@ -210,7 +210,7 @@ static void ov104_02239FB0 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
     param1->unk_AC->unk_20 = sub_0202D79C(param1->unk_00);
 
     sub_0208D720(param1->unk_AC, v0);
-    sub_0208E9C0(param1->unk_AC, sub_02025E38(param1->unk_00));
+    sub_0208E9C0(param1->unk_AC, Save_PlayerData_GetProfileAddr(param1->unk_00));
     sub_0209B988(param0, &Unk_020F410C, param1->unk_AC, 0, NULL);
 
     return;

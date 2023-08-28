@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_0209B75C_decl.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 
@@ -47,8 +47,8 @@
 #include "gx_layers.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
-#include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "player_data.h"
+#include "options.h"
 #include "unk_020393C8.h"
 #include "unk_0209B6F8.h"
 #include "overlay063/ov63_0222BCE8.h"
@@ -70,7 +70,7 @@ static void ov104_0223C738(UnkStruct_0201CD38 * param0, void * param1);
 static void ov104_0223C720(UnkStruct_0201CD38 * param0, void * param1);
 static void ov104_0223C72C(UnkStruct_0201CD38 * param0, void * param1);
 static void ov104_0223C948(UnkStruct_02018340 * param0, int param1);
-static void ov104_0223CC74(UnkStruct_ov104_0223C4CC * param0, int param1, const UnkStruct_02025E6C * param2);
+static void ov104_0223CC74(UnkStruct_ov104_0223C4CC * param0, int param1, const PlayerProfile * param2);
 static void ov104_0223CEEC(UnkStruct_ov104_0223C4CC * param0);
 static void ov104_0223CB80(UnkStruct_ov104_0223C4CC * param0);
 static void ov104_0223CFF4(UnkStruct_ov104_0223C4CC * param0);
@@ -126,9 +126,9 @@ UnkStruct_ov104_0223C4CC * ov104_0223C2D4 (UnkStruct_0209B75C * param0)
     UnkStruct_ov104_0223C4CC * v0;
     int v1, v2;
     UnkStruct_ov104_02230BE4 * v3 = sub_0209B970(param0);
-    const UnkStruct_02025E6C * v4;
+    const PlayerProfile * v4;
 
-    v4 = sub_02025E38(v3->unk_08);
+    v4 = Save_PlayerData_GetProfileAddr(v3->unk_08);
     v2 = v3->unk_24;
 
     sub_02017798(NULL, NULL);
@@ -624,7 +624,7 @@ static void ov104_0223CB80 (UnkStruct_ov104_0223C4CC * param0)
 
         v0 = sub_0209B970(param0->unk_08);
 
-        sub_0200DD0C(param0->unk_00, 1, (1024 - (18 + 12)), 11, sub_02027B50(v0->unk_04), 94);
+        sub_0200DD0C(param0->unk_00, 1, (1024 - (18 + 12)), 11, Options_GetFrame(v0->unk_04), 94);
         sub_02003070(param0->unk_04, 0, 11 * 16, 0x20);
     }
 
@@ -644,7 +644,7 @@ static void ov104_0223CC10 (UnkStruct_ov104_0223C4CC * param0)
     NARC_dtor(v0);
 }
 
-static void ov104_0223CC74 (UnkStruct_ov104_0223C4CC * param0, int param1, const UnkStruct_02025E6C * param2)
+static void ov104_0223CC74 (UnkStruct_ov104_0223C4CC * param0, int param1, const PlayerProfile * param2)
 {
     param0->unk_14 = ov63_0222BE18(32, 94);
     param0->unk_18 = ov63_0222BCE8((256 / 16), (256 / 16), 94);

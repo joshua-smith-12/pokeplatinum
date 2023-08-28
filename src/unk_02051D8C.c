@@ -7,7 +7,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
@@ -19,7 +19,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_02055BA8.h"
 #include "struct_defs/struct_0205EC34.h"
@@ -35,11 +35,11 @@
 #include "strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_02025CB0.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202602C.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "options.h"
 #include "unk_02027F84.h"
 #include "unk_0202C858.h"
 #include "unk_0202CC64.h"
@@ -98,7 +98,7 @@ BattleParams * sub_02051D8C (int param0, u32 param1)
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        v1->unk_D0[v0] = sub_02025E6C(param0);
+        v1->unk_D0[v0] = PlayerProfile_New(param0);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -107,7 +107,7 @@ BattleParams * sub_02051D8C (int param0, u32 param1)
 
     v1->unk_E0 = sub_0207D3C0(param0);
     v1->unk_E8 = sub_02026324(param0);
-    v1->unk_108 = sub_020279FC(param0);
+    v1->unk_108 = Options_New(param0);
     v1->unk_10C = sub_0206D140(param0);
     v1->unk_E4 = NULL;
     v1->unk_190 = NULL;
@@ -159,8 +159,8 @@ BattleParams * sub_02051F38 (int param0, int param1)
 
 BattleParams * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
-    UnkStruct_020279FC * v1 = sub_02025E44(param1->unk_0C);
+    PlayerProfile * v0 = Save_PlayerData_GetProfileAddr(param1->unk_0C);
+    Options * v1 = Save_PlayerData_GetOptionsAddr(param1->unk_0C);
     UnkStruct_0200B144 * v2;
     Strbuf* v3;
     BattleParams * v4;
@@ -170,13 +170,13 @@ BattleParams * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * param1)
     v2 = sub_0200B144(1, 26, 553, param0);
     v3 = Strbuf_Init(8, param0);
 
-    sub_0200B1B8(v2, sub_02025F30(v0) ^ 1, v3);
-    sub_02025EC0(v4->unk_D0[0], Strbuf_GetData(v3));
+    sub_0200B1B8(v2, PlayerProfile_GetGender(v0) ^ 1, v3);
+    PlayerProfile_SetName(v4->unk_D0[0], Strbuf_GetData(v3));
     Strbuf_Free(v3);
     sub_0200B190(v2);
-    sub_02025F2C(v4->unk_D0[0], sub_02025F30(v0) ^ 1);
+    PlayerProfile_SetGender(v4->unk_D0[0], PlayerProfile_GetGender(v0) ^ 1);
     sub_0205281C(v4, param1);
-    sub_02027A10(v1, v4->unk_108);
+    Options_Copy(v1, v4->unk_108);
 
     v4->unk_138 = sub_02055BA8(param1);
     sub_0207D570(v4->unk_E0, 4, 20, param0);
@@ -241,10 +241,10 @@ void sub_02052164 (BattleParams * param0, const Party * param1, int param2)
     Party_cpy(param1, param0->parties[param2]);
 }
 
-void sub_02052184 (BattleParams * param0, const UnkStruct_02025E6C * param1, int param2)
+void sub_02052184 (BattleParams * param0, const PlayerProfile * param1, int param2)
 {
     GF_ASSERT(param2 < 4);
-    sub_02025E80(param1, param0->unk_D0[param2]);
+    PlayerProfile_Copy(param1, param0->unk_D0[param2]);
 }
 
 void sub_020521A4 (BattleParams * param0, const UnkStruct_0202CC84 * param1, int param2)
@@ -254,12 +254,12 @@ void sub_020521A4 (BattleParams * param0, const UnkStruct_0202CC84 * param1, int
 
 void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, UnkStruct_021C0794 * param2, int param3, UnkStruct_0202B628 * param4, UnkStruct_0207D99C * param5, UnkStruct_0209C370 * param6)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param2);
+    PlayerProfile * v0 = Save_PlayerData_GetProfileAddr(param2);
     Party * v1 = Party_GetFromSavedata(param2);
     UnkStruct_0207D3C0 * v2 = sub_0207D990(param2);
     UnkStruct_02026324 * v3 = sub_02027560(param2);
     UnkStruct_0202CC84 * v4 = sub_0202CC98(param2);
-    UnkStruct_020279FC * v5 = sub_02025E44(param2);
+    Options * v5 = Save_PlayerData_GetOptionsAddr(param2);
     UnkStruct_0203A790 * v6 = sub_0203A790(param2);
 
     if (param1 != NULL) {
@@ -279,7 +279,7 @@ void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, Unk
     sub_02052164(param0, v1, 0);
     sub_0207D3EC(v2, param0->unk_E0);
     sub_02026338(v3, param0->unk_E8);
-    sub_02027A10(v5, param0->unk_108);
+    Options_Copy(v5, param0->unk_108);
     sub_020521A4(param0, v4, 0);
 
     param0->unk_EC = sub_02024420(param2);
@@ -309,12 +309,12 @@ void sub_02052348 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, int
 {
     int v0;
     u32 v1;
-    UnkStruct_02025E6C * v2 = sub_02025E38(param1->unk_0C);
+    PlayerProfile * v2 = Save_PlayerData_GetProfileAddr(param1->unk_0C);
     Party * v3 = Party_GetFromSavedata(param1->unk_0C);
     UnkStruct_0207D3C0 * v4 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v5 = sub_02027560(param1->unk_0C);
     UnkStruct_0202CC84 * v6 = sub_0202CC98(param1->unk_0C);
-    UnkStruct_020279FC * v7 = sub_02025E44(param1->unk_0C);
+    Options * v7 = Save_PlayerData_GetOptionsAddr(param1->unk_0C);
     Pokemon * v8;
 
     param0->unk_128 = 6;
@@ -340,7 +340,7 @@ void sub_02052348 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, int
     Heap_FreeToHeap(v8);
     sub_0207D3EC(v4, param0->unk_E0);
     sub_02026338(v5, param0->unk_E8);
-    sub_02027A10(v7, param0->unk_108);
+    Options_Copy(v7, param0->unk_108);
     sub_020521A4(param0, v6, 0);
 
     param0->unk_EC = sub_02024420(param1->unk_0C);
@@ -360,11 +360,11 @@ void sub_02052348 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, int
 
 void sub_020524E4 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, const Party * param2, const u8 * param3)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
+    PlayerProfile * v0 = Save_PlayerData_GetProfileAddr(param1->unk_0C);
     UnkStruct_0207D3C0 * v1 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v2 = sub_02027560(param1->unk_0C);
     UnkStruct_0202CC84 * v3 = sub_0202CC98(param1->unk_0C);
-    UnkStruct_020279FC * v4 = sub_02025E44(param1->unk_0C);
+    Options * v4 = Save_PlayerData_GetOptionsAddr(param1->unk_0C);
     const UnkStruct_0202610C * v5 = param1->unk_B0;
     int v6, v7, v8;
     Pokemon * v9;
@@ -410,7 +410,7 @@ void sub_020524E4 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, con
 
     sub_0207D3EC(v1, param0->unk_E0);
     sub_02026338(v2, param0->unk_E8);
-    sub_02027A10(v4, param0->unk_108);
+    Options_Copy(v4, param0->unk_108);
     sub_020521A4(param0, v3, 0);
 
     param0->unk_EC = sub_02024420(param1->unk_0C);
@@ -425,11 +425,11 @@ void sub_020524E4 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, con
     param0->unk_198 = param1->unk_0C;
 
     if (sub_020326C4(sub_0203895C())) {
-        int v11 = sub_02025F8C(v0);
-        int v12 = sub_02025F30(v0);
+        int v11 = PlayerProfile_GetAvatar(v0);
+        int v12 = PlayerProfile_GetGender(v0);
 
         param0->trainerData[0].class = sub_0205CA14(v12, v11, 1);
-        sub_020021B0(&param0->trainerData[0].unk_14[0], sub_02025EF0(param0->unk_D0[0]));
+        sub_020021B0(&param0->trainerData[0].unk_14[0], PlayerProfile_GetName(param0->unk_D0[0]));
         param0->trainerData[2] = param0->trainerData[0];
     } else {
         sub_02052894(param0);
@@ -443,13 +443,13 @@ void sub_020526CC (BattleParams * param0, const UnkStruct_0203CDB0 * param1, con
 
 void sub_020526E8 (const BattleParams * param0, UnkStruct_0203CDB0 * param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
+    PlayerProfile * v0 = Save_PlayerData_GetProfileAddr(param1->unk_0C);
     Party * v1 = Party_GetFromSavedata(param1->unk_0C);
     UnkStruct_0207D3C0 * v2 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v3 = sub_02027560(param1->unk_0C);
     u16 * v4 = sub_0203A784(sub_0203A790(param1->unk_0C));
 
-    sub_02025E80(param0->unk_D0[0], v0);
+    PlayerProfile_Copy(param0->unk_D0[0], v0);
     Party_cpy(param0->parties[0], v1);
     sub_0207D3EC(param0->unk_E0, v2);
     sub_02026338(param0->unk_E8, v3);
@@ -459,7 +459,7 @@ void sub_020526E8 (const BattleParams * param0, UnkStruct_0203CDB0 * param1)
 
 void sub_02052754 (const BattleParams * param0, UnkStruct_0203CDB0 * param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
+    PlayerProfile * v0 = Save_PlayerData_GetProfileAddr(param1->unk_0C);
     Party * v1 = Party_GetFromSavedata(param1->unk_0C);
     UnkStruct_0207D3C0 * v2 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v3 = sub_02027560(param1->unk_0C);
@@ -575,7 +575,7 @@ BOOL sub_02052888 (u32 param0)
 
 void sub_02052894 (BattleParams * param0)
 {
-    param0->trainerData[0].class = sub_02025F30(param0->unk_D0[0]);
-    sub_020021B0(&param0->trainerData[0].unk_14[0], sub_02025EF0(param0->unk_D0[0]));
+    param0->trainerData[0].class = PlayerProfile_GetGender(param0->unk_D0[0]);
+    sub_020021B0(&param0->trainerData[0].unk_14[0], PlayerProfile_GetName(param0->unk_D0[0]));
     param0->trainerData[2] = param0->trainerData[0];
 }

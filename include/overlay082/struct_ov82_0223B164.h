@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_OV82_0223B164_H
 #define POKEPLATINUM_STRUCT_OV82_0223B164_H
 
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_decls/player_profile_decl.h"
+#include "struct_defs/options.h"
 #include "struct_decls/struct_0202AB28_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
@@ -13,9 +13,9 @@ typedef struct {
     int unk_04;
     UnkStruct_0202AB28 * unk_08;
     UnkStruct_021C0794 * unk_0C;
-    UnkStruct_02025E6C * unk_10;
+    PlayerProfile * unk_10;
     UnkStruct_0207D3C0 * unk_14;
-    UnkStruct_020279FC * unk_18;
+    Options * unk_18;
     UnkStruct_0202B628 * unk_1C;
     BOOL unk_20;
     BOOL unk_24;

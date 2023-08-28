@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_defs/pokemon.h"
 
@@ -15,8 +15,8 @@
 
 #include "unk_0200B358.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202631C.h"
 #include "unk_020298BC.h"
 #include "unk_0202CC64.h"
@@ -99,7 +99,7 @@ BOOL sub_02046CFC (UnkStruct_0203E724 * param0)
     Strbuf* v0;
     Pokemon * v1;
     void ** v2 = sub_0203F098(param0->unk_34, 20);
-    UnkStruct_02025E6C * v3 = sub_02025E38(sub_0203D174(param0->unk_34));
+    PlayerProfile * v3 = Save_PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
     u16 v4 = inline_02049538(param0);
     u16 v5 = inline_02049538(param0);
     u16 v6 = inline_02049538(param0);
@@ -107,7 +107,7 @@ BOOL sub_02046CFC (UnkStruct_0203E724 * param0)
     UnkStruct_02093800 v8;
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_34->unk_0C), v7);
-    v0 = sub_02025F04(v3, 4);
+    v0 = PlayerProfile_GetName_NewString(v3, 4);
 
     v8.unk_00 = v5;
     v8.unk_01 = v4;
@@ -119,7 +119,7 @@ BOOL sub_02046CFC (UnkStruct_0203E724 * param0)
     v8.unk_0C = v0;
     v8.unk_10 = v3;
     v8.unk_14 = sub_0202A750(param0->unk_34->unk_0C);
-    v8.unk_18 = sub_02025E44(param0->unk_34->unk_0C);
+    v8.unk_18 = Save_PlayerData_GetOptionsAddr(param0->unk_34->unk_0C);
     v8.unk_1C = param0->unk_34->unk_0C;
     v8.unk_20 = sub_0202CC98(param0->unk_34->unk_0C);
 

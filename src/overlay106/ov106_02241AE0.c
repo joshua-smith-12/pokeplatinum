@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -23,7 +23,7 @@
 #include "constdata/const_020F410C.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "struct_defs/struct_02098D38.h"
@@ -56,8 +56,8 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "player_data.h"
+#include "options.h"
 #include "unk_02030108.h"
 #include "unk_02034198.h"
 #include "unk_020363E8.h"
@@ -112,7 +112,7 @@ struct UnkStruct_ov106_02243118_t {
     UnkStruct_02013A04 unk_9C[2];
     UnkStruct_02002F38 * unk_AC;
     UnkStruct_0200C440 * unk_B0;
-    UnkStruct_020279FC * unk_B4;
+    Options * unk_B4;
     UnkStruct_021C0794 * unk_B8;
     UnkStruct_02098D38 * unk_BC;
     UnkStruct_ov106_02243310 unk_C0;
@@ -220,7 +220,7 @@ int ov106_02241AE0 (UnkStruct_020067E8 * param0, int * param1)
     v1->unk_B8 = v2->unk_00;
     v1->unk_09 = v2->unk_04;
     v1->unk_28C = &v2->unk_06;
-    v1->unk_B4 = sub_02025E44(v1->unk_B8);
+    v1->unk_B4 = Save_PlayerData_GetOptionsAddr(v1->unk_B8);
     v1->unk_290 = v2->unk_0C;
     v1->unk_294 = v2->unk_08;
     v1->unk_298 = v2->unk_14;
@@ -470,7 +470,7 @@ static BOOL ov106_02241E5C (UnkStruct_ov106_02243118 * param0)
                 param0->unk_08 = 3;
                 break;
             } else {
-                ov106_02243758(&param0->unk_4C[0], sub_02027B50(param0->unk_B4));
+                ov106_02243758(&param0->unk_4C[0], Options_GetFrame(param0->unk_B4));
                 param0->unk_0A = ov106_02242978(param0, 0, 1);
                 param0->unk_1A = param0->unk_0D;
                 param0->unk_17 = 1;
@@ -510,8 +510,8 @@ static BOOL ov106_02241E5C (UnkStruct_ov106_02243118 * param0)
         }
         break;
     case 4:
-        ov106_02243758(&param0->unk_4C[0], sub_02027B50(param0->unk_B4));
-        param0->unk_0A = ov106_02242918(param0, &param0->unk_4C[0], 32, 1, 1, sub_02027AC0(sub_02025E44(param0->unk_B8)), 1, 2, 15, 1);
+        ov106_02243758(&param0->unk_4C[0], Options_GetFrame(param0->unk_B4));
+        param0->unk_0A = ov106_02242918(param0, &param0->unk_4C[0], 32, 1, 1, Options_GetTextFrameDelay(Save_PlayerData_GetOptionsAddr(param0->unk_B8)), 1, 2, 15, 1);
         sub_0201A954(&param0->unk_4C[0]);
         param0->unk_08 = 5;
         break;
@@ -585,7 +585,7 @@ static BOOL ov106_02242108 (UnkStruct_ov106_02243118 * param0)
         break;
     case 3:
         ov106_02243664(param0->unk_284, 0);
-        ov106_02243758(&param0->unk_4C[0], sub_02027B50(param0->unk_B4));
+        ov106_02243758(&param0->unk_4C[0], Options_GetFrame(param0->unk_B4));
         ov104_0222E5D0(param0->unk_24, 0);
 
         param0->unk_0A = ov106_02242978(param0, 11, 1);
@@ -1238,7 +1238,7 @@ static void ov106_02242CA4 (UnkStruct_ov106_02243118 * param0)
     param0->unk_BC->unk_2C = sub_0208C324(param0->unk_B8);
 
     sub_0208D720(param0->unk_BC, Unk_ov106_02243798);
-    sub_0208E9C0(param0->unk_BC, sub_02025E38(param0->unk_B8));
+    sub_0208E9C0(param0->unk_BC, Save_PlayerData_GetProfileAddr(param0->unk_B8));
 
     return;
 }
@@ -1523,9 +1523,9 @@ BOOL ov106_022430B4 (UnkStruct_ov106_02243118 * param0, u16 param1, u16 param2)
 
 void ov106_02243118 (UnkStruct_ov106_02243118 * param0, u16 param1)
 {
-    UnkStruct_02025E6C * v0;
+    PlayerProfile * v0;
 
-    v0 = sub_02025E38(param0->unk_B8);
+    v0 = Save_PlayerData_GetProfileAddr(param0->unk_B8);
     param0->unk_2A0[0] = param1;
 
     return;
@@ -1644,7 +1644,7 @@ static void ov106_02243224 (UnkStruct_ov106_02243118 * param0)
     int v1;
 
     ov106_02243664(param0->unk_284, 0);
-    ov106_02243758(&param0->unk_4C[0], sub_02027B50(param0->unk_B4));
+    ov106_02243758(&param0->unk_4C[0], Options_GetFrame(param0->unk_B4));
     sub_0200B7EC(param0->unk_24, 0, ov104_0223B5A4(param0->unk_0D));
 
     v0 = sub_020301E0(ov106_02243090(param0->unk_0D), param0->unk_294);

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
 #include "struct_defs/pokemon.h"
@@ -13,7 +13,7 @@
 #include "overlay104/struct_ov104_0223BFFC.h"
 
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_020302D0.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
@@ -98,14 +98,14 @@ void ov104_0222ECE8 (int param0, int param1, void * param2, void * param3)
 BOOL ov104_0222ED00 (UnkStruct_ov104_0223B5C0 * param0)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    PlayerProfile * v2;
     u16 * v3;
     int v4, v5;
 
     v5 = 44;
     v3 = param0->unk_72C;
     v1 = 0;
-    v2 = sub_02025E38(param0->unk_6FC);
+    v2 = Save_PlayerData_GetProfileAddr(param0->unk_6FC);
 
     v1 += 1;
     v1 += (7 + 1);
@@ -330,14 +330,14 @@ u8 * ov104_0222EED8 (int param0, void * param1, int param2)
 BOOL ov104_0222EEF8 (UnkStruct_ov104_0223ADA0 * param0)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    PlayerProfile * v2;
     u16 * v3;
     int v4, v5;
 
     v5 = 60;
     v3 = param0->unk_504;
     v1 = 0;
-    v2 = sub_02025E38(param0->unk_4F8);
+    v2 = Save_PlayerData_GetProfileAddr(param0->unk_4F8);
 
     v3[1] = param0->unk_08;
     v3[2] = param0->unk_0C;
@@ -846,7 +846,7 @@ void ov104_0222F480 (int param0, int param1, void * param2, void * param3)
 BOOL ov104_0222F4B8 (UnkStruct_ov104_0223BA10 * param0)
 {
     int v0, v1, v2, v3;
-    UnkStruct_02025E6C * v4;
+    PlayerProfile * v4;
 
     v1 = 0;
     v3 = 40;

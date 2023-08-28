@@ -2,8 +2,8 @@
 #define POKEPLATINUM_STRUCT_02093800_H
 
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_decls/player_profile_decl.h"
+#include "struct_defs/options.h"
 #include "struct_decls/struct_0202A750_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -18,9 +18,9 @@ typedef struct {
     u8 padding_06[2];
     Pokemon * unk_08;
     const Strbuf* unk_0C;
-    const UnkStruct_02025E6C * unk_10;
+    const PlayerProfile * unk_10;
     UnkStruct_0202A750 * unk_14;
-    const UnkStruct_020279FC * unk_18;
+    const Options * unk_18;
     UnkStruct_021C0794 * unk_1C;
     void * unk_20;
 } UnkStruct_02093800;

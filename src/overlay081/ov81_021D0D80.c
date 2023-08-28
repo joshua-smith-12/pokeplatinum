@@ -28,8 +28,8 @@
 #include "unk_02018340.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202B604.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
@@ -92,7 +92,7 @@ int ov81_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     v0->unk_4C = v1;
     v0->unk_44 = sub_0202B628(v1);
-    v0->unk_48 = sub_02025E38(v1);
+    v0->unk_48 = Save_PlayerData_GetProfileAddr(v1);
 
     sub_0208C120(0, 42);
     sub_02002BEC(0, 42);
@@ -296,7 +296,7 @@ static void ov81_021D1050 (UnkStruct_ov81_021D1610 * param0)
 
     v1 = NARC_ctor(80, 42);
 
-    if (sub_02025F30(param0->unk_48) == 0) {
+    if (PlayerProfile_GetGender(param0->unk_48) == 0) {
         sub_020070E8(v1, 2, param0->unk_00, 2, 0, 0, 0, 42);
         sub_0200710C(v1, 0, param0->unk_00, 2, 0, 0, 0, 42);
         sub_02007130(v1, 4, 0, 0, 0, 42);

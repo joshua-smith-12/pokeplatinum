@@ -21,7 +21,7 @@
 #include "unk_020041CC.h"
 #include "heap.h"
 #include "unk_0202440C.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02026150.h"
 #include "unk_0202B604.h"
 #include "unk_0202CD50.h"
@@ -985,7 +985,7 @@ static void sub_02051988 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
 
             if (param0->unk_78.unk_02 >= 5) {
                 v0 = Party_GetPokemonBySlotIndex(param1->parties[1], 0);
-                v3 = sub_0202BECC(sub_02025E5C(param0->unk_0C), GetMonData(v0, MON_DATA_SPECIES, 0), GetMonData(v0, MON_DATA_111, 0), param1->unk_138, 11);
+                v3 = sub_0202BECC(Save_PlayerData_GetIGTAddr(param0->unk_0C), GetMonData(v0, MON_DATA_SPECIES, 0), GetMonData(v0, MON_DATA_111, 0), param1->unk_138, 11);
                 sub_0202B758(param0->unk_9C, v3, 2);
             }
         } else if (v2 == 0x4) {
@@ -993,7 +993,7 @@ static void sub_02051988 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
 
             v4 = param1->unk_148;
             v0 = Party_GetPokemonBySlotIndex(param1->parties[v4], 0);
-            v3 = sub_0202BE4C(sub_02025E5C(param0->unk_0C), GetMonData(v0, MON_DATA_SPECIES, 0), GetMonData(v0, MON_DATA_111, 0), param1->unk_138, 11);
+            v3 = sub_0202BE4C(Save_PlayerData_GetIGTAddr(param0->unk_0C), GetMonData(v0, MON_DATA_SPECIES, 0), GetMonData(v0, MON_DATA_111, 0), param1->unk_138, 11);
 
             sub_0202B758(param0->unk_9C, v3, 2);
         }

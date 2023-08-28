@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_BATTLE_PARAMS_H
 #define POKEPLATINUM_BATTLE_PARAMS_H
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -26,7 +26,7 @@ typedef struct {
     int unk_14;
     int unk_18[4];
     TrainerData trainerData[4];
-    UnkStruct_02025E6C * unk_D0[4];
+    PlayerProfile * unk_D0[4];
     UnkStruct_0207D3C0 * unk_E0;
     UnkStruct_0207D99C * unk_E4;
     UnkStruct_02026324 * unk_E8;
@@ -34,7 +34,7 @@ typedef struct {
     UnkStruct_0202CC84 * unk_F0[4];
     UnkStruct_02056B24 * unk_100;
     UnkStruct_0202C878 * unk_104;
-    UnkStruct_020279FC * unk_108;
+    Options * unk_108;
     UnkStruct_0206D140 * unk_10C;
     BattleParams_sub1 unk_110;
     UnkStruct_0202CD88 * unk_11C;

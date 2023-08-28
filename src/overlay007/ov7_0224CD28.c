@@ -42,9 +42,9 @@
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "player_data.h"
+#include "player_profile.h"
+#include "options.h"
 #include "unk_0202854C.h"
 #include "unk_0202B604.h"
 #include "unk_0202C9F4.h"
@@ -196,8 +196,8 @@ void ov7_0224CDA4 (UnkStruct_020508D4 * param0, UnkStruct_0203CDB0 * param1, u16
     v0->unk_00 = param1->unk_08;
 
     v0->unk_298 = Strbuf_Init((24 * 2 * 2), 11);
-    v0->unk_270 = sub_02025E38(param1->unk_0C);
-    v0->unk_278 = sub_02025E44(param1->unk_0C);
+    v0->unk_270 = Save_PlayerData_GetProfileAddr(param1->unk_0C);
+    v0->unk_278 = Save_PlayerData_GetOptionsAddr(param1->unk_0C);
     v0->unk_280 = sub_0202CD88(param1->unk_0C);
     v0->unk_288 = sub_020507E4(param1->unk_0C);
     v0->unk_28C = param4;
@@ -505,7 +505,7 @@ static void ov7_0224D474 (UnkStruct_ov7_0224D008 * param0)
     }
 
     sub_0200DAA4(param0->unk_00, 3, (1 + (18 + 12)), 11, 0, 11);
-    sub_0200DD0C(param0->unk_00, 3, 1, 10, sub_02027B50(param0->unk_278), 11);
+    sub_0200DD0C(param0->unk_00, 3, 1, 10, Options_GetFrame(param0->unk_278), 11);
     NARC_dtor(v0);
 }
 
@@ -1370,7 +1370,7 @@ u32 ov7_0224E8F4 (UnkStruct_ov7_0224D008 * param0)
     if (param0->unk_2A9 == 3) {
         return sub_0202D230(sub_0202D750(param0->unk_284), 0, 0);
     } else {
-        return sub_02025F74(param0->unk_270);
+        return PlayerProfile_GetMoney(param0->unk_270);
     }
 }
 
@@ -1379,7 +1379,7 @@ void ov7_0224E920 (UnkStruct_ov7_0224D008 * param0, u32 param1)
     if (param0->unk_2A9 == 3) {
         sub_0202D230(sub_0202D750(param0->unk_284), (u16)param1, 6);
     } else {
-        sub_02025FB8(param0->unk_270, param1);
+        PlayerProfile_SubMoney(param0->unk_270, param1);
     }
 }
 

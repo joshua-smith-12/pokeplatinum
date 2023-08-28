@@ -6,7 +6,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_defs/box_pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -44,8 +44,8 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "player_profile.h"
+#include "options.h"
 #include "unk_020393C8.h"
 #include "unk_020507CC.h"
 #include "unk_0206A8DC.h"
@@ -938,7 +938,7 @@ static int sub_0208CF78 (UnkStruct_0208D7BC * param0)
         }
 
         sub_02002E98(0, 14 * 32, 19);
-        sub_0200DD0C(param0->unk_00, 1, (1024 - (18 + 12)), 13, sub_02027B50(param0->unk_24C->unk_04), 19);
+        sub_0200DD0C(param0->unk_00, 1, (1024 - (18 + 12)), 13, Options_GetFrame(param0->unk_24C->unk_04), 19);
 
         if (param0->unk_6A6 == 0) {
             sub_02091610(param0, 0xfe);
@@ -2178,7 +2178,7 @@ static int sub_0208E958 (UnkStruct_0208D7BC * param0)
 {
     if (param0->unk_250.unk_4A == 255) {
         sub_02002E98(0, 14 * 32, 19);
-        sub_0200DD0C(param0->unk_00, 1, (1024 - (18 + 12)), 13, sub_02027B50(param0->unk_24C->unk_04), 19);
+        sub_0200DD0C(param0->unk_00, 1, (1024 - (18 + 12)), 13, Options_GetFrame(param0->unk_24C->unk_04), 19);
         sub_02091610(param0, 0xff);
         param0->unk_24C->unk_17 = 1;
 
@@ -2189,11 +2189,11 @@ static int sub_0208E958 (UnkStruct_0208D7BC * param0)
     return 18;
 }
 
-void sub_0208E9C0 (UnkStruct_02098D38 * param0, const UnkStruct_02025E6C * param1)
+void sub_0208E9C0 (UnkStruct_02098D38 * param0, const PlayerProfile * param1)
 {
-    param0->unk_08 = sub_02025EF0(param1);
-    param0->unk_0C = sub_02025F20(param1);
-    param0->unk_10 = (u8)sub_02025F30(param1);
+    param0->unk_08 = PlayerProfile_GetName(param1);
+    param0->unk_0C = PlayerProfile_GetTrainerID(param1);
+    param0->unk_10 = (u8)PlayerProfile_GetGender(param1);
 }
 
 u32 sub_0208E9E0 (void)

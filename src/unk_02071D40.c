@@ -1,8 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E5C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/igt_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_0202C844_decl.h"
@@ -17,12 +17,12 @@
 
 #include "unk_020021B0.h"
 #include "heap.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202631C.h"
 #include "unk_0202854C.h"
 #include "unk_0202C7FC.h"
-#include "unk_0202CBE4.h"
+#include "igt.h"
 #include "unk_0202CD50.h"
 #include "unk_0203061C.h"
 #include "unk_0203CC84.h"
@@ -41,19 +41,19 @@ typedef struct {
 
 static void sub_02072014(const u8 param0, const u8 param1, const u8 param2, const u8 param3, const u8 param4, UnkStruct_02072014 * param5);
 static void sub_02072038(const u16 param0, const u8 param1, const u16 * param2, const u32 param3, const u32 param4, const BOOL param5, const u32 param6, UnkStruct_02072014 * param7);
-static void sub_0207207C(const u8 param0, const UnkStruct_02025E5C * param1, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, UnkStruct_02072014 * param6);
+static void sub_0207207C(const u8 param0, const IGT * param1, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, UnkStruct_02072014 * param6);
 static void sub_02072120(const u32 param0, const u32 param1, const u32 param2, const u32 param3, const u8 * param4, UnkStruct_02072014 * param5);
-static void sub_0207216C(UnkStruct_02025E6C * param0, UnkStruct_0203CDB0 * param1, UnkStruct_02072014 * param2);
+static void sub_0207216C(PlayerProfile * param0, UnkStruct_0203CDB0 * param1, UnkStruct_02072014 * param2);
 static BOOL sub_02072230(UnkStruct_020508D4 * param0);
 
 void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 param3, UnkStruct_0203CDB0 * param4, UnkStruct_02072014 * param5)
 {
-    UnkStruct_02025E6C * v0;
+    PlayerProfile * v0;
     UnkStruct_0202CD88 * v1;
     UnkStruct_021C0794 * v2;
 
     v2 = sub_0203D174(param4);
-    v0 = sub_02025E38(v2);
+    v0 = Save_PlayerData_GetProfileAddr(v2);
     v1 = sub_0202CD88(v2);
 
     param5->unk_05 = param3;
@@ -62,18 +62,18 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
         u8 v3;
 
         v3 = sub_02071F28(param4);
-        sub_02072014(param0, GAME_VERSION, v3, param2, sub_02025FD8(v0), param5);
+        sub_02072014(param0, GAME_VERSION, v3, param2, PlayerProfile_GetLanguage(v0), param5);
     }
 
-    sub_02072038(sub_02025F24(v0), sub_02025F30(v0), sub_02025EF0(v0), sub_02025F74(v0), sub_02026E48(sub_02027560(param4->unk_0C)), sub_02027520(sub_02027560(param4->unk_0C)), sub_0202D034(v1), param5);
+    sub_02072038(PlayerProfile_GetTrainerID_VisibleHalf(v0), PlayerProfile_GetGender(v0), PlayerProfile_GetName(v0), PlayerProfile_GetMoney(v0), sub_02026E48(sub_02027560(param4->unk_0C)), sub_02027520(sub_02027560(param4->unk_0C)), sub_0202D034(v1), param5);
 
     {
         RTCDate v4;
         RTCDate v5;
         RTCTime v6;
-        UnkStruct_02025E5C * v7;
+        IGT * v7;
 
-        v7 = sub_02025E5C(v2);
+        v7 = Save_PlayerData_GetIGTAddr(v2);
 
         sub_02055BF4(param4, &v4, &v6);
         sub_02055C10(param4, &v5, &v6);
@@ -183,10 +183,10 @@ static void sub_02072038 (const u16 param0, const u8 param1, const u16 * param2,
     param7->unk_24 = param6;
 }
 
-static void sub_0207207C (const u8 param0, const UnkStruct_02025E5C * param1, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, UnkStruct_02072014 * param6)
+static void sub_0207207C (const u8 param0, const IGT * param1, const RTCDate * param2, const RTCDate * param3, const RTCTime * param4, const u8 param5, UnkStruct_02072014 * param6)
 {
-    param6->unk_2A = sub_0202CC58(param1);
-    param6->unk_2E = sub_0202CC5C(param1);
+    param6->unk_2A = IGT_GetHours(param1);
+    param6->unk_2E = IGT_GetMinutes(param1);
     param6->unk_2F = param2->year;
     param6->unk_30 = param2->month;
     param6->unk_31 = param2->day;
@@ -242,7 +242,7 @@ static void sub_02072120 (const u32 param0, const u32 param1, const u32 param2, 
     MI_CpuCopy8(param4, param5->unk_68, 24 * 8 * 8);
 }
 
-static void sub_0207216C (UnkStruct_02025E6C * param0, UnkStruct_0203CDB0 * param1, UnkStruct_02072014 * param2)
+static void sub_0207216C (PlayerProfile * param0, UnkStruct_0203CDB0 * param1, UnkStruct_02072014 * param2)
 {
     u8 v0;
     UnkStruct_0202C834 * v1;
@@ -252,7 +252,7 @@ static void sub_0207216C (UnkStruct_02025E6C * param0, UnkStruct_0203CDB0 * para
     v2 = sub_0202C844(v1);
 
     for (v0 = 0; v0 < 8; v0++) {
-        if (sub_02025F34(param0, v0)) {
+        if (PlayerProfile_TestBadgeFlag(param0, v0)) {
             param2->unk_48[v0].unk_00_0 = 1;
         } else {
             param2->unk_48[v0].unk_00_0 = 0;

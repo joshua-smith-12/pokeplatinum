@@ -5,8 +5,8 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E5C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/igt_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay005/struct_ov5_021E1FF4_decl.h"
@@ -25,10 +25,10 @@
 #include "unk_0201D670.h"
 #include "strbuf.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202631C.h"
-#include "unk_0202CBE4.h"
+#include "igt.h"
 #include "unk_020366A0.h"
 #include "map_header.h"
 #include "unk_0203A6DC.h"
@@ -39,8 +39,8 @@
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_02025E6C * unk_08;
-    UnkStruct_02025E5C * unk_0C;
+    PlayerProfile * unk_08;
+    IGT * unk_0C;
 } UnkStruct_ov5_021E1D20;
 
 struct UnkStruct_ov5_021E1FF4_t {
@@ -87,8 +87,8 @@ static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const UnkStruct_0203C
         param0->unk_00 = 0;
     }
 
-    param0->unk_08 = sub_02025E38(v0);
-    param0->unk_0C = sub_02025E5C(v0);
+    param0->unk_08 = Save_PlayerData_GetProfileAddr(v0);
+    param0->unk_0C = Save_PlayerData_GetIGTAddr(v0);
 }
 
 static void ov5_021E1D6C (UnkStruct_0200B358 * param0, const UnkStruct_ov5_021E1D20 * param1)
@@ -97,7 +97,7 @@ static void ov5_021E1D6C (UnkStruct_0200B358 * param0, const UnkStruct_ov5_021E1
 
     sub_0200B8C8(param0, 0, param1->unk_04);
     sub_0200B498(param0, 1, param1->unk_08);
-    sub_0200B60C(param0, 2, sub_02025F58(param1->unk_08), 1, 0, 1);
+    sub_0200B60C(param0, 2, PlayerProfile_CountBadges(param1->unk_08), 1, 0, 1);
 
     if (param1->unk_00 >= 100) {
         v0 = 3;
@@ -111,7 +111,7 @@ static void ov5_021E1D6C (UnkStruct_0200B358 * param0, const UnkStruct_ov5_021E1
     }
 
     sub_0200B60C(param0, 3, param1->unk_00, v0, v1, 1);
-    v2 = sub_0202CC58(param1->unk_0C);
+    v2 = IGT_GetHours(param1->unk_0C);
 
     if (v2 >= 100) {
         v0 = 3;
@@ -125,7 +125,7 @@ static void ov5_021E1D6C (UnkStruct_0200B358 * param0, const UnkStruct_ov5_021E1
     }
 
     sub_0200B60C(param0, 4, v2, v0, v1, 1);
-    sub_0200B60C(param0, 5, sub_0202CC5C(param1->unk_0C), 2, 2, 1);
+    sub_0200B60C(param0, 5, IGT_GetMinutes(param1->unk_0C), 2, 2, 1);
 }
 
 static int ov5_021E1E10 (const UnkStruct_ov5_021E1D20 * param0)

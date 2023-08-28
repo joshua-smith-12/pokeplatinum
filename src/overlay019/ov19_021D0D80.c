@@ -27,7 +27,7 @@
 #include "constdata/const_020F2DAC.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02098D38.h"
@@ -54,8 +54,8 @@
 #include "unk_02023FCC.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "player_data.h"
+#include "options.h"
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"
 #include "unk_02073C2C.h"
@@ -143,7 +143,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     UnkStruct_0200B144 * unk_198;
     UnkStruct_0200B358 * unk_19C;
     Pokemon * unk_1A0;
-    UnkStruct_020279FC * unk_1A4;
+    Options * unk_1A4;
     int (* unk_1A8)(struct UnkStruct_ov19_021D5DF8_t * param0);
     void (* unk_1AC)(struct UnkStruct_ov19_021D5DF8_t * param0, u32 * param1);
     u32 unk_1B0;
@@ -890,7 +890,7 @@ static void ov19_021D1C84 (UnkStruct_ov19_021D5DF8 * param0)
     param0->unk_12C.unk_20 = sub_0202D79C(param0->unk_11C);
 
     sub_0208D720(&(param0->unk_12C), v0);
-    sub_0208E9C0(&(param0->unk_12C), sub_02025E38(param0->unk_11C));
+    sub_0208E9C0(&(param0->unk_12C), Save_PlayerData_GetProfileAddr(param0->unk_11C));
 }
 
 static int ov19_021D1DAC (UnkStruct_ov19_021D5DF8 * param0)
@@ -3314,7 +3314,7 @@ static void ov19_021D4BE0 (UnkStruct_ov19_021D5DF8 * param0, UnkStruct_02042434 
     param0->unk_120 = sub_02024420(param1->unk_00);
     param0->unk_11C = param1->unk_00;
     param0->unk_124 = Party_GetFromSavedata(param1->unk_00);
-    param0->unk_1A4 = sub_02025E44(param1->unk_00);
+    param0->unk_1A4 = Save_PlayerData_GetOptionsAddr(param1->unk_00);
     param0->unk_118 = param1;
     param1->unk_08 = 0;
     param0->unk_18C = sub_0200B144(0, 26, 19, 9);
@@ -4432,7 +4432,7 @@ const UnkStruct_0200B358 * ov19_021D5DF0 (const UnkStruct_ov19_021D5DF8 * param0
 
 int ov19_021D5DF8 (const UnkStruct_ov19_021D5DF8 * param0)
 {
-    return sub_02027B50(param0->unk_1A4);
+    return Options_GetFrame(param0->unk_1A4);
 }
 
 u32 ov19_021D5E08 (const UnkStruct_ov19_021D4DF0 * param0)

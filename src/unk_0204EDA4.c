@@ -10,7 +10,7 @@
 #include "struct_defs/struct_020997B8.h"
 
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_0203CC84.h"
 #include "unk_0203D1B8.h"
 #include "unk_0203E724.h"
@@ -83,8 +83,8 @@ static void sub_0204EE90 (UnkStruct_0203E724 * param0, u16 param1, Pokemon * par
     *v0 = v1;
 
     v1->unk_00 = param2;
-    v1->unk_04 = sub_02025E38(sub_0203D174(param0->unk_34));
-    v1->unk_08 = sub_02025E44(param0->unk_34->unk_0C);
+    v1->unk_04 = Save_PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
+    v1->unk_08 = Save_PlayerData_GetOptionsAddr(param0->unk_34->unk_0C);
     v1->unk_0C = param3;
     v1->unk_15 = param1;
 

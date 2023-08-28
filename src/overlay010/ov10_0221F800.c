@@ -18,7 +18,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -64,8 +64,8 @@
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
-#include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "player_profile.h"
+#include "options.h"
 #include "unk_0202B604.h"
 #include "unk_0202F1D4.h"
 #include "unk_020329E0.h"
@@ -677,7 +677,7 @@ static u8 ov10_0221FD00 (UnkStruct_ov10_0221FB28 * param0)
         }
         {
             int v2;
-            UnkStruct_02025E6C * v3;
+            PlayerProfile * v3;
 
             param0->unk_BC4 = 0;
 
@@ -685,7 +685,7 @@ static u8 ov10_0221FD00 (UnkStruct_ov10_0221FB28 * param0)
                 v3 = sub_02032EE8(v2);
 
                 if (v3 != NULL) {
-                    if (sub_02025FCC(v3) == 0) {
+                    if (PlayerProfile_GetVersion(v3) == 0) {
                         param0->unk_BC4 = 1;
                         break;
                     }
@@ -1457,7 +1457,7 @@ static void ov10_02220F1C (UnkStruct_ov10_0221FB28 * param0)
     int v0;
 
     GF_ASSERT(param0->unk_B9C == GX_BG0_AS_2D && param0->unk_00 != NULL && param0->unk_00->unk_00 != NULL && param0->unk_00->unk_00->unk_108 != NULL);
-    v0 = sub_02027B50(param0->unk_00->unk_00->unk_108);
+    v0 = Options_GetFrame(param0->unk_00->unk_00->unk_108);
 
     sub_0200DD0C(param0->unk_0C, 0, 1, 15, v0, param0->unk_00->unk_24);
     sub_02003070(param0->unk_08, 0, 15 * 16, 0x20 * 1);

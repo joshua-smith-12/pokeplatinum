@@ -1,8 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E5C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/igt_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202BC58.h"
@@ -14,9 +14,9 @@
 #include "unk_0201378C.h"
 #include "heap.h"
 #include "unk_020244AC.h"
-#include "unk_02025E68.h"
+#include "player_profile.h"
 #include "unk_0202B604.h"
-#include "unk_0202CBE4.h"
+#include "igt.h"
 #include "map_header.h"
 
 typedef struct UnkStruct_0202B628_t {
@@ -73,7 +73,7 @@ static void sub_0202C528(u8 * param0, UnkStruct_0202BFCC * param1);
 static void sub_0202C54C(u8 * param0, UnkStruct_0202BFCC * param1);
 static void sub_0202C5A4(u8 * param0, UnkStruct_0202BFCC * param1);
 static void sub_0202C5AC(u8 * param0, UnkStruct_0202BFCC * param1);
-static u8 sub_0202C6CC(UnkStruct_02025E6C * param0, u32 param1);
+static u8 sub_0202C6CC(PlayerProfile * param0, u32 param1);
 static u8 sub_0202C78C(u32 param0);
 
 static const UnkStruct_020E5B90 Unk_020E5B90[] = {
@@ -802,7 +802,7 @@ static UnkStruct_0202BE38 * sub_0202BE38 (u32 param0)
     return v0;
 }
 
-void * sub_0202BE4C (const UnkStruct_02025E5C * param0, u16 param1, u8 param2, u8 param3, u32 param4)
+void * sub_0202BE4C (const IGT * param0, u16 param1, u8 param2, u8 param3, u32 param4)
 {
     UnkStruct_0202BE38 * v0;
     u8 v1;
@@ -814,7 +814,7 @@ void * sub_0202BE4C (const UnkStruct_02025E5C * param0, u16 param1, u8 param2, u
     v0->unk_01_6 = param2;
     v0->unk_01_2 = param3;
 
-    v1 = sub_0202CC5C(param0) / 10;
+    v1 = IGT_GetMinutes(param0) / 10;
 
     if ((v1 == 0) || (v1 == 2) || (v1 == 4)) {
         v0->unk_01_0 = 0;
@@ -827,7 +827,7 @@ void * sub_0202BE4C (const UnkStruct_02025E5C * param0, u16 param1, u8 param2, u
     return v0;
 }
 
-void * sub_0202BECC (const UnkStruct_02025E5C * param0, u16 param1, u8 param2, u8 param3, u32 param4)
+void * sub_0202BECC (const IGT * param0, u16 param1, u8 param2, u8 param3, u32 param4)
 {
     UnkStruct_0202BE38 * v0;
     u8 v1;
@@ -839,7 +839,7 @@ void * sub_0202BECC (const UnkStruct_02025E5C * param0, u16 param1, u8 param2, u
     v0->unk_01_6 = param2;
     v0->unk_01_2 = param3;
 
-    v1 = sub_0202CC5C(param0) / 10;
+    v1 = IGT_GetMinutes(param0) / 10;
 
     if ((v1 == 1) || (v1 == 3) || (v1 == 5)) {
         v0->unk_01_0 = 0;
@@ -1279,7 +1279,7 @@ static void sub_0202C5AC (u8 * param0, UnkStruct_0202BFCC * param1)
     param1->unk_01_0 = param0[1];
 }
 
-void sub_0202C5C4 (UnkStruct_02025E6C * param0, UnkStruct_0202B628 * param1, u32 param2, u32 param3, u32 param4)
+void sub_0202C5C4 (PlayerProfile * param0, UnkStruct_0202B628 * param1, u32 param2, u32 param3, u32 param4)
 {
     void * v0;
     u32 v1;
@@ -1338,13 +1338,13 @@ u32 sub_0202C6A4 (u32 param0)
     return 0;
 }
 
-static u8 sub_0202C6CC (UnkStruct_02025E6C * param0, u32 param1)
+static u8 sub_0202C6CC (PlayerProfile * param0, u32 param1)
 {
     u8 v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_020E5B50); v0++) {
         if (Unk_020E5B50[v0].unk_04 == param1) {
-            if (sub_02025F34(param0, Unk_020E5B50[v0].unk_06) == 0) {
+            if (PlayerProfile_TestBadgeFlag(param0, Unk_020E5B50[v0].unk_06) == 0) {
                 return v0;
             }
 

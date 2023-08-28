@@ -2,8 +2,8 @@
 #define POKEPLATINUM_STRUCT_02095C48_H
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_decls/player_profile_decl.h"
+#include "struct_defs/options.h"
 #include "struct_decls/struct_0202A750_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -30,10 +30,10 @@ typedef struct {
     u8 unk_569[1024];
     u8 unk_969[4][1024];
     u8 padding_1969[3];
-    const UnkStruct_020279FC * unk_196C;
+    const Options * unk_196C;
     UnkStruct_021C0794 * unk_1970;
     Pokemon * unk_1974;
-    const UnkStruct_02025E6C * unk_1978;
+    const PlayerProfile * unk_1978;
     u8 unk_197C;
     u8 unk_197D;
     u8 unk_197E;

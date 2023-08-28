@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_UNK_0202B604_H
 #define POKEPLATINUM_UNK_0202B604_H
 
-#include "struct_decls/struct_02025E5C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/igt_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -35,8 +35,8 @@ void * sub_0202BE00(u8 param0, u16 param1, u32 param2);
 void * sub_0202BE14(u32 param0);
 void * sub_0202BE20(u32 param0);
 void * sub_0202BE2C(u32 param0, u32 param1);
-void * sub_0202BE4C(const UnkStruct_02025E5C * param0, u16 param1, u8 param2, u8 param3, u32 param4);
-void * sub_0202BECC(const UnkStruct_02025E5C * param0, u16 param1, u8 param2, u8 param3, u32 param4);
+void * sub_0202BE4C(const IGT * param0, u16 param1, u8 param2, u8 param3, u32 param4);
+void * sub_0202BECC(const IGT * param0, u16 param1, u8 param2, u8 param3, u32 param4);
 void * sub_0202BF4C(u16 param0, u16 param1, u32 param2);
 void * sub_0202BFCC(u16 * param0, u8 param1, u8 param2, u32 param3);
 void * sub_0202C00C(u16 * param0, u8 param1, u8 param2, u32 param3);
@@ -55,7 +55,7 @@ void * sub_0202C244(u32 param0, u32 param1);
 void * sub_0202C250(const u16 * param0, u8 param1, u32 param2, u32 param3);
 void * sub_0202C280(int param0, u32 param1, u32 param2);
 void sub_0202C2A4(UnkStruct_0202B628 * param0, void * param1, u8 param2, u8 param3);
-void sub_0202C5C4(UnkStruct_02025E6C * param0, UnkStruct_0202B628 * param1, u32 param2, u32 param3, u32 param4);
+void sub_0202C5C4(PlayerProfile * param0, UnkStruct_0202B628 * param1, u32 param2, u32 param3, u32 param4);
 u32 sub_0202C6A4(u32 param0);
 void sub_0202C704(UnkStruct_0202B628 * param0, u32 param1, u32 param2);
 void sub_0202C720(UnkStruct_0202B628 * param0, u16 param1, u16 param2, u32 param3);

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
@@ -30,7 +30,7 @@
 #include "narc.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "player_profile.h"
 #include "unk_020366A0.h"
 #include "unk_02073C2C.h"
 #include "move_table.h"
@@ -6008,7 +6008,7 @@ BOOL ov16_02259A28 (UnkStruct_ov16_0224B9DC * param0, int param1)
 
 void ov16_02259A5C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, Pokemon * param2)
 {
-    UnkStruct_02025E6C * v0;
+    PlayerProfile * v0;
     int v1;
     int v2;
     int v3;
@@ -6044,15 +6044,15 @@ BOOL ov16_02259AC0 (UnkStruct_ov16_0224B9DC * param0, int param1)
 
 BOOL ov16_02259ADC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
 {
-    UnkStruct_02025E6C * v0;
+    PlayerProfile * v0;
     u32 v1;
     u32 v2;
     const u16 * v3;
 
     v0 = ov16_0223E16C(param0, 0);
-    v1 = sub_02025F20(v0);
-    v2 = sub_02025F30(v0);
-    v3 = sub_02025EF0(v0);
+    v1 = PlayerProfile_GetTrainerID(v0);
+    v2 = PlayerProfile_GetGender(v0);
+    v3 = PlayerProfile_GetName(v0);
 
     if ((v1 == param1->unk_2D40[param1->unk_64].unk_74) && (v2 == param1->unk_2D40[param1->unk_64].unk_7E_4) && (sub_02002238(v3, &param1->unk_2D40[param1->unk_64].unk_54[0], 7) == 0)) {
         return 1;
@@ -6063,16 +6063,16 @@ BOOL ov16_02259ADC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
 
 BOOL ov16_02259B38 (UnkStruct_0207ADB4 * param0, Pokemon * param1)
 {
-    UnkStruct_02025E6C * v0;
+    PlayerProfile * v0;
     u32 v1;
     u32 v2;
     const u16 * v3;
     u16 v4[7 + 1];
 
     v0 = ov16_0223E16C(param0, 0);
-    v1 = sub_02025F20(v0);
-    v2 = sub_02025F30(v0);
-    v3 = sub_02025EF0(v0);
+    v1 = PlayerProfile_GetTrainerID(v0);
+    v2 = PlayerProfile_GetGender(v0);
+    v3 = PlayerProfile_GetName(v0);
 
     GetMonData(param1, MON_DATA_144, &v4[0]);
 

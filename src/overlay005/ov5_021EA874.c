@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -29,9 +29,9 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "player_data.h"
+#include "player_profile.h"
+#include "options.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_020329E0.h"
@@ -79,7 +79,7 @@ static BOOL ov5_021EA874 (UnkStruct_ov5_021EAE78 * param0)
 
     param0->unk_8C = 0;
 
-    sub_0200DD0C(param0->unk_30->unk_08, 3, (512 - (18 + 12)), 10, sub_02027B50(sub_02025E44(param0->unk_34)), 4);
+    sub_0200DD0C(param0->unk_30->unk_08, 3, (512 - (18 + 12)), 10, Options_GetFrame(Save_PlayerData_GetOptionsAddr(param0->unk_34)), 4);
     sub_0200DAA4(param0->unk_30->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
 
     param0->unk_48 = 1;
@@ -89,7 +89,7 @@ static BOOL ov5_021EA874 (UnkStruct_ov5_021EAE78 * param0)
 static BOOL ov5_021EA8F0 (UnkStruct_ov5_021EAE78 * param0)
 {
     int v0;
-    UnkStruct_02025E6C * v1;
+    PlayerProfile * v1;
 
     param0->unk_8C = -1;
 
@@ -189,7 +189,7 @@ static BOOL ov5_021EAA6C (UnkStruct_ov5_021EAE78 * param0)
 
 static BOOL ov5_021EAAA8 (UnkStruct_ov5_021EAE78 * param0)
 {
-    UnkStruct_02025E6C * v0;
+    PlayerProfile * v0;
     DWCFriendData * v1;
     Strbuf* v2;
     int v3;
@@ -221,7 +221,7 @@ static BOOL ov5_021EAAEC (UnkStruct_ov5_021EAE78 * param0)
 
 static BOOL ov5_021EAB28 (UnkStruct_ov5_021EAE78 * param0)
 {
-    UnkStruct_02025E6C * v0;
+    PlayerProfile * v0;
     DWCFriendData * v1;
     Strbuf* v2;
     int v3;
@@ -305,7 +305,7 @@ static BOOL ov5_021EAB58 (UnkStruct_ov5_021EAE78 * param0)
 
 static BOOL ov5_021EAC44 (UnkStruct_ov5_021EAE78 * param0)
 {
-    UnkStruct_02025E6C * v0;
+    PlayerProfile * v0;
     int v1;
 
     v1 = sub_02001288(param0->unk_04);
@@ -326,9 +326,9 @@ static BOOL ov5_021EAC44 (UnkStruct_ov5_021EAE78 * param0)
 
         {
             UnkStruct_0202B370 * v2 = sub_0202B370(param0->unk_34);
-            UnkStruct_02025E6C * v3 = sub_02025E6C(4);
+            PlayerProfile * v3 = PlayerProfile_New(4);
 
-            sub_02025EC0(v3, sub_0202AEF0(v2, v1));
+            PlayerProfile_SetName(v3, sub_0202AEF0(v2, v1));
             sub_0200B498(param0->unk_38, 0, v3);
             Heap_FreeToHeap(v3);
         }
@@ -359,7 +359,7 @@ static BOOL ov5_021EACFC (UnkStruct_ov5_021EAE78 * param0)
 static BOOL ov5_021EAD38 (UnkStruct_ov5_021EAE78 * param0)
 {
     UnkStruct_0202B370 * v0 = sub_0202B370(param0->unk_34);
-    UnkStruct_02025E6C * v1;
+    PlayerProfile * v1;
     DWCFriendData * v2;
     Strbuf* v3;
     int v4 = sub_02002114(param0->unk_44, 4);
@@ -446,9 +446,9 @@ static void ov5_021EAE78 (UnkStruct_ov5_021EAE78 * param0, int param1)
     sub_0200B1B8(param0->unk_3C, param1, param0->unk_08);
     sub_0200C388(param0->unk_38, param0->unk_0C, param0->unk_08);
     sub_0205D8F4(param0->unk_30->unk_08, &param0->unk_10, 3);
-    sub_0205D944(&param0->unk_10, sub_02025E44(param0->unk_30->unk_0C));
+    sub_0205D944(&param0->unk_10, Save_PlayerData_GetOptionsAddr(param0->unk_30->unk_0C));
 
-    param0->unk_40 = sub_0205D994(&param0->unk_10, param0->unk_0C, sub_02025E44(param0->unk_30->unk_0C), 1);
+    param0->unk_40 = sub_0205D994(&param0->unk_10, param0->unk_0C, Save_PlayerData_GetOptionsAddr(param0->unk_30->unk_0C), 1);
 }
 
 static void ov5_021EAEE0 (UnkStruct_ov5_021EAE78 * param0)

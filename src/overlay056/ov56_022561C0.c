@@ -12,7 +12,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "overlay056/struct_ov56_02256468_decl.h"
@@ -50,8 +50,8 @@
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_02027F84.h"
 #include "unk_02033200.h"
 #include "unk_020508D4.h"
@@ -81,7 +81,7 @@ struct UnkStruct_ov56_02256468_t {
     UnkStruct_0205C22C * unk_04;
     UnkStruct_0205B43C * unk_08;
     UnkStruct_0203CDB0 * unk_0C;
-    UnkStruct_02025E6C * unk_10;
+    PlayerProfile * unk_10;
     UnkStruct_02018340 * unk_14;
     UnkStruct_0200B358 * unk_18;
     UnkStruct_0200B144 * unk_1C;
@@ -125,15 +125,15 @@ static void ov56_02256D04(UnkStruct_ov56_02256468 * param0);
 static void ov56_022569E0(UnkStruct_ov56_02256468 * param0);
 static void ov56_02256994(UnkStruct_02022550 * param0, int param1);
 static void ov56_02257098(UnkStruct_ov56_02256468 * param0);
-static void ov56_02256EE8(UnkStruct_ov56_02256468 * param0, u32 param1, UnkStruct_02014A84 * param2, UnkStruct_02025E6C * param3);
+static void ov56_02256EE8(UnkStruct_ov56_02256468 * param0, u32 param1, UnkStruct_02014A84 * param2, PlayerProfile * param3);
 static int ov56_02256FC8(UnkStruct_ov56_02256468 * param0, UnkStruct_02014A84 * param1, int param2);
 static int ov56_022567E4(UnkStruct_0205C95C * param0, int param1);
 static int ov56_022567F0(int param0, int param1);
 static int ov56_02256A68(UnkStruct_ov56_02256468 * param0);
 static int ov56_02256BC0(UnkStruct_ov56_02256468 * param0);
 static void ov56_02257100(UnkStruct_ov56_02256468 * param0);
-static void ov56_02257048(UnkStruct_ov56_02256468 * param0, UnkStruct_02025E6C * param1, UnkStruct_02014A84 * param2, u32 param3);
-static Strbuf* ov56_02256E5C(UnkStruct_02027F8C * param0, u32 param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, UnkStruct_02025E6C * param4);
+static void ov56_02257048(UnkStruct_ov56_02256468 * param0, PlayerProfile * param1, UnkStruct_02014A84 * param2, u32 param3);
+static Strbuf* ov56_02256E5C(UnkStruct_02027F8C * param0, u32 param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, PlayerProfile * param4);
 static void ov56_02256D64(UnkStruct_02018340 * param0, NNSG2dScreenData * param1, UnkStruct_ov56_022562EC * param2, int param3, int param4, int * param5);
 static void ov56_0225710C(UnkStruct_ov56_02256468 * param0);
 static void ov56_0225712C(UnkStruct_ov56_02256468 * param0);
@@ -246,7 +246,7 @@ UnkStruct_ov56_02256468 * ov56_02256410 (UnkStruct_0203CDB0 * param0)
     v0->unk_14 = param0->unk_08;
     v0->unk_04 = param0->unk_80;
     v0->unk_08 = param0->unk_7C;
-    v0->unk_10 = sub_02025E38(param0->unk_0C);
+    v0->unk_10 = Save_PlayerData_GetProfileAddr(param0->unk_0C);
     v0->unk_00 = 0;
     v0->unk_2F8 = v1;
     v0->unk_2D4 = param0->unk_80->unk_478;
@@ -629,9 +629,9 @@ static int ov56_02256A68 (UnkStruct_ov56_02256468 * param0)
                 }
 
                 {
-                    UnkStruct_02025E6C * v6 = sub_02033F9C();
+                    PlayerProfile * v6 = sub_02033F9C();
 
-                    if (param0->unk_2D4->unk_00[v2].unk_0C == sub_02025F20(v6)) {
+                    if (param0->unk_2D4->unk_00[v2].unk_0C == PlayerProfile_GetTrainerID(v6)) {
                         sub_02005748(1509);
                         param0->unk_04->unk_0C[50].unk_03 = 1;
                     }
@@ -774,13 +774,13 @@ static void ov56_02256D64 (UnkStruct_02018340 * param0, NNSG2dScreenData * param
     sub_02019460(param0, 7, sub_02019FE4(param0, 7), 32 * 24 * 2, 0);
 }
 
-static Strbuf* ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, UnkStruct_02025E6C * param4)
+static Strbuf* ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, PlayerProfile * param4)
 {
     Strbuf* v0 = NULL;
     Strbuf* v1;
     int v2 = 0;
 
-    if (param1 != sub_02025F20(param4)) {
+    if (param1 != PlayerProfile_GetTrainerID(param4)) {
         v2 = sub_020280E0(param0, param1);
     }
 
@@ -803,7 +803,7 @@ static Strbuf* ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, UnkStruct
     return v0;
 }
 
-static void ov56_02256EE8 (UnkStruct_ov56_02256468 * param0, u32 param1, UnkStruct_02014A84 * param2, UnkStruct_02025E6C * param3)
+static void ov56_02256EE8 (UnkStruct_ov56_02256468 * param0, u32 param1, UnkStruct_02014A84 * param2, PlayerProfile * param3)
 {
     UnkStruct_0205C95C * v0 = param0->unk_2D4;
     UnkStruct_02027F8C * v1 = param0->unk_04->unk_474;
@@ -823,11 +823,11 @@ static void ov56_02256EE8 (UnkStruct_ov56_02256468 * param0, u32 param1, UnkStru
         Strbuf_Free(v0->unk_00[*v2].unk_08);
     }
 
-    Strbuf_CopyChars(v0->unk_00[*v2].unk_00, sub_02025EF0(param3));
+    Strbuf_CopyChars(v0->unk_00[*v2].unk_00, PlayerProfile_GetName(param3));
 
     v0->unk_00[*v2].unk_14 = *param2;
     v0->unk_00[*v2].unk_0C = param1;
-    v0->unk_00[*v2].unk_10 = sub_02025F30(param3);
+    v0->unk_00[*v2].unk_10 = PlayerProfile_GetGender(param3);
     v0->unk_00[*v2].unk_04 = sub_02014B34(param2, 89);
     v0->unk_00[*v2].unk_08 = ov56_02256E5C(v1, param1, param0->unk_18, param0->unk_1C, param0->unk_10);
 
@@ -867,7 +867,7 @@ static int ov56_02256FC8 (UnkStruct_ov56_02256468 * param0, UnkStruct_02014A84 *
     return 1;
 }
 
-static void ov56_02257048 (UnkStruct_ov56_02256468 * param0, UnkStruct_02025E6C * param1, UnkStruct_02014A84 * param2, u32 param3)
+static void ov56_02257048 (UnkStruct_ov56_02256468 * param0, PlayerProfile * param1, UnkStruct_02014A84 * param2, u32 param3)
 {
     int v0 = 0;
 
@@ -892,7 +892,7 @@ static void ov56_02257098 (UnkStruct_ov56_02256468 * param0)
     WMBssDesc * v2;
     UnkStruct_0203330C * v3;
     UnkStruct_02014A84 * v4;
-    UnkStruct_02025E6C * v5;
+    PlayerProfile * v5;
     UnkStruct_02014A84 v6;
 
     if (sub_020509A4(param0->unk_0C)) {
@@ -913,7 +913,7 @@ static void ov56_02257098 (UnkStruct_ov56_02256468 * param0)
     }
 
     if ((v4 = sub_0205C028(param0->unk_08)) != NULL) {
-        u32 v7 = sub_02025F20(param0->unk_10);
+        u32 v7 = PlayerProfile_GetTrainerID(param0->unk_10);
         ov56_02257048(param0, param0->unk_10, v4, v7);
     }
 }

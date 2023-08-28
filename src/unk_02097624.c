@@ -16,7 +16,7 @@
 #include "unk_02014A84.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_02028124.h"
 #include "unk_0202CD50.h"
 #include "unk_02073C2C.h"
@@ -291,7 +291,7 @@ static int sub_02097944 (UnkStruct_020067E8 * param0, int * param1)
 
     v0->unk_00 = 40;
     v0->unk_10 = sub_02097834(v1->unk_14, v0->unk_00);
-    v0->unk_10->unk_04 = sub_02025E44(v1->unk_10);
+    v0->unk_10->unk_04 = Save_PlayerData_GetOptionsAddr(v1->unk_10);
 
     if (v1->unk_00 == 1) {
         v0->unk_10->unk_0F = v1->unk_0F;

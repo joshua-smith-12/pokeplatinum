@@ -23,8 +23,8 @@
 #include "unk_020067E8.h"
 #include "unk_0200B358.h"
 #include "heap.h"
-#include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "player_data.h"
+#include "options.h"
 #include "poffin.h"
 #include "unk_02073C2C.h"
 #include "party.h"
@@ -109,10 +109,10 @@ UnkStruct_0203D9B8 * sub_020989DC (UnkStruct_021C0794 * param0, int param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_0203D9B8));
 
     v0->unk_08 = Poffin_GetSavedataBlock(param0);
-    v0->unk_0C = sub_02025E38(param0);
+    v0->unk_0C = Save_PlayerData_GetProfileAddr(param0);
     v0->unk_10 = Party_GetFromSavedata(param0);
     v0->unk_14 = sub_0207D990(param0);
-    v0->unk_18 = sub_02025E44(param0);
+    v0->unk_18 = Save_PlayerData_GetOptionsAddr(param0);
 
     v1 = Poffin_malloc(param1);
     v3 = sub_0200B368(1, 32, param1);
@@ -390,8 +390,8 @@ static int sub_02098D7C (UnkStruct_02098BE4 * param0)
     v1->unk_08 = param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_02;
     v1->unk_04 = sub_0202AC70(param0->unk_0C->unk_08, param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_00, param0->unk_00);
     v1->unk_00 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_10, param0->unk_08);
-    v1->unk_0A = sub_02027AC0(param0->unk_0C->unk_18);
-    v1->unk_0B = sub_02027B50(param0->unk_0C->unk_18);
+    v1->unk_0A = Options_GetTextFrameDelay(param0->unk_0C->unk_18);
+    v1->unk_0B = Options_GetFrame(param0->unk_0C->unk_18);
 
     param0->unk_14 = sub_020067E8(&v0, v1, param0->unk_00);
     param0->unk_10 = v1;

@@ -9,7 +9,7 @@
 #include "overlay082/struct_ov82_0223B164.h"
 
 #include "heap.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "poffin.h"
 #include "unk_0203CC84.h"
 #include "unk_0207D3B8.h"
@@ -30,9 +30,9 @@ UnkStruct_ov82_0223B164 * sub_02099604 (int param0, UnkStruct_021C0794 * param1,
 
     v0->unk_0C = param1;
     v0->unk_08 = Poffin_GetSavedataBlock(param1);
-    v0->unk_10 = sub_02025E38(param1);
+    v0->unk_10 = Save_PlayerData_GetProfileAddr(param1);
     v0->unk_14 = sub_0207D990(param1);
-    v0->unk_18 = sub_02025E44(param1);
+    v0->unk_18 = Save_PlayerData_GetOptionsAddr(param1);
     v0->unk_1C = param3;
     v0->unk_20 = 0;
     v0->unk_04 = param0;

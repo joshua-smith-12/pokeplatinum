@@ -1,0 +1,6 @@
+#ifndef POKEPLATINUM_IGT_DECL_H
+#define POKEPLATINUM_IGT_DECL_H
+
+typedef struct IGT_t IGT;
+
+#endif // POKEPLATINUM_IGT_DECL_H

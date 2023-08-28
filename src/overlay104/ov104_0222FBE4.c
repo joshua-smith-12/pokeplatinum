@@ -15,7 +15,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -72,8 +72,8 @@
 #include "strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202CD50.h"
 #include "unk_0202D05C.h"
@@ -1068,17 +1068,17 @@ static BOOL ov104_022302E8 (UnkStruct_ov104_0222E930 * param0)
         v3.unk_02 = (*((param0)->unk_1C++));
 
         if (v3.unk_00 == 0xeeee) {
-            const UnkStruct_02025E6C * v5;
+            const PlayerProfile * v5;
             UnkStruct_ov104_02230BE4 * v6;
 
             v6 = sub_0209B970(v0->unk_00);
-            v5 = sub_02025E38(v6->unk_08);
+            v5 = Save_PlayerData_GetProfileAddr(v6->unk_08);
             v3.unk_00 = ov104_0222E5F0(v5);
 
             ov104_0223D0EC(v1, &v3);
         } else if (v3.unk_00 == 0xeeef) {
             if (sub_02035E38() == 1) {
-                const UnkStruct_02025E6C * v7;
+                const PlayerProfile * v7;
                 int v8, v9;
 
                 v8 = sub_02035E18();
@@ -1143,15 +1143,15 @@ static BOOL ov104_022303C8 (UnkStruct_ov104_0222E930 * param0)
         v4.unk_02 = 0;
 
         if (v4.unk_00 == 0xeeee) {
-            const UnkStruct_02025E6C * v6;
+            const PlayerProfile * v6;
             UnkStruct_ov104_02230BE4 * v7;
 
             v7 = sub_0209B970(v0->unk_00);
-            v6 = sub_02025E38(v7->unk_08);
+            v6 = Save_PlayerData_GetProfileAddr(v7->unk_08);
             v4.unk_00 = ov104_0222E5F0(v6);
             v5 = (32 - 1);
         } else if (v4.unk_00 == 0xeeef) {
-            const UnkStruct_02025E6C * v8;
+            const PlayerProfile * v8;
             int v9;
 
             v9 = (*((param0)->unk_1C++));
@@ -1839,7 +1839,7 @@ static BOOL ov104_02230DC4 (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_02230BE4 * v0 = sub_0209B970(param0->unk_00->unk_00);
     u8 v1 = (*((param0)->unk_1C++));
 
-    sub_0200B498(param0->unk_00->unk_44, v1, sub_02025E38(v0->unk_08));
+    sub_0200B498(param0->unk_00->unk_44, v1, Save_PlayerData_GetProfileAddr(v0->unk_08));
     return 0;
 }
 
@@ -2569,7 +2569,7 @@ static BOOL ov104_02231AF4 (UnkStruct_ov104_0222E930 * param0)
 
     v1 = sub_0209B970(param0->unk_00->unk_00);
 
-    if (sub_02025F30(sub_02025E38(v1->unk_08)) == 0) {
+    if (PlayerProfile_GetGender(Save_PlayerData_GetProfileAddr(v1->unk_08)) == 0) {
         v0 = 0x0;
     } else {
         v0 = 0x61;
@@ -2867,7 +2867,7 @@ static BOOL ov104_02231EFC (UnkStruct_ov104_0222E930 * param0)
 {
     u16 v0;
     UnkStruct_0202440C * v1;
-    UnkStruct_02025E6C * v2;
+    PlayerProfile * v2;
     UnkStruct_ov104_02230BE4 * v3;
 
     v3 = sub_0209B970(param0->unk_00->unk_00);

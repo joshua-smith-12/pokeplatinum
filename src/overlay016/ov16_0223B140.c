@@ -65,9 +65,9 @@
 #include "unk_0202419C.h"
 #include "unk_020241F0.h"
 #include "unk_02024220.h"
-#include "unk_02025E68.h"
+#include "player_profile.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "options.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F1D4.h"
 #include "unk_02033200.h"
@@ -734,7 +734,7 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     for (v2 = 0; v2 < 4; v2++) {
         Party_cpy(v0->unk_68[v2], v1->parties[v2]);
         Heap_FreeToHeap(v0->unk_68[v2]);
-        sub_02025E80(v0->unk_48[v2], v1->unk_D0[v2]);
+        PlayerProfile_Copy(v0->unk_48[v2], v1->unk_D0[v2]);
         Heap_FreeToHeap(v0->unk_48[v2]);
     }
 
@@ -1076,8 +1076,8 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, BattleParams * param1)
     param0->unk_2C = param1->battleType;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_48[v0] = sub_02025E6C(5);
-        sub_02025E80(param1->unk_D0[v0], param0->unk_48[v0]);
+        param0->unk_48[v0] = PlayerProfile_New(5);
+        PlayerProfile_Copy(param1->unk_D0[v0], param0->unk_48[v0]);
         param0->unk_78[v0] = param1->unk_F0[v0];
     }
 
@@ -1730,7 +1730,7 @@ static void ov16_0223D10C (UnkStruct_020067E8 * param0, BattleParams * param1)
     {
         int v4;
 
-        v4 = sub_02027B50(param1->unk_108);
+        v4 = Options_GetFrame(param1->unk_108);
 
         sub_0200E218(v0->unk_04, 1, 1, 10, v4, 5);
         sub_02003050(v0->unk_0C, 14, 7, 5, 0, 0x20, 0xb * 0x10);
@@ -2103,7 +2103,7 @@ static BOOL ov16_0223D98C (UnkStruct_020067E8 * param0)
     if (v0->unk_2C & 0x8) {
         for (v3 = 0; v3 < 4; v3++) {
             v0->unk_1C0->unk_04[sub_020362F4(v3)] = v0->unk_68[v3];
-            v0->unk_1C0->unk_14[sub_020362F4(v3)] = sub_02025F04(v0->unk_48[v3], 5);
+            v0->unk_1C0->unk_14[sub_020362F4(v3)] = PlayerProfile_GetName_NewString(v0->unk_48[v3], 5);
         }
 
         v0->unk_1C0->unk_24 = 5;
@@ -2112,8 +2112,8 @@ static BOOL ov16_0223D98C (UnkStruct_020067E8 * param0)
     } else {
         v0->unk_1C0->unk_04[sub_020362F4(v2)] = v0->unk_68[v2];
         v0->unk_1C0->unk_04[sub_020362F4(v2 ^ 1)] = v0->unk_68[v2 ^ 1];
-        v0->unk_1C0->unk_14[sub_020362F4(v2)] = sub_02025F04(v0->unk_48[v2], 5);
-        v0->unk_1C0->unk_14[sub_020362F4(v2 ^ 1)] = sub_02025F04(v0->unk_48[v2 ^ 1], 5);
+        v0->unk_1C0->unk_14[sub_020362F4(v2)] = PlayerProfile_GetName_NewString(v0->unk_48[v2], 5);
+        v0->unk_1C0->unk_14[sub_020362F4(v2 ^ 1)] = PlayerProfile_GetName_NewString(v0->unk_48[v2 ^ 1], 5);
         v0->unk_1C0->unk_24 = 5;
         v0->unk_1C0->unk_28 = 1;
         v0->unk_1C0->unk_29 = 0;
@@ -2192,7 +2192,7 @@ static BOOL ov16_0223DB1C (UnkStruct_020067E8 * param0)
     if (v0->battleType & BATTLE_TYPE_2vs2) {
         for (v3 = 0; v3 < 4; v3++) {
             v1->unk_04[sub_020362F4(v3)] = v0->parties[v3];
-            v1->unk_14[sub_020362F4(v3)] = sub_02025F04(v0->unk_D0[v3], 5);
+            v1->unk_14[sub_020362F4(v3)] = PlayerProfile_GetName_NewString(v0->unk_D0[v3], 5);
         }
 
         v1->unk_24 = 5;
@@ -2207,8 +2207,8 @@ static BOOL ov16_0223DB1C (UnkStruct_020067E8 * param0)
     } else {
         v1->unk_04[sub_020362F4(v2)] = v0->parties[v2];
         v1->unk_04[sub_020362F4(v2 ^ 1)] = v0->parties[v2 ^ 1];
-        v1->unk_14[sub_020362F4(v2)] = sub_02025F04(v0->unk_D0[v2], 5);
-        v1->unk_14[sub_020362F4(v2 ^ 1)] = sub_02025F04(v0->unk_D0[v2 ^ 1], 5);
+        v1->unk_14[sub_020362F4(v2)] = PlayerProfile_GetName_NewString(v0->unk_D0[v2], 5);
+        v1->unk_14[sub_020362F4(v2 ^ 1)] = PlayerProfile_GetName_NewString(v0->unk_D0[v2 ^ 1], 5);
         v1->unk_24 = 5;
         v1->unk_28 = 2;
         v1->unk_29 = 0;

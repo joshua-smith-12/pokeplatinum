@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay006/struct_ov6_02246204_decl.h"
@@ -15,8 +15,8 @@
 #include "unk_0200AC5C.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202F180.h"
 #include "map_header.h"
 #include "unk_020559DC.h"
@@ -51,7 +51,7 @@ typedef struct {
 typedef struct UnkStruct_ov6_02246204_t {
     UnkStruct_ov6_0224630C * unk_00;
     Pokemon * unk_04;
-    UnkStruct_02025E6C * unk_08;
+    PlayerProfile * unk_08;
     u32 unk_0C;
     u32 unk_10;
 };
@@ -74,15 +74,15 @@ UnkStruct_ov6_02246204 * ov6_02246184 (u32 param0, u32 param1)
     v0->unk_10 = param0;
     v0->unk_0C = param1;
     v0->unk_04 = AllocMonZeroed(param0);
-    v0->unk_08 = sub_02025E6C(param0);
+    v0->unk_08 = PlayerProfile_New(param0);
 
-    sub_02025E8C(v0->unk_08);
+    PlayerProfile_Init(v0->unk_08);
     v1 = ov6_022462E4(param0, 4 + param1);
 
     Strbuf_ToChars(v1, v2, 128);
     Strbuf_Free(v1);
-    sub_02025EC0(v0->unk_08, v2);
-    sub_02025F2C(v0->unk_08, v0->unk_00->unk_40);
+    PlayerProfile_SetName(v0->unk_08, v2);
+    PlayerProfile_SetGender(v0->unk_08, v0->unk_00->unk_40);
 
     return v0;
 }
@@ -133,7 +133,7 @@ void ov6_02246254 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1,
     param3->unk_04 = sub_02076B10(param5);
     param3->unk_08 = param1->unk_08;
     param3->unk_10 = 1;
-    param3->unk_14 = sub_02025E44(param0->unk_0C);
+    param3->unk_14 = Save_PlayerData_GetOptionsAddr(param0->unk_0C);
 
     v4 = sub_02055BA8(param0);
 

@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -28,8 +28,8 @@
 #include "unk_0200DA60.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "player_data.h"
+#include "options.h"
 #include "unk_0202854C.h"
 #include "unk_02030EE0.h"
 #include "unk_020329E0.h"
@@ -127,7 +127,7 @@ static UnkStruct_ov23_02257748 * Unk_ov23_02257748 = NULL;
 
 static void ov23_02241F74 (UnkStruct_ov23_02257748 * param0, UnkStruct_0203CDB0 * param1)
 {
-    u8 v0 = sub_02027AC0(sub_02025E44(param1->unk_0C));
+    u8 v0 = Options_GetTextFrameDelay(Save_PlayerData_GetOptionsAddr(param1->unk_0C));
     int v1;
 
     Unk_ov23_02257748 = param0;
@@ -218,7 +218,7 @@ void ov23_022421EC (void)
     ov23_02254210(Unk_ov23_02257748->unk_128);
 }
 
-BOOL ov23_0224223C (UnkStruct_02025E6C * param0, UnkStruct_02025E6C * param1, int param2, Strbuf *param3)
+BOOL ov23_0224223C (PlayerProfile * param0, PlayerProfile * param1, int param2, Strbuf *param3)
 {
     UnkStruct_0200B358 * v0;
     Strbuf* v1;
@@ -240,7 +240,7 @@ BOOL ov23_0224223C (UnkStruct_02025E6C * param0, UnkStruct_02025E6C * param1, in
     return 0;
 }
 
-BOOL ov23_022422A8 (UnkStruct_02025E6C * param0, int param1, int param2, Strbuf *param3)
+BOOL ov23_022422A8 (PlayerProfile * param0, int param1, int param2, Strbuf *param3)
 {
     UnkStruct_0200B358 * v0;
     Strbuf* v1;
@@ -266,8 +266,8 @@ static BOOL ov23_02242308 (Strbuf *param0)
     int v0;
     UnkStruct_0200B358 * v1;
     Strbuf* v2;
-    UnkStruct_02025E6C * v3;
-    UnkStruct_02025E6C * v4;
+    PlayerProfile * v3;
+    PlayerProfile * v4;
 
     if (!Unk_ov23_02257748) {
         return 0;

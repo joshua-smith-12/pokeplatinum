@@ -44,9 +44,9 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "player_profile.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "options.h"
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
@@ -464,7 +464,7 @@ static void ov94_0224170C (UnkStruct_ov94_0223FD4C * param0)
 
     sub_02006E84(104, 1, 0, 0, 16 * 3 * 2, 62);
     sub_02002E98(0, 13 * 0x20, 62);
-    sub_0200DD0C(v0, 0, 1, 10, sub_02027B50(param0->unk_00->unk_24), 62);
+    sub_0200DD0C(v0, 0, 1, 10, Options_GetFrame(param0->unk_00->unk_24), 62);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
     sub_02006E3C(104, 11, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
     sub_02006E60(104, 23, v0, 1, 0, 32 * 24 * 2, 1, 62);
@@ -1094,13 +1094,13 @@ void ov94_022425A8 (UnkStruct_ov94_0223BA88 * param0, UnkStruct_ov94_0223FD4C * 
         sub_020774C8(param1->unk_114, (Pokemon *)param0->unk_00.unk_00);
     }
 
-    sub_020021D0(param0->unk_10C, sub_02025EF0(param1->unk_00->unk_1C), 8);
+    sub_020021D0(param0->unk_10C, PlayerProfile_GetName(param1->unk_00->unk_1C), 8);
 
-    param0->unk_11C = sub_02025F24(param1->unk_00->unk_1C);
+    param0->unk_11C = PlayerProfile_GetTrainerID_VisibleHalf(param1->unk_00->unk_1C);
     param0->unk_11E = sub_0202C8C0(param1->unk_00->unk_18);
     param0->unk_11F = sub_0202C8C4(param1->unk_00->unk_18);
-    param0->unk_120 = sub_02025F8C(param1->unk_00->unk_1C);
-    param0->unk_F6 = sub_02025F30(param1->unk_00->unk_1C);
+    param0->unk_120 = PlayerProfile_GetAvatar(param1->unk_00->unk_1C);
+    param0->unk_F6 = PlayerProfile_GetGender(param1->unk_00->unk_1C);
     param0->unk_122 = GAME_VERSION;
     param0->unk_123 = GAME_LANGUAGE;
 }

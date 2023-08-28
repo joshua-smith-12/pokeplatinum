@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -11,7 +11,7 @@
 #include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_0205AA50.h"
 
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "coins.h"
 #include "unk_0203CC84.h"
 #include "unk_0203E724.h"
@@ -55,7 +55,7 @@ BOOL sub_0204C750 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     UnkStruct_021C0794 * v1 = v0->unk_0C;
-    u16 * v2 = sub_02025E50(v1);
+    u16 * v2 = Save_PlayerData_GetCoinsAddr(v1);
     u16 * v3;
 
     v3 = inline_0204FCAC(param0);
@@ -68,7 +68,7 @@ BOOL sub_0204C780 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     UnkStruct_021C0794 * v1 = v0->unk_0C;
-    u16 * v2 = sub_02025E50(v1);
+    u16 * v2 = Save_PlayerData_GetCoinsAddr(v1);
     u16 v3;
 
     v3 = inline_02049538(param0);
@@ -81,7 +81,7 @@ BOOL sub_0204C7AC (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     UnkStruct_021C0794 * v1 = v0->unk_0C;
-    u16 * v2 = sub_02025E50(v1);
+    u16 * v2 = Save_PlayerData_GetCoinsAddr(v1);
     u16 v3;
 
     v3 = inline_02049538(param0);
@@ -94,7 +94,7 @@ BOOL sub_0204C7D8 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     UnkStruct_021C0794 * v1 = v0->unk_0C;
-    u16 * v2 = sub_02025E50(v1);
+    u16 * v2 = Save_PlayerData_GetCoinsAddr(v1);
     u16 * v3 = inline_0204FCAC(param0);
     u16 v4;
 
@@ -108,9 +108,9 @@ BOOL sub_0204C7D8 (UnkStruct_0203E724 * param0)
 BOOL sub_0204C808 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_02025E6C * v1 = sub_02025E38(sub_0203D174(param0->unk_34));
+    PlayerProfile * v1 = Save_PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
     UnkStruct_021C0794 * v2 = v0->unk_0C;
-    u16 * v3 = sub_02025E50(v2);
+    u16 * v3 = Save_PlayerData_GetCoinsAddr(v2);
     u32 v4, v5;
     u16 * v6 = inline_0204FCAC(param0);
 
@@ -129,9 +129,9 @@ BOOL sub_0204C808 (UnkStruct_0203E724 * param0)
 BOOL sub_0204C854 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_02025E6C * v1 = sub_02025E38(sub_0203D174(param0->unk_34));
+    PlayerProfile * v1 = Save_PlayerData_GetProfileAddr(sub_0203D174(param0->unk_34));
     UnkStruct_021C0794 * v2 = v0->unk_0C;
-    u16 * v3 = sub_02025E50(v2);
+    u16 * v3 = Save_PlayerData_GetCoinsAddr(v2);
     u16 * v4 = inline_0204FCAC(param0);
     u16 * v5 = inline_0204FCAC(param0);
     u32 v6, v7;
@@ -152,7 +152,7 @@ BOOL sub_0204C8AC (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     UnkStruct_021C0794 * v1 = v0->unk_0C;
-    u16 * v2 = sub_02025E50(v1);
+    u16 * v2 = Save_PlayerData_GetCoinsAddr(v1);
     u16 * v3 = inline_0204FCAC(param0);
     u16 v4 = inline_02049538(param0);
 

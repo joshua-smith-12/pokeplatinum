@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_02095EAC_decl.h"
 
 #include "struct_defs/struct_02015958.h"
@@ -54,8 +54,8 @@
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "player_profile.h"
+#include "options.h"
 #include "unk_0202B604.h"
 #include "unk_02030EE0.h"
 #include "unk_020329E0.h"
@@ -605,7 +605,7 @@ static void ov58_021D142C (UnkStruct_02095EAC * param0, NARC * param1)
     sub_0200710C(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, 39);
     sub_020070E8(param1, 3, v0, 5, 0, 32 * 8 * 0x20, 1, 39);
     sub_0200710C(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, 39);
-    sub_0200DD0C(v0, 0, 1, 10, sub_02027B50(param0->unk_08->unk_08), 39);
+    sub_0200DD0C(v0, 0, 1, 10, Options_GetFrame(param0->unk_08->unk_08), 39);
     sub_0200DAA4(v0, 0, 1 + (18 + 12), 11, 0, 39);
 }
 
@@ -1609,7 +1609,7 @@ static void ov58_021D2888 (u16 * param0)
 static int ov58_021D28C8 (void)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    PlayerProfile * v2;
 
     v1 = 0;
 
@@ -1647,7 +1647,7 @@ static void ov58_021D28E4 (UnkStruct_0205AA50 * param0, int param1, u32 param2, 
 
     for (v0 = 0; v0 < 5; v0++) {
         if (param3->unk_398[v0][0] != NULL) {
-            sub_02025EF4(param3->unk_398[v0][0], param3->unk_14[v0]);
+            PlayerProfile_Name_FlatToString(param3->unk_398[v0][0], param3->unk_14[v0]);
 
             if (v1 == v0) {
                 sub_0201D78C(&param0[v0], 1, param3->unk_14[v0], 0, 0, 0xff, (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);

@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_020961E8_decl.h"
 
 #include "struct_defs/struct_0203DE34.h"
@@ -51,8 +51,8 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "player_profile.h"
+#include "options.h"
 #include "unk_0202B604.h"
 #include "unk_0202CD50.h"
 #include "unk_02030EE0.h"
@@ -586,7 +586,7 @@ static void ov59_021D1388 (UnkStruct_020961E8 * param0, NARC * param1)
     sub_02006E60(12, 11, v0, 6, 0, 0, 1, 51);
     sub_020070E8(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 51);
     sub_0200710C(param1, 3, v0, 1, 0, 32 * 24 * 2, 1, 51);
-    sub_0200DD0C(v0, 0, 1, 10, sub_02027B50(param0->unk_08->unk_08), 51);
+    sub_0200DD0C(v0, 0, 1, 10, Options_GetFrame(param0->unk_08->unk_08), 51);
     sub_0200DAA4(v0, 0, 1 + (18 + 12), 11, 0, 51);
 }
 
@@ -1453,7 +1453,7 @@ static void ov59_021D23B0 (u16 * param0)
 static int ov59_021D23FC (void)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    PlayerProfile * v2;
 
     v1 = 0;
 
@@ -1481,9 +1481,9 @@ static BOOL ov59_021D2418 (UnkStruct_0205AA50 * param0, int param1, u32 param2, 
 
     for (v0 = 0; v0 < 5; v0++) {
         if (param3->unk_3C8[v0][0] != NULL) {
-            u16 v3 = sub_02025F24(param3->unk_3C8[v0][0]);
+            u16 v3 = PlayerProfile_GetTrainerID_VisibleHalf(param3->unk_3C8[v0][0]);
 
-            sub_02025EF4(param3->unk_3C8[v0][0], param3->unk_2C[v0]);
+            PlayerProfile_Name_FlatToString(param3->unk_3C8[v0][0], param3->unk_2C[v0]);
             sub_0200B60C(param3->unk_24, 0, v3, 5, 2, 1);
 
             v2 = sub_0200B29C(param3->unk_24, param3->unk_28, 1, 51);
@@ -1538,7 +1538,7 @@ static BOOL ov59_021D254C (UnkStruct_020961E8 * param0)
         param0->unk_4AC8[v0][1] = param0->unk_4AC8[v0][0];
 
         if (param0->unk_3C8[v0][0] != NULL) {
-            param0->unk_4AC8[v0][0].val2.unk_00 = sub_02025F20(param0->unk_3C8[v0][0]);
+            param0->unk_4AC8[v0][0].val2.unk_00 = PlayerProfile_GetTrainerID(param0->unk_3C8[v0][0]);
             param0->unk_4AC8[v0][0].val2.unk_04 = 1;
         } else {
             param0->unk_4AC8[v0][0].val1 = 0;
@@ -1622,8 +1622,8 @@ static void ov59_021D26E8 (UnkStruct_020961E8 * param0)
 
             GF_ASSERT(param0->unk_3C8[v0][0] != NULL);
 
-            v3 = sub_02025F30(param0->unk_3C8[v0][0]);
-            v2 = sub_02025F8C(param0->unk_3C8[v0][0]);
+            v3 = PlayerProfile_GetGender(param0->unk_3C8[v0][0]);
+            v2 = PlayerProfile_GetAvatar(param0->unk_3C8[v0][0]);
 
             if (sub_0203608C() == v0) {
                 sub_02021D6C(param0->unk_28C[v0 + 1], 38 + v3 * 2);
@@ -1640,7 +1640,7 @@ static void ov59_021D26E8 (UnkStruct_020961E8 * param0)
             break;
         case 3:
             if (sub_0203608C() == v0) {
-                int v4 = sub_02025F30(param0->unk_3C8[v0][0]);
+                int v4 = PlayerProfile_GetGender(param0->unk_3C8[v0][0]);
                 sub_02021D6C(param0->unk_28C[v0 + 1], 38 + v4 * 2 + 1);
             } else {
                 sub_02021D6C(param0->unk_28C[v0 + 1], 27 + v0 * 2 + 1);

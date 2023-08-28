@@ -28,8 +28,8 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "player_profile.h"
+#include "options.h"
 #include "poffin.h"
 #include "move_table.h"
 #include "item.h"
@@ -593,7 +593,7 @@ u8 ov84_022400A0 (UnkStruct_ov84_0223B5A0 * param0)
 
     sub_02002AC8(1);
     sub_02002AE4(0);
-    v0 = sub_0201D738(&param0->unk_04[6], 1, param0->unk_3F8, 0, 0, sub_02027AC0(param0->unk_D0), ov84_022400E0);
+    v0 = sub_0201D738(&param0->unk_04[6], 1, param0->unk_3F8, 0, 0, Options_GetTextFrameDelay(param0->unk_D0), ov84_022400E0);
 
     return v0;
 }
@@ -675,7 +675,7 @@ void ov84_02240248 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 
     v1 = sub_0200B1EC(param0->unk_114, 79);
 
-    sub_0200B60C(param0->unk_118, 0, sub_02025F74(param0->unk_CC), 6, 1, 1);
+    sub_0200B60C(param0->unk_118, 0, PlayerProfile_GetMoney(param0->unk_CC), 6, 1, 1);
     sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
 
     v2 = sub_02002D7C(0, param0->unk_3F8, 0);

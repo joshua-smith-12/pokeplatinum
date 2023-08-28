@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
@@ -29,7 +29,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_0202CD50.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
@@ -63,7 +63,7 @@ void ov104_02236FC0(UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10 
 void ov104_022370E0(UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10 * param1);
 void ov104_02237180(UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10 * param1);
 static void ov104_022370C0(UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1);
-static void ov104_02237284(UnkStruct_ov104_022320B4 * param0, UnkStruct_0205AA50 * param1, UnkStruct_02025E6C * param2, u16 param3);
+static void ov104_02237284(UnkStruct_ov104_022320B4 * param0, UnkStruct_0205AA50 * param1, PlayerProfile * param2, u16 param3);
 u16 ov104_02237338(UnkStruct_ov104_0223BA10 * param0);
 
 UnkStruct_ov104_0223BA10 * ov104_022361B4 (UnkStruct_021C0794 * param0, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 * param6)
@@ -778,7 +778,7 @@ void ov104_02237180 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10
     if (ov104_0223BA14(param1->unk_10) == 0) {
         GF_ASSERT(param0->unk_A8 != NULL);
         v0 = sub_02030698(sub_0203068C(param1->unk_04), sub_0205E630(param1->unk_10), sub_0205E6A8(sub_0205E630(param1->unk_10)));
-        ov104_02237284(param0, param0->unk_A8, sub_02025E38(param1->unk_04), v0);
+        ov104_02237284(param0, param0->unk_A8, Save_PlayerData_GetProfileAddr(param1->unk_04), v0);
     } else {
         GF_ASSERT(param0->unk_A8 != NULL);
         GF_ASSERT(param0->unk_AC != NULL);
@@ -798,7 +798,7 @@ void ov104_02237180 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10
     return;
 }
 
-static void ov104_02237284 (UnkStruct_ov104_022320B4 * param0, UnkStruct_0205AA50 * param1, UnkStruct_02025E6C * param2, u16 param3)
+static void ov104_02237284 (UnkStruct_ov104_022320B4 * param0, UnkStruct_0205AA50 * param1, PlayerProfile * param2, u16 param3)
 {
     UnkStruct_0200B144 * v0;
     Strbuf* v1 = Strbuf_Init((10 * 2), param0->unk_34);

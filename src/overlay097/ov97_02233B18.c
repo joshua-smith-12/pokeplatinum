@@ -15,7 +15,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02024440_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "overlay077/const_ov77_021D742C.h"
@@ -23,7 +23,7 @@
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/pokemon.h"
@@ -68,8 +68,8 @@
 #include "strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "player_data.h"
+#include "options.h"
 #include "unk_0202EEC0.h"
 #include "unk_02073C2C.h"
 #include "unk_02079D40.h"
@@ -139,8 +139,8 @@ typedef struct {
     int unk_08;
     int unk_0C;
     UnkStruct_021C0794 * unk_10;
-    UnkStruct_02025E6C * unk_14;
-    UnkStruct_020279FC * unk_18;
+    PlayerProfile * unk_14;
+    Options * unk_18;
     int unk_1C;
     UnkStruct_02018340 * unk_20;
     int unk_24;
@@ -1802,9 +1802,9 @@ static int ov97_02235624 (UnkStruct_020067E8 * param0, int * param1)
     sub_0200F344(1, 0x0);
 
     v0->unk_10 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
-    v0->unk_14 = sub_02025E38(v0->unk_10);
-    v0->unk_18 = sub_02025E44(v0->unk_10);
-    v0->unk_1C = sub_02027B50(v0->unk_18);
+    v0->unk_14 = Save_PlayerData_GetProfileAddr(v0->unk_10);
+    v0->unk_18 = Save_PlayerData_GetOptionsAddr(v0->unk_10);
+    v0->unk_1C = Options_GetFrame(v0->unk_18);
     v0->unk_12668 = Strbuf_Init(256, 78);
     v0->unk_1266C = Strbuf_Init(256, 78);
 

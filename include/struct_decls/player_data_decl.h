@@ -1,0 +1,6 @@
+#ifndef POKEPLATINUM_PLAYER_DATA_DECL_H
+#define POKEPLATINUM_PLAYER_DATA_DECL_H
+
+typedef struct PlayerData_t PlayerData;
+
+#endif // POKEPLATINUM_PLAYER_DATA_DECL_H

@@ -42,8 +42,8 @@
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "player_data.h"
+#include "options.h"
 #include "unk_0202E840.h"
 #include "unk_020508D4.h"
 #include "unk_0206F314.h"
@@ -214,8 +214,8 @@ static int sub_0206F314 (UnkStruct_0206F314 * param0, UnkStruct_0203CDB0 * param
     v0->unk_CC = param1;
     v0->unk_D0 = param1->unk_08;
     v0->unk_304 = sub_0202E8C0(v1);
-    v0->unk_1A = sub_02027AC0(sub_02025E44(v1));
-    v0->unk_1C = sub_02027B50(sub_02025E44(v1));
+    v0->unk_1A = Options_GetTextFrameDelay(Save_PlayerData_GetOptionsAddr(v1));
+    v0->unk_1C = Options_GetFrame(Save_PlayerData_GetOptionsAddr(v1));
 
     param0->unk_08 = v0;
 

@@ -20,7 +20,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_0222E71C_decl.h"
@@ -35,7 +35,7 @@
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -83,9 +83,9 @@
 #include "unk_02023FCC.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "player_data.h"
+#include "player_profile.h"
+#include "options.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
@@ -248,7 +248,7 @@ typedef struct UnkStruct_ov70_0225DEE8_t {
     UnkStruct_ov70_0225C894 * unk_44C;
     UnkStruct_ov70_02260AD4 * unk_450;
     UnkStruct_ov70_022630A4 * unk_454;
-    UnkStruct_02025E6C * unk_458;
+    PlayerProfile * unk_458;
 } UnkStruct_ov70_0225DEE8;
 
 static void ov70_0225E4C8(void * param0);
@@ -304,7 +304,7 @@ static void ov70_0225F208(UnkStruct_ov70_0225F208 * param0, u32 param1);
 static void ov70_0225F25C(UnkStruct_ov70_0225F208 * param0);
 static Strbuf* ov70_0225F288(UnkStruct_ov70_0225F208 * param0, int param1, u32 param2);
 static void ov70_0225F2A8(UnkStruct_ov70_0225F208 * param0, u32 param1, u32 param2, u32 param3, int param4);
-static void ov70_0225F2C8(UnkStruct_ov70_0225F208 * param0, const UnkStruct_02025E6C * param1, u32 param2);
+static void ov70_0225F2C8(UnkStruct_ov70_0225F208 * param0, const PlayerProfile * param1, u32 param2);
 static void ov70_0225F2D8(UnkStruct_ov70_0225F208 * param0, UnkEnum_ov66_022324D0 param1, u32 param2);
 static void ov70_0225F2E8(UnkStruct_ov70_0225F208 * param0, int param1, u32 param2);
 static void ov70_0225F2F8(UnkStruct_ov70_0225F208 * param0, u32 param1, u32 param2);
@@ -313,7 +313,7 @@ static void ov70_0225F318(UnkStruct_ov70_0225F208 * param0, u32 param1, u32 para
 static void ov70_0225F32C(UnkStruct_ov70_0225F208 * param0, u32 param1, u16 param2);
 static void ov70_0225F338(UnkStruct_ov70_0225F208 * param0);
 static void ov70_0225F344(UnkStruct_ov70_0225DEE8 * param0);
-static void ov70_0225F350(UnkStruct_ov70_0225F350 * param0, const UnkStruct_ov70_02263910 * param1, UnkStruct_ov70_0225E4EC * param2, const UnkStruct_02025E6C * param3, u32 param4);
+static void ov70_0225F350(UnkStruct_ov70_0225F350 * param0, const UnkStruct_ov70_02263910 * param1, UnkStruct_ov70_0225E4EC * param2, const PlayerProfile * param3, u32 param4);
 static void ov70_0225F3E4(UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225E9C8 * param1, UnkStruct_ov70_0225E4EC * param2);
 static void ov70_0225F418(UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225DEE8 * param1, BOOL param2, u32 param3);
 static u32 ov70_0225F798(const UnkStruct_ov70_0225F350 * param0);
@@ -354,7 +354,7 @@ static void ov70_022602C0(UnkStruct_ov70_0225FA84 * param0);
 static void ov70_022602DC(UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225F208 * param1, u32 param2, u32 param3, u8 param4, u8 param5, u32 param6);
 static void ov70_02260314(UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225F208 * param1, u32 param2, u32 param3, u8 param4, u8 param5, u32 param6);
 static void ov70_02260360(UnkStruct_ov70_0225FA84 * param0, u32 param1);
-static void ov70_02260370(UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225F208 * param1, const UnkStruct_02025E6C * param2);
+static void ov70_02260370(UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225F208 * param1, const PlayerProfile * param2);
 static void ov70_02260380(UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225F208 * param1, const UnkStruct_ov66_0222E71C * param2);
 static void ov70_022603B0(UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225F208 * param1, const UnkStruct_ov66_02230914 * param2);
 static void ov70_022603CC(UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225E4EC * param1, NARC * param2, u32 param3, const UnkStruct_ov66_0222E71C * param4, const UnkStruct_ov66_0222E71C * param5);
@@ -630,14 +630,14 @@ int ov70_0225D9A4 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002AE4(0);
     sub_02002B20(0);
 
-    v0->unk_458 = sub_02025E38(v1->unk_00);
+    v0->unk_458 = Save_PlayerData_GetProfileAddr(v1->unk_00);
     ov70_0225E4EC(&v0->unk_3C, v1->unk_00, 112);
     v0->unk_44C = ov70_0225C858(112);
 
     {
         u32 v2;
 
-        v2 = sub_02025F30(v0->unk_458);
+        v2 = PlayerProfile_GetGender(v0->unk_458);
         v0->unk_444 = ov70_0225C9B4(24, v2, v0->unk_44C, 112, 113);
     }
 
@@ -1103,10 +1103,10 @@ void ov70_0225E21C (UnkStruct_ov70_0225DEE8 * param0, u32 param1, u32 param2, u3
 
 void ov70_0225E234 (UnkStruct_ov70_0225DEE8 * param0, u32 param1, u32 param2)
 {
-    UnkStruct_02025E6C * v0;
+    PlayerProfile * v0;
     const UnkStruct_ov66_0222E71C * v1;
 
-    v0 = sub_02025E6C(112);
+    v0 = PlayerProfile_New(112);
 
     if (param1 == ov66_0222E338(param0->unk_34)) {
         v1 = ov66_0222E3BC(param0->unk_34);
@@ -1314,11 +1314,11 @@ static void ov70_0225E4EC (UnkStruct_ov70_0225E4EC * param0, UnkStruct_021C0794 
     }
 
     {
-        UnkStruct_020279FC * v1;
+        Options * v1;
         u8 v2;
 
-        v1 = sub_02025E44(param1);
-        v2 = sub_02027B50(v1);
+        v1 = Save_PlayerData_GetOptionsAddr(param1);
+        v2 = Options_GetFrame(v1);
 
         sub_02002E7C(0, 5 * 32, param2);
         sub_02002E98(0, 4 * 32, param2);
@@ -1549,10 +1549,10 @@ static void ov70_0225E9C8 (UnkStruct_ov70_0225E9C8 * param0, UnkStruct_ov70_0225
     param0->unk_18 = Strbuf_Init(384, param3);
 
     {
-        UnkStruct_020279FC * v0;
+        Options * v0;
 
-        v0 = sub_02025E44(param2);
-        param0->unk_14 = sub_02027AC0(v0);
+        v0 = Save_PlayerData_GetOptionsAddr(param2);
+        param0->unk_14 = Options_GetTextFrameDelay(v0);
     }
 }
 
@@ -2059,7 +2059,7 @@ static void ov70_0225F2A8 (UnkStruct_ov70_0225F208 * param0, u32 param1, u32 par
     sub_0200B60C(param0->unk_00, param3, param1, param2, param4, 1);
 }
 
-static void ov70_0225F2C8 (UnkStruct_ov70_0225F208 * param0, const UnkStruct_02025E6C * param1, u32 param2)
+static void ov70_0225F2C8 (UnkStruct_ov70_0225F208 * param0, const PlayerProfile * param1, u32 param2)
 {
     sub_0200B498(param0->unk_00, param2, param1);
 }
@@ -2104,11 +2104,11 @@ static void ov70_0225F344 (UnkStruct_ov70_0225DEE8 * param0)
     param0->unk_43C = 1;
 }
 
-static void ov70_0225F350 (UnkStruct_ov70_0225F350 * param0, const UnkStruct_ov70_02263910 * param1, UnkStruct_ov70_0225E4EC * param2, const UnkStruct_02025E6C * param3, u32 param4)
+static void ov70_0225F350 (UnkStruct_ov70_0225F350 * param0, const UnkStruct_ov70_02263910 * param1, UnkStruct_ov70_0225E4EC * param2, const PlayerProfile * param3, u32 param4)
 {
     u32 v0;
 
-    v0 = sub_02025F30(param3);
+    v0 = PlayerProfile_GetGender(param3);
 
     param0->unk_14C = NARC_ctor(186, param4);
 
@@ -2578,7 +2578,7 @@ static void ov70_0225FACC (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
 static void ov70_0225FAD0 (UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225E9C8 * param1, UnkStruct_ov70_0225FA84 * param2, UnkStruct_ov70_0225E4EC * param3, UnkStruct_ov70_0225F208 * param4, BOOL param5, NARC * param6, u32 param7, const UnkStruct_ov66_0222E71C * param8, const UnkStruct_ov66_0222E71C * param9, BOOL param10, BOOL param11, const UnkStruct_ov66_02230914 * param12, BOOL param13)
 {
     u32 v0;
-    UnkStruct_02025E6C * v1;
+    PlayerProfile * v1;
 
     ov70_0225F338(param4);
 
@@ -2607,14 +2607,14 @@ static void ov70_0225FAD0 (UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225
     ov70_022602C0(param2);
     ov70_0225FA14(param3, param6, 92, Unk_ov70_0226D5CC[1], 0, param7);
 
-    v1 = sub_02025E6C(param7);
+    v1 = PlayerProfile_New(param7);
     ov66_0222E640(param8, v1, param7);
 
     {
         u32 v2;
 
         ov70_022602DC(param2, param4, 0, 44, 0, 0, v0);
-        ov70_0225F2A8(param4, sub_02025F24(v1), 5, 0, 2);
+        ov70_0225F2A8(param4, PlayerProfile_GetTrainerID_VisibleHalf(v1), 5, 0, 2);
         ov70_02260314(param2, param4, 0, 49, 122, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));
         ov70_022602DC(param2, param4, 0, 45, 0, 16, v0);
         ov70_02260370(param2, param4, v1);
@@ -2937,7 +2937,7 @@ static void ov70_02260360 (UnkStruct_ov70_0225FA84 * param0, u32 param1)
     sub_0201A9A4(&param0->unk_04[param1]);
 }
 
-static void ov70_02260370 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225F208 * param1, const UnkStruct_02025E6C * param2)
+static void ov70_02260370 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225F208 * param1, const PlayerProfile * param2)
 {
     ov70_0225F2C8(param1, param2, 0);
 }

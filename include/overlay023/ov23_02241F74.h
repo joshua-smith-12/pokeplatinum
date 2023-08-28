@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -18,8 +18,8 @@ UnkStruct_ov23_02253E2C * ov23_022421BC(void);
 UnkStruct_ov23_02253E2C * ov23_022421CC(void);
 UnkStruct_ov23_02253E2C * ov23_022421DC(void);
 void ov23_022421EC(void);
-BOOL ov23_0224223C(UnkStruct_02025E6C * param0, UnkStruct_02025E6C * param1, int param2, Strbuf *param3);
-BOOL ov23_022422A8(UnkStruct_02025E6C * param0, int param1, int param2, Strbuf *param3);
+BOOL ov23_0224223C(PlayerProfile * param0, PlayerProfile * param1, int param2, Strbuf *param3);
+BOOL ov23_022422A8(PlayerProfile * param0, int param1, int param2, Strbuf *param3);
 BOOL ov23_0224240C(int param0, int param1);
 BOOL ov23_02242458(void);
 void ov23_022425F8(int param0, int param1, void * param2, void * param3);

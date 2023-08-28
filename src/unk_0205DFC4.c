@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/pokemon.h"
@@ -12,8 +12,8 @@
 
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_020329E0.h"
 #include "unk_02034198.h"
 #include "unk_020508D4.h"
@@ -715,17 +715,17 @@ int sub_0205E6A8 (u32 param0)
 
 u8 sub_0205E6B8 (void)
 {
-    UnkStruct_02025E6C * v0;
+    PlayerProfile * v0;
 
     v0 = sub_02032EE8(sub_0203608C() ^ 1);
     GF_ASSERT(v0 != NULL);
 
-    return sub_02025FCC(v0);
+    return PlayerProfile_GetVersion(v0);
 }
 
 u8 sub_0205E6D8 (UnkStruct_021C0794 * param0)
 {
-    if (sub_02025FCC(sub_02025E38(param0)) == 0) {
+    if (PlayerProfile_GetVersion(Save_PlayerData_GetProfileAddr(param0)) == 0) {
         return 1;
     }
 

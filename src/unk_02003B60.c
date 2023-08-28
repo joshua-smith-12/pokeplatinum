@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0202CC84_decl.h"
 
 #include "struct_defs/struct_020052C8.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 
 #include "unk_02003B60.h"
 #include "unk_020041CC.h"
@@ -61,7 +61,7 @@ struct UnkStruct_02003D54_t {
     u8 unk_BCDD3;
 };
 
-void sub_02003B60(UnkStruct_0202CC84 * param0, UnkStruct_020279FC * param1);
+void sub_02003B60(UnkStruct_0202CC84 * param0, Options * param1);
 void sub_02003BD8(void);
 void sub_02003D0C(int param0);
 UnkStruct_02003D54 * sub_02003D54(void);
@@ -87,7 +87,7 @@ static UnkStruct_02003D54 Unk_02101DF8;
 static int Unk_02101DF0;
 static NNSSndCaptureOutputEffectType Unk_02101DF4;
 
-void sub_02003B60 (UnkStruct_0202CC84 * param0, UnkStruct_020279FC * param1)
+void sub_02003B60 (UnkStruct_0202CC84 * param0, Options * param1)
 {
     UnkStruct_02003D54 * v0 = sub_02003D54();
 
@@ -107,7 +107,7 @@ void sub_02003B60 (UnkStruct_0202CC84 * param0, UnkStruct_020279FC * param1)
     Unk_02101DF4 = NNS_SND_CAPTURE_OUTPUT_EFFECT_NORMAL;
     v0->unk_BCD98 = param0;
 
-    sub_02004FB8(param1->unk_00_4);
+    sub_02004FB8(param1->soundMethod);
 
     return;
 }

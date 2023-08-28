@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_0202E4D4_decl.h"
 #include "struct_decls/struct_0202E768_decl.h"
 #include "struct_decls/struct_0202E794_decl.h"
@@ -13,8 +13,8 @@
 #include "unk_020021B0.h"
 #include "heap.h"
 #include "unk_0202440C.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202E2CC.h"
 #include "overlay006/ov6_02246444.h"
 
@@ -105,12 +105,12 @@ static UnkStruct_ov6_022465F4 * ov6_022464A8 (UnkStruct_0203CDB0 * param0, UnkSt
 
 static UnkStruct_ov6_022465F4 * ov6_022464F8 (UnkStruct_0203CDB0 * param0, UnkStruct_0202E768 * param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param0->unk_0C);
+    PlayerProfile * v0 = Save_PlayerData_GetProfileAddr(param0->unk_0C);
     UnkStruct_ov6_022465F4 * v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_022465F4));
 
     ov6_02246444(v1);
-    ov6_0224645C(v1, sub_02025EF0(v0));
-    ov6_02246450(v1, sub_02025F30(v0));
+    ov6_0224645C(v1, PlayerProfile_GetName(v0));
+    ov6_02246450(v1, PlayerProfile_GetGender(v0));
     ov6_02246454(v1, GAME_LANGUAGE);
     ov6_02246458(v1, GAME_VERSION);
     ov6_02246468(v1, sub_0202E4D8(param1));
@@ -120,13 +120,13 @@ static UnkStruct_ov6_022465F4 * ov6_022464F8 (UnkStruct_0203CDB0 * param0, UnkSt
 
 static UnkStruct_ov6_022465F4 * ov6_02246550 (UnkStruct_0203CDB0 * param0, int param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param0->unk_0C);
+    PlayerProfile * v0 = Save_PlayerData_GetProfileAddr(param0->unk_0C);
     UnkStruct_ov6_022465F4 * v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_022465F4));
 
     ov6_02246444(v1);
     v1->unk_00 = param1;
-    ov6_0224645C(v1, sub_02025EF0(v0));
-    ov6_02246450(v1, sub_02025F30(v0));
+    ov6_0224645C(v1, PlayerProfile_GetName(v0));
+    ov6_02246450(v1, PlayerProfile_GetGender(v0));
     ov6_02246454(v1, GAME_LANGUAGE);
     ov6_02246458(v1, GAME_VERSION);
 

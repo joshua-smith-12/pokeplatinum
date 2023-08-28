@@ -5,7 +5,7 @@
 
 #include "constants/species.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -13,8 +13,8 @@
 #include "struct_defs/struct_0206C638.h"
 
 #include "heap.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202D7A8.h"
 #include "roaming_pokemon.h"
 #include "unk_02073C2C.h"
@@ -250,7 +250,7 @@ void RoamingPokemon_ActivateSlot (UnkStruct_021C0794 * saveData, const u8 slot)
     UnkStruct_0206C638 * v1;
     UnkStruct_0202D7B0 * v2;
     int previouslyVisitedMap;
-    UnkStruct_02025E6C * v4;
+    PlayerProfile * v4;
     int species;
     u8 level;
 
@@ -290,11 +290,11 @@ void RoamingPokemon_ActivateSlot (UnkStruct_021C0794 * saveData, const u8 slot)
     sub_0202D980(v1, 4, species);
     sub_0202D980(v1, 6, level);
 
-    v4 = sub_02025E38(saveData);
+    v4 = Save_PlayerData_GetProfileAddr(saveData);
     v0 = AllocMonZeroed(4);
 
     ZeroMonData(v0);
-    sub_02073D80(v0, species, level, 32, 0, 0, 1, sub_02025F24(v4));
+    sub_02073D80(v0, species, level, 32, 0, 0, 1, PlayerProfile_GetTrainerID_VisibleHalf(v4));
     sub_0202D980(v1, 7, 0);
     sub_0202D980(v1, 8, 1);
     sub_0202D980(v1, 2, GetMonData(v0, MON_DATA_175, NULL));

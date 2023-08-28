@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 
 #include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_02009CFC.h"
@@ -27,8 +27,8 @@
 #include "unk_0201CCF0.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0205CA94.h"
 #include "unk_0205E7D0.h"
 #include "unk_02061804.h"
@@ -400,12 +400,12 @@ UnkStruct_0205D274 * sub_0205D050 (UnkFuncPtr_0201CE28 func, UnkStruct_0203CDB0 
     UnkStruct_0205D274 * v0;
     UnkStruct_0201CD38 * v1;
     int v2;
-    UnkStruct_02025E6C * v3;
+    PlayerProfile * v3;
 
     v1 = sub_0200679C(func, sizeof(UnkStruct_0205D274), 5, 4);
     v0 = sub_0201CED0(v1);
-    v3 = sub_02025E38(param1->unk_0C);
-    v2 = sub_02025F30(v3);
+    v3 = Save_PlayerData_GetProfileAddr(param1->unk_0C);
+    v2 = PlayerProfile_GetGender(v3);
 
     sub_0205D094(&v0->unk_04, v2, param2);
 

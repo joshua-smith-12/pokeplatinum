@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0200D0F4_decl.h"
 #include "struct_decls/struct_02015F84_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_defs/box_pokemon.h"
@@ -140,10 +140,10 @@ void sub_02077D28(int param0, int param1, u16 * param2);
 void sub_02077D3C(UnkStruct_0202CC84 * param0, int param1, u16 param2, int param3, int param4, int param5, int param6, int param7);
 void sub_02077DB4(UnkStruct_0202CC84 * param0, int param1, u16 param2, int param3, int param4, int param5, int param6, int param7, u8 param8);
 BOOL sub_02077E3C(Pokemon * param0);
-void sub_02077E64(Pokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5);
-void sub_02077EA4(BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5);
-void sub_02077EE4(Pokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5);
-void sub_02077EF8(BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5);
+void sub_02077E64(Pokemon * param0, PlayerProfile * param1, int param2, int param3, int param4, int param5);
+void sub_02077EA4(BoxPokemon * param0, PlayerProfile * param1, int param2, int param3, int param4, int param5);
+void sub_02077EE4(Pokemon * param0, PlayerProfile * param1, int param2, int param3, int param4, int param5);
+void sub_02077EF8(BoxPokemon * param0, PlayerProfile * param1, int param2, int param3, int param4, int param5);
 void sub_02077F0C(Pokemon * param0, u32 param1, int param2);
 BOOL sub_02077FB4(Pokemon * param0, u8 param1);
 BOOL sub_02077FBC(BoxPokemon * param0, u8 param1);
@@ -156,7 +156,7 @@ int sub_020787EC(u32 param0);
 BOOL sub_02078804(u16 param0);
 u16 sub_02078824(u8 param0);
 BOOL sub_02078838(Pokemon * param0);
-BOOL sub_0207884C(BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2);
+BOOL sub_0207884C(BoxPokemon * param0, PlayerProfile * param1, int param2);
 int sub_020788D0(int param0);
 void sub_0207893C(Pokemon * param0);
 void sub_0207896C(BoxPokemon * param0);

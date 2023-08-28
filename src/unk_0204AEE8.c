@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -25,8 +25,8 @@
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202631C.h"
 #include "unk_0202D05C.h"
 #include "unk_02034198.h"
@@ -204,9 +204,9 @@ void sub_0204B060 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
     int v0;
     Party * v1;
     Pokemon * v2;
-    UnkStruct_02025E6C * v3 = sub_02025E38(param1);
+    PlayerProfile * v3 = Save_PlayerData_GetProfileAddr(param1);
 
-    param0->unk_83E[0] = sub_02025F30(v3);
+    param0->unk_83E[0] = PlayerProfile_GetGender(v3);
     v1 = Party_GetFromSavedata(param1);
 
     for (v0 = 0; v0 < 2; v0++) {

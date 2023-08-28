@@ -12,9 +12,9 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
@@ -56,7 +56,7 @@ struct UnkStruct_0207ADB4_t {
     UnkStruct_ov16_0224B9DC * unk_30;
     UnkStruct_ov16_0225BFFC * unk_34[4];
     int unk_44;
-    UnkStruct_02025E6C * unk_48[4];
+    PlayerProfile * unk_48[4];
     UnkStruct_0207D3C0 * unk_58;
     UnkStruct_0207D99C * unk_5C;
     UnkStruct_02026324 * unk_60;
@@ -78,7 +78,7 @@ struct UnkStruct_0207ADB4_t {
     UnkStruct_0200C440 * unk_1A4;
     UnkStruct_0200C440 * unk_1A8;
     void * unk_1AC;
-    UnkStruct_020279FC * unk_1B0;
+    Options * unk_1B0;
     UnkStruct_02027F8C * unk_1B4;
     void * unk_1B8;
     UnkStruct_0209C370 * unk_1BC;

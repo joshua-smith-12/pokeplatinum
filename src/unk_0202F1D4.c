@@ -23,11 +23,11 @@
 #include "unk_0201D15C.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_02026150.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "options.h"
 #include "unk_0202F1D4.h"
 #include "unk_02073C2C.h"
 #include "party.h"
@@ -488,12 +488,12 @@ void sub_0202F8AC (BattleParams * param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         sub_0202FCE8(param0->parties[v0], &v1->unk_1150[v0]);
-        sub_02025E80(param0->unk_D0[v0], &v1->unk_1B68[v0]);
+        PlayerProfile_Copy(param0->unk_D0[v0], &v1->unk_1B68[v0]);
 
         v2->unk_14C[v0] = sub_02006494(param0->unk_F0[v0]);
     }
 
-    sub_02027A10(param0->unk_108, &v1->unk_1BE8);
+    Options_Copy(param0->unk_108, &v1->unk_1BE8);
 }
 
 void sub_0202FAA8 (int param0, u32 param1)
@@ -566,16 +566,16 @@ void sub_0202FAFC (BattleParams * param0, UnkStruct_021C0794 * param1)
         param0->unk_178[v0] = v1->unk_00.unk_134[v0];
 
         sub_0202FD30(&v1->unk_1150[v0], param0->parties[v0]);
-        sub_02025E80(&v1->unk_1B68[v0], param0->unk_D0[v0]);
+        PlayerProfile_Copy(&v1->unk_1B68[v0], param0->unk_D0[v0]);
 
         param0->unk_194[v0] = v1->unk_00.unk_14C[v0];
     }
 
-    sub_02027A10(sub_02025E44(param1), param0->unk_108);
-    param0->unk_108->unk_02_2 = v1->unk_1BE8.unk_02_2;
+    Options_Copy(Save_PlayerData_GetOptionsAddr(param1), param0->unk_108);
+    param0->unk_108->frame = v1->unk_1BE8.frame;
 
-    if (param0->unk_108->unk_02_2 >= 20) {
-        param0->unk_108->unk_02_2 = 0;
+    if (param0->unk_108->frame >= 20) {
+        param0->unk_108->frame = 0;
     }
 }
 

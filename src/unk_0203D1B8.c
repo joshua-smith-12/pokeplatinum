@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
@@ -31,7 +31,7 @@
 #include "overlay084/const_ov84_02241130.h"
 #include "constdata/const_020F2DAC.h"
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -75,11 +75,11 @@
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202631C.h"
 #include "unk_020277A4.h"
-#include "unk_020279FC.h"
+#include "options.h"
 #include "unk_02028124.h"
 #include "unk_020298BC.h"
 #include "unk_0202ACE0.h"
@@ -401,7 +401,7 @@ static UnkStruct_02098C44 * sub_0203D344 (int param0, UnkStruct_0203CDB0 * param
     v0->unk_00 = Party_GetFromSavedata(param1->unk_0C);
     v0->unk_04 = sub_0207D990(param1->unk_0C);
     v0->unk_08 = sub_02028430(param1->unk_0C);
-    v0->unk_0C = sub_02025E44(param1->unk_0C);
+    v0->unk_0C = Save_PlayerData_GetOptionsAddr(param1->unk_0C);
     v0->unk_21 = param2;
     v0->unk_20 = param3;
     v0->unk_1C = param1;
@@ -560,7 +560,7 @@ void * sub_0203D5C8 (int param0, UnkStruct_0203CDB0 * param1, int param2)
     UnkStruct_02098D38 * v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098D38));
 
     v0->unk_00 = Party_GetFromSavedata(param1->unk_0C);
-    v0->unk_04 = sub_02025E44(param1->unk_0C);
+    v0->unk_04 = Save_PlayerData_GetOptionsAddr(param1->unk_0C);
     v0->unk_11 = 1;
     v0->unk_14 = param2;
     v0->unk_13 = (u8)Party_GetCurrentCount(v0->unk_00);
@@ -572,7 +572,7 @@ void * sub_0203D5C8 (int param0, UnkStruct_0203CDB0 * param1, int param2)
     v0->unk_28 = NULL;
 
     sub_0208D720(v0, Unk_020EA02C);
-    sub_0208E9C0(v0, sub_02025E38(param1->unk_0C));
+    sub_0208E9C0(v0, Save_PlayerData_GetProfileAddr(param1->unk_0C));
     sub_0203CD84(param1, &Unk_020F410C, v0);
 
     return v0;
@@ -601,7 +601,7 @@ UnkStruct_02098D38 * sub_0203D670 (UnkStruct_0203CDB0 * param0, int param1, int 
 
     MI_CpuClear8(v0, sizeof(UnkStruct_02098D38));
 
-    v0->unk_04 = sub_02025E44(v1);
+    v0->unk_04 = Save_PlayerData_GetOptionsAddr(v1);
     v0->unk_00 = Party_GetFromSavedata(v1);
     v0->unk_11 = 1;
     v0->unk_14 = 0;
@@ -613,7 +613,7 @@ UnkStruct_02098D38 * sub_0203D670 (UnkStruct_0203CDB0 * param0, int param1, int 
     v0->unk_20 = sub_0202D79C(v1);
 
     sub_0208D720(v0, v2);
-    sub_0208E9C0(v0, sub_02025E38(v1));
+    sub_0208E9C0(v0, Save_PlayerData_GetProfileAddr(v1));
 
     return v0;
 }
@@ -631,7 +631,7 @@ void * sub_0203D6E4 (int param0, UnkStruct_0203CDB0 * param1, u8 param2)
     memset(v0, 0, sizeof(UnkStruct_02098D38));
 
     v0->unk_00 = Party_GetFromSavedata(param1->unk_0C);
-    v0->unk_04 = sub_02025E44(param1->unk_0C);
+    v0->unk_04 = Save_PlayerData_GetOptionsAddr(param1->unk_0C);
     v0->unk_11 = 1;
     v0->unk_14 = param2;
     v0->unk_13 = 1;
@@ -641,7 +641,7 @@ void * sub_0203D6E4 (int param0, UnkStruct_0203CDB0 * param1, u8 param2)
     v0->unk_2C = sub_0208C324(param1->unk_0C);
 
     sub_0208D720(v0, Unk_020EA160);
-    sub_0208E9C0(v0, sub_02025E38(param1->unk_0C));
+    sub_0208E9C0(v0, Save_PlayerData_GetProfileAddr(param1->unk_0C));
     sub_0203D334(param1, v0);
 
     return v0;
@@ -761,7 +761,7 @@ void sub_0203D884 (UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * param1)
 void * sub_0203D8AC (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_0203D8AC * v0;
-    UnkStruct_02025E6C * v1;
+    PlayerProfile * v1;
     int v2 = 0, v3 = 0;
     sub_0203A76C(sub_0203A790(param0->unk_0C));
 
@@ -773,7 +773,7 @@ void * sub_0203D8AC (UnkStruct_0203CDB0 * param0)
     return v0;
 }
 
-static void sub_0203D8DC (UnkStruct_0203CDB0 * param0, UnkStruct_020279FC * param1)
+static void sub_0203D8DC (UnkStruct_0203CDB0 * param0, Options * param1)
 {
     FS_EXTERN_OVERLAY(overlay74);
 
@@ -790,10 +790,10 @@ static void sub_0203D8DC (UnkStruct_0203CDB0 * param0, UnkStruct_020279FC * para
 void * sub_0203D8EC (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_0203D8EC * v0;
-    UnkStruct_020279FC * v1;
+    Options * v1;
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203D8EC));
-    v1 = sub_02025E44(sub_0203D174(param0));
+    v1 = Save_PlayerData_GetOptionsAddr(sub_0203D174(param0));
 
     sub_0203D8DC(param0, v1);
 
@@ -892,9 +892,9 @@ static UnkStruct_0203DA00 * sub_0203DA00 (int param0, UnkStruct_021C0794 * param
 
     v0->unk_04 = v4;
     v0->unk_08 = v5;
-    v0->unk_0C = sub_02025E44(param1);
+    v0->unk_0C = Save_PlayerData_GetOptionsAddr(param1);
     v0->unk_10 = sub_0202CD88(param1);
-    v0->unk_14 = sub_02025E38(param1);
+    v0->unk_14 = Save_PlayerData_GetProfileAddr(param1);
     v0->unk_18 = param3;
     v0->unk_1C = param4;
 
@@ -993,17 +993,17 @@ static const UnkStruct_0208BE5C Unk_020EA268 = {
 
 static void sub_0203DB38 (UnkStruct_ov88_0223C370 * param0, UnkStruct_0203CDB0 * param1)
 {
-    param0->unk_04 = sub_02025E38(param1->unk_0C);
+    param0->unk_04 = Save_PlayerData_GetProfileAddr(param1->unk_0C);
     param0->unk_08 = Party_GetFromSavedata(param1->unk_0C);
     param0->unk_0C = sub_020245BC(param1->unk_0C, 9);
     param0->unk_14 = sub_0202C878(param1->unk_0C);
-    param0->unk_18 = sub_02025E44(param1->unk_0C);
+    param0->unk_18 = Save_PlayerData_GetOptionsAddr(param1->unk_0C);
     param0->unk_24 = sub_02027560(param1->unk_0C);
     param0->unk_30 = sub_0207A274(param1->unk_0C);
     param0->unk_10 = param1->unk_0C;
     param0->unk_1C = param1->unk_9C;
     param0->unk_20 = sub_0202CD88(param1->unk_0C);
-    param0->unk_38 = Heap_AllocFromHeap(32, sub_02025E68());
+    param0->unk_38 = Heap_AllocFromHeap(32, PlayerProfile_sizeof());
     param0->unk_3C = Heap_AllocFromHeap(32, sub_02076AF0());
     param0->unk_40 = Heap_AllocFromHeap(32, sub_02076AF0());
     param0->unk_00 = param1;
@@ -1062,7 +1062,7 @@ BOOL sub_0203DBF0 (UnkStruct_020508D4 * param0)
         v2->unk_48.unk_08 = v2->unk_04.unk_38;
         v2->unk_48.unk_00 = sub_02076B10(v2->unk_04.unk_3C);
         v2->unk_48.unk_04 = sub_02076B10(v2->unk_04.unk_40);
-        v2->unk_48.unk_14 = sub_02025E44(v1->unk_0C);
+        v2->unk_48.unk_14 = Save_PlayerData_GetOptionsAddr(v1->unk_0C);
         v2->unk_48.unk_10 = 1;
 
         switch (sub_02055BA8(v1)) {
@@ -1095,7 +1095,7 @@ BOOL sub_0203DBF0 (UnkStruct_020508D4 * param0)
 
         if ((v4 = sub_02076B94(NULL, v2->unk_04.unk_40, 1, v3, &v5)) != 0) {
             Heap_Create(3, 26, 0x30000);
-            v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, sub_02025E44(v1->unk_0C), sub_0208C324(v1->unk_0C), sub_02027560(v1->unk_0C), sub_0207D990(v1->unk_0C), sub_0202CD88(v1->unk_0C), sub_02056B24(v1->unk_0C), v5, 0x4, 26);
+            v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, Save_PlayerData_GetOptionsAddr(v1->unk_0C), sub_0208C324(v1->unk_0C), sub_02027560(v1->unk_0C), sub_0207D990(v1->unk_0C), sub_0202CD88(v1->unk_0C), sub_02056B24(v1->unk_0C), v5, 0x4, 26);
             v2->unk_00 = 6;
         } else {
             v2->unk_00 = 7;
@@ -1158,7 +1158,7 @@ void sub_0203DDFC (UnkStruct_0203CDB0 * param0)
 
     v0->unk_00 = param0->unk_80;
     v0->unk_04 = param0->unk_9C;
-    v0->unk_08 = sub_02025E44(param0->unk_0C);
+    v0->unk_08 = Save_PlayerData_GetOptionsAddr(param0->unk_0C);
 
     sub_0203CD84(param0, &Unk_020EA258, v0);
 }
@@ -1169,7 +1169,7 @@ void * sub_0203DE34 (UnkStruct_0203CDB0 * param0)
 
     v0->unk_00 = param0->unk_0C;
     v0->unk_04 = param0->unk_80;
-    v0->unk_08 = sub_02025E44(param0->unk_0C);
+    v0->unk_08 = Save_PlayerData_GetOptionsAddr(param0->unk_0C);
     v0->unk_0C = sub_0202CD88(param0->unk_0C);
     v0->unk_10 = param0->unk_9C;
 
@@ -1255,8 +1255,8 @@ static void sub_0203DF68 (UnkStruct_020508D4 * param0)
     switch (v1->unk_0C->unk_00) {
     case 0:
     {
-        UnkStruct_02025E6C * v2 = sub_02025E38(v0->unk_0C);
-        sub_02025EC0(v2, v1->unk_0C->unk_1C);
+        PlayerProfile * v2 = Save_PlayerData_GetProfileAddr(v0->unk_0C);
+        PlayerProfile_SetName(v2, v1->unk_0C->unk_1C);
     }
     break;
     case 1:
@@ -1294,7 +1294,7 @@ void sub_0203DFE8 (UnkStruct_020508D4 * param0, int param1, int param2, int para
     v2->unk_00 = 0;
     v2->unk_04 = param4;
     v2->unk_08 = param6;
-    v2->unk_0C = sub_0208712C(11, param1, param2, param3, sub_02025E44(v1->unk_0C));
+    v2->unk_0C = sub_0208712C(11, param1, param2, param3, Save_PlayerData_GetOptionsAddr(v1->unk_0C));
     v2->unk_10 = Strbuf_Init(12, 11);
 
     switch (param1) {
@@ -1401,8 +1401,8 @@ void sub_0203E0FC (UnkStruct_0203CDB0 * param0, int param1)
     v0->unk_10 = sub_02027560(param0->unk_0C);
     v0->unk_14 = sub_0202B370(param0->unk_0C);
     v0->unk_18 = sub_0202C878(param0->unk_0C);
-    v0->unk_1C = sub_02025E38(param0->unk_0C);
-    v0->unk_24 = sub_02025E44(param0->unk_0C);
+    v0->unk_1C = Save_PlayerData_GetProfileAddr(param0->unk_0C);
+    v0->unk_24 = Save_PlayerData_GetOptionsAddr(param0->unk_0C);
     v0->unk_28 = sub_0202CD88(param0->unk_0C);
     v0->unk_2C = param0->unk_9C;
     v0->unk_3C = sub_0208C324(param0->unk_0C);
@@ -1433,7 +1433,7 @@ void * sub_0203E1AC (UnkStruct_0203CDB0 * param0, int param1, int param2)
     v0->unk_00 = sub_0202D750(param0->unk_0C);
     v0->unk_04 = sub_0202D764(param0->unk_0C);
     v0->unk_08 = sub_02025CCC(param0->unk_0C);
-    v0->unk_10 = sub_02025E44(param0->unk_0C);
+    v0->unk_10 = Save_PlayerData_GetOptionsAddr(param0->unk_0C);
     v0->unk_14 = sub_0202AD28(sub_0202B370(param0->unk_0C));
     v0->unk_0C = param0->unk_0C;
     v0->unk_1C = sub_02039058(sub_0202B370(param0->unk_0C));
@@ -1556,8 +1556,8 @@ void sub_0203E2FC (UnkStruct_0203CDB0 * param0)
     sub_0206D578(param0, v2);
 
     v0.unk_00 = v2;
-    v0.unk_04 = sub_02025E44(param0->unk_0C);
-    v0.unk_08 = sub_02025E38(param0->unk_0C);
+    v0.unk_04 = Save_PlayerData_GetOptionsAddr(param0->unk_0C);
+    v0.unk_08 = Save_PlayerData_GetProfileAddr(param0->unk_0C);
     v0.unk_0C = sub_02055428(param0, param0->unk_1C->unk_00);
 
     sub_020985AC(param0->unk_10, &v0);
@@ -1593,11 +1593,11 @@ static BOOL sub_0203E35C (UnkStruct_020508D4 * param0)
         break;
     case 1:
         if (sub_020509B4(v0) == 0) {
-            u16 * v5 = sub_02025E50(v0->unk_0C);
+            u16 * v5 = Save_PlayerData_GetCoinsAddr(v0->unk_0C);
             s64 v6 = sub_020138EC();
 
             sub_0206DD38(v0, Coins_GetValue(v5), v2->unk_00, sub_0201398C(v2->unk_04, v6) / 60);
-            Coins_SetValue(sub_02025E50(v0->unk_0C), v2->unk_00);
+            Coins_SetValue(Save_PlayerData_GetCoinsAddr(v0->unk_0C), v2->unk_00);
 
             v4 = sub_0206B394(v1);
 
@@ -1617,15 +1617,15 @@ static BOOL sub_0203E35C (UnkStruct_020508D4 * param0)
 void sub_0203E414 (UnkStruct_020508D4 * param0, int param1)
 {
     UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
-    UnkStruct_020279FC * v1 = sub_02025E44(v0->unk_0C);
+    Options * v1 = Save_PlayerData_GetOptionsAddr(v0->unk_0C);
     UnkStruct_0203E35C * v2 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0203E35C));
 
     v2->unk_0C.unk_00 = &v2->unk_00;
-    v2->unk_00 = Coins_GetValue(sub_02025E50(v0->unk_0C));
+    v2->unk_00 = Coins_GetValue(Save_PlayerData_GetCoinsAddr(v0->unk_0C));
     v2->unk_04 = sub_020138EC();
     v2->unk_0C.unk_08 = sub_0202CD88(v0->unk_0C);
     v2->unk_0C.unk_0C = 0;
-    v2->unk_0C.unk_10 = sub_02027B50(v1);
+    v2->unk_0C.unk_10 = Options_GetFrame(v1);
     v2->unk_0C.unk_04 = sub_0203E484(v0->unk_0C, param1);
 
     sub_0202CFEC(sub_0202CD88(v0->unk_0C), 5);
@@ -1734,7 +1734,7 @@ UnkStruct_02098C44 * sub_0203E598 (UnkStruct_0203CDB0 * param0, int param1, int 
     v0->unk_00 = Party_GetFromSavedata(param0->unk_0C);
     v0->unk_04 = sub_0207D990(param0->unk_0C);
     v0->unk_08 = sub_02028430(param0->unk_0C);
-    v0->unk_0C = sub_02025E44(param0->unk_0C);
+    v0->unk_0C = Save_PlayerData_GetOptionsAddr(param0->unk_0C);
     v0->unk_10 = sub_0202440C(param0->unk_0C);
     v0->unk_18 = NULL;
     v0->unk_21 = 0;
@@ -1783,7 +1783,7 @@ void * sub_0203E63C (int param0, UnkStruct_0203CDB0 * param1, u16 param2, u16 pa
     v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098D38));
 
     v0->unk_00 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param1->unk_0C), param2);
-    v0->unk_04 = sub_02025E44(param1->unk_0C);
+    v0->unk_04 = Save_PlayerData_GetOptionsAddr(param1->unk_0C);
     v0->unk_11 = 0;
     v0->unk_14 = 0;
     v0->unk_13 = 1;
@@ -1795,7 +1795,7 @@ void * sub_0203E63C (int param0, UnkStruct_0203CDB0 * param1, u16 param2, u16 pa
     v0->unk_28 = NULL;
 
     sub_0208D720(v0, Unk_020EA15C);
-    sub_0208E9C0(v0, sub_02025E38(param1->unk_0C));
+    sub_0208E9C0(v0, Save_PlayerData_GetProfileAddr(param1->unk_0C));
     sub_0203CD84(param1, &Unk_020F410C, v0);
 
     return v0;

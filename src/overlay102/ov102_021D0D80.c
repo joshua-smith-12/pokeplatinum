@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0203E53C.h"
@@ -32,14 +32,14 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "overlay102/ov102_021D0D80.h"
 
 typedef struct {
     int unk_00;
     int unk_04;
     UnkStruct_021C0794 * unk_08;
-    UnkStruct_02025E6C * unk_0C;
+    PlayerProfile * unk_0C;
     UnkStruct_02018340 * unk_10;
     UnkStruct_0205AA50 unk_14;
     UnkStruct_0205AA50 unk_24;
@@ -79,7 +79,7 @@ int ov102_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
         v0->unk_08 = v2->unk_00;
         v0->unk_04 = v2->unk_04;
-        v0->unk_0C = sub_02025E38(v0->unk_08);
+        v0->unk_0C = Save_PlayerData_GetProfileAddr(v0->unk_08);
     }
 
     sub_0200F344(0, 0x0);

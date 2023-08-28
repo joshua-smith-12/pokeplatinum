@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02014FB0_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -54,8 +54,8 @@
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202631C.h"
 #include "unk_0202B604.h"
 #include "unk_0202C858.h"
@@ -161,7 +161,7 @@ typedef struct {
     UnkStruct_ov66_02231428 unk_D0;
     s64 unk_D4;
     s64 unk_DC;
-    UnkStruct_02025E6C * unk_E4[4];
+    PlayerProfile * unk_E4[4];
 } UnkStruct_ov66_0222DFF8_sub1;
 
 typedef struct {
@@ -221,7 +221,7 @@ typedef struct {
 } UnkStruct_ov66_02230A6C;
 
 typedef struct {
-    UnkStruct_02025E6C * unk_00;
+    PlayerProfile * unk_00;
     BOOL unk_04;
 } UnkStruct_ov66_0222FBF0;
 
@@ -445,7 +445,7 @@ UnkStruct_ov66_0222DFF8 * ov66_0222DDF0 (UnkStruct_021C0794 * param0, u32 param1
         v0->unk_04.unk_00 = ov66_0223177C(param1);
 
         for (v2 = 0; v2 < 4; v2++) {
-            v0->unk_04.unk_E4[v2] = sub_02025E6C(param1);
+            v0->unk_04.unk_E4[v2] = PlayerProfile_New(param1);
         }
     }
 
@@ -989,7 +989,7 @@ void ov66_0222E5D8 (UnkStruct_ov66_0222DFF8 * param0, u32 param1, u32 param2)
     ov66_0222F964(param0);
 }
 
-void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, UnkStruct_02025E6C * param1, u32 param2)
+void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, PlayerProfile * param1, u32 param2)
 {
     BOOL v0;
     BOOL v1;
@@ -998,7 +998,7 @@ void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, UnkStruct_02025E6C *
     v1 = 0;
 
     if (v0 == 1) {
-        sub_02025EC0(param1, param0->unk_08);
+        PlayerProfile_SetName(param1, param0->unk_08);
 
         {
             Strbuf* v2;
@@ -1006,7 +1006,7 @@ void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, UnkStruct_02025E6C *
 
             v3 = Strbuf_Init((7 + 1) * 4, param2);
             v2 = Strbuf_Init((7 + 1) * 4, param2);
-            sub_02025EF4(param1, v2);
+            PlayerProfile_Name_FlatToString(param1, v2);
             v0 = sub_02002DB4(0, v2, v3);
 
             if (v0 == 0) {
@@ -1027,16 +1027,16 @@ void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, UnkStruct_02025E6C *
         v4 = sub_0200B144(1, 26, 673, param2);
         v5 = sub_0200B1EC(v4, 64);
 
-        sub_02025EE0(param1, v5);
+        PlayerProfile_Name_StringToFlat(param1, v5);
         Strbuf_Free(v5);
         sub_0200B190(v4);
     }
 
-    sub_02025F1C(param1, ov66_0222E79C(param0));
-    sub_02025F2C(param1, ov66_0222E7C8(param0));
-    sub_02025F90(param1, ov66_0222E858(param0));
-    sub_02025FDC(param1, ov66_0222E80C(param0));
-    sub_02025FE0(param1);
+    PlayerProfile_SetTrainerID(param1, ov66_0222E79C(param0));
+    PlayerProfile_SetGender(param1, ov66_0222E7C8(param0));
+    PlayerProfile_SetAvatar(param1, ov66_0222E858(param0));
+    PlayerProfile_SetLanguage(param1, ov66_0222E80C(param0));
+    PlayerProfile_SetGameClearedFlag(param1);
 }
 
 u32 ov66_0222E71C (const UnkStruct_ov66_0222E71C * param0)
@@ -1272,7 +1272,7 @@ void ov66_0222E908 (const UnkStruct_ov66_0222E71C * param0, UnkStruct_ov66_0222E
     *param1 = param0->unk_8C;
 }
 
-UnkStruct_02025E6C * ov66_0222E918 (const UnkStruct_ov66_0222DFF8 * param0)
+PlayerProfile * ov66_0222E918 (const UnkStruct_ov66_0222DFF8 * param0)
 {
     return param0->unk_508.unk_00;
 }
@@ -1740,7 +1740,7 @@ void ov66_0222EEE4 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
 void ov66_0222EEF4 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
 {
     UnkStruct_ov66_0222E71C * v0;
-    UnkStruct_02025E6C * v1;
+    PlayerProfile * v1;
     void * v2;
     UnkStruct_0202B628 * v3;
 
@@ -1748,9 +1748,9 @@ void ov66_0222EEF4 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
     v0 = (UnkStruct_ov66_0222E71C *)ov66_0222E374(param0, param1);
 
     if (v0 != NULL) {
-        v1 = sub_02025E6C(112);
+        v1 = PlayerProfile_New(112);
         ov66_0222E640(v0, v1, 112);
-        v2 = sub_0202C250(sub_02025EF0(v1), v0->unk_38, 112, 22);
+        v2 = sub_0202C250(PlayerProfile_GetName(v1), v0->unk_38, 112, 22);
 
         sub_0202B758(v3, v2, 4);
         Heap_FreeToHeap(v1);
@@ -1760,7 +1760,7 @@ void ov66_0222EEF4 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
 void ov66_0222EF44 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
 {
     UnkStruct_ov66_0222E71C * v0;
-    UnkStruct_02025E6C * v1;
+    PlayerProfile * v1;
     void * v2;
     UnkStruct_0202B628 * v3;
 
@@ -1768,10 +1768,10 @@ void ov66_0222EF44 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
     v0 = (UnkStruct_ov66_0222E71C *)ov66_0222E374(param0, param1);
 
     if (v0 != NULL) {
-        v1 = sub_02025E6C(112);
+        v1 = PlayerProfile_New(112);
         ov66_0222E640(v0, v1, 112);
 
-        v2 = sub_0202C250(sub_02025EF0(v1), v0->unk_38, 112, 23);
+        v2 = sub_0202C250(PlayerProfile_GetName(v1), v0->unk_38, 112, 23);
 
         sub_0202B758(v3, v2, 4);
         Heap_FreeToHeap(v1);
@@ -1933,11 +1933,11 @@ BOOL ov66_0222F144 (const UnkStruct_ov66_0222DFF8 * param0, UnkStruct_ov68_0225D
 
 void ov66_0222F16C (UnkStruct_ov66_0222DFF8 * param0)
 {
-    UnkStruct_02025E6C * v0;
+    PlayerProfile * v0;
 
     GF_ASSERT(param0->unk_4B8 == NULL);
 
-    v0 = sub_02025E38(param0->unk_00);
+    v0 = Save_PlayerData_GetProfileAddr(param0->unk_00);
     param0->unk_4B8 = sub_0207E060(v0, param0->unk_528);
 }
 
@@ -2313,14 +2313,14 @@ static void ov66_0222F768 (UnkStruct_ov66_0222DFF8 * param0)
 
 static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 * param1, u32 param2)
 {
-    UnkStruct_02025E6C * v0;
+    PlayerProfile * v0;
     Party * v1;
     UnkStruct_0202C878 * v2;
     UnkStruct_02026324 * v3;
     UnkStruct_02055BA8 * v4;
 
     {
-        v0 = sub_02025E38(param1);
+        v0 = Save_PlayerData_GetProfileAddr(param1);
         v1 = Party_GetFromSavedata(param1);
         v3 = sub_02027560(param1);
         v2 = sub_0202C878(param1);
@@ -2330,7 +2330,7 @@ static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 
     {
         Strbuf* v5;
 
-        v5 = sub_02025F04(v0, param2);
+        v5 = PlayerProfile_GetName_NewString(v0, param2);
 
         Strbuf_ToChars(v5, param0->unk_20.unk_08, 7 + 1);
         Strbuf_ToChars(v5, param0->unk_00, 7 + 1);
@@ -2338,7 +2338,7 @@ static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 
     }
 
     param0->unk_20.unk_00 = DWC_LOBBY_INVALID_USER_ID;
-    param0->unk_20.unk_04 = sub_02025F20(v0);
+    param0->unk_20.unk_04 = PlayerProfile_GetTrainerID(v0);
 
     {
         Pokemon * v6;
@@ -2359,14 +2359,14 @@ static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 
         }
     }
 
-    param0->unk_20.unk_38 = sub_02025F30(v0);
-    param0->unk_20.unk_39 = sub_02025FD8(v0);
-    param0->unk_20.unk_3A = sub_02025F8C(v0);
+    param0->unk_20.unk_38 = PlayerProfile_GetGender(v0);
+    param0->unk_20.unk_39 = PlayerProfile_GetLanguage(v0);
+    param0->unk_20.unk_3A = PlayerProfile_GetAvatar(v0);
     param0->unk_20.unk_3A = ov66_02230C0C(param0->unk_20.unk_3A);
     param0->unk_20.unk_3C = sub_0202C8C0(v2);
     param0->unk_20.unk_3E = sub_0202C8C4(v2);
     param0->unk_20.unk_3F = sub_02027474(v3);
-    param0->unk_20.unk_40 = sub_02025FF0(v0);
+    param0->unk_20.unk_40 = PlayerProfile_GetGameClearedFlag(v0);
     param0->unk_20.unk_41 = 0xff;
     param0->unk_20.unk_43 = 0;
     param0->unk_20.unk_42 = GAME_VERSION;
@@ -2551,7 +2551,7 @@ static void ov66_0222FBE0 (UnkStruct_ov66_0222FBC8 * param0)
 
 static void ov66_0222FBF0 (UnkStruct_ov66_0222FBF0 * param0, u32 param1)
 {
-    param0->unk_00 = sub_02025E6C(param1);
+    param0->unk_00 = PlayerProfile_New(param1);
 }
 
 static void ov66_0222FC00 (UnkStruct_ov66_0222FBF0 * param0)
@@ -2775,7 +2775,7 @@ static void ov66_0222FEC0 (UnkStruct_ov66_0222DFF8 * param0, const UnkStruct_ov6
 {
     const UnkStruct_ov66_0222E71C * v0;
     int v1;
-    UnkStruct_02025E6C * v2[4];
+    PlayerProfile * v2[4];
     u32 v3;
     UnkStruct_ov66_02231908 v4;
 
@@ -2864,7 +2864,7 @@ static void ov66_02230058 (UnkStruct_ov66_0222DFF8 * param0, const UnkStruct_ov6
 {
     const UnkStruct_ov66_0222E71C * v0;
     int v1;
-    UnkStruct_02025E6C * v2[4];
+    PlayerProfile * v2[4];
     u32 v3;
     UnkStruct_ov66_022319FC v4;
 
@@ -2905,7 +2905,7 @@ static void ov66_02230114 (UnkStruct_ov66_0222DFF8 * param0, const UnkStruct_ov6
 {
     const UnkStruct_ov66_0222E71C * v0;
     int v1;
-    UnkStruct_02025E6C * v2[4];
+    PlayerProfile * v2[4];
     u32 v3;
     UnkStruct_ov66_02231A58 v4;
 
@@ -2946,7 +2946,7 @@ static void ov66_022301D0 (UnkStruct_ov66_0222DFF8 * param0, const UnkStruct_ov6
 {
     const UnkStruct_ov66_0222E71C * v0;
     int v1;
-    UnkStruct_02025E6C * v2[4];
+    PlayerProfile * v2[4];
     u32 v3;
     UnkStruct_ov66_02231B80 v4;
 

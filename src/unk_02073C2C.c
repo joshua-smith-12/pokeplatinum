@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02015F84_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/party_pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -73,7 +73,7 @@
 #include "unk_0201D15C.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "player_profile.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
 #include "unk_02073C2C.h"
@@ -222,10 +222,10 @@ void SetShayminForm(Pokemon * param0, int param1);
 void SetBoxShayminForm(BoxPokemon * param0, int param1);
 void sub_02077D28(int param0, int param1, u16 * param2);
 void sub_02077D3C(UnkStruct_0202CC84 * param0, int param1, u16 param2, int param3, int param4, int param5, int param6, int param7);
-void sub_02077E64(Pokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5);
-void sub_02077EA4(BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5);
-void sub_02077EE4(Pokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5);
-void sub_02077EF8(BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5);
+void sub_02077E64(Pokemon * param0, PlayerProfile * param1, int param2, int param3, int param4, int param5);
+void sub_02077EA4(BoxPokemon * param0, PlayerProfile * param1, int param2, int param3, int param4, int param5);
+void sub_02077EE4(Pokemon * param0, PlayerProfile * param1, int param2, int param3, int param4, int param5);
+void sub_02077EF8(BoxPokemon * param0, PlayerProfile * param1, int param2, int param3, int param4, int param5);
 void sub_02077F0C(Pokemon * param0, u32 param1, int param2);
 BOOL sub_02077FB4(Pokemon * param0, u8 param1);
 BOOL sub_02077FBC(BoxPokemon * param0, u8 param1);
@@ -4373,7 +4373,7 @@ BOOL sub_02077E3C (Pokemon * param0)
     return sub_02005844(v0, v1);
 }
 
-void sub_02077E64 (Pokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5)
+void sub_02077E64 (Pokemon * param0, PlayerProfile * param1, int param2, int param3, int param4, int param5)
 {
     int v0;
 
@@ -4388,7 +4388,7 @@ void sub_02077E64 (Pokemon * param0, UnkStruct_02025E6C * param1, int param2, in
     }
 }
 
-void sub_02077EA4 (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5)
+void sub_02077EA4 (BoxPokemon * param0, PlayerProfile * param1, int param2, int param3, int param4, int param5)
 {
     sub_0209305C(param0, param1, 0, param3, param5);
     SetBoxMonData(param0, 122, &Unk_020E4C40);
@@ -4396,12 +4396,12 @@ void sub_02077EA4 (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2,
     SetBoxMonData(param0, 158, &param4);
 }
 
-void sub_02077EE4 (Pokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5)
+void sub_02077EE4 (Pokemon * param0, PlayerProfile * param1, int param2, int param3, int param4, int param5)
 {
     sub_02077EF8(&param0->box, param1, param2, param3, param4, param5);
 }
 
-void sub_02077EF8 (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5)
+void sub_02077EF8 (BoxPokemon * param0, PlayerProfile * param1, int param2, int param3, int param4, int param5)
 {
     int v0;
     sub_02077EA4(param0, param1, param2, param3, param4, param5);
@@ -5217,13 +5217,13 @@ BOOL sub_02078838 (Pokemon * param0)
     return sub_02078804(v0);
 }
 
-BOOL sub_0207884C (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2)
+BOOL sub_0207884C (BoxPokemon * param0, PlayerProfile * param1, int param2)
 {
-    u32 v0 = sub_02025F20(param1);
+    u32 v0 = PlayerProfile_GetTrainerID(param1);
     u32 v1 = sub_02074570(param0, MON_DATA_OT_ID, NULL);
-    u32 v2 = sub_02025F30(param1);
+    u32 v2 = PlayerProfile_GetGender(param1);
     u32 v3 = sub_02074570(param0, MON_DATA_OT_GENDER, NULL);
-    Strbuf* v4 = sub_02025F04(param1, param2);
+    Strbuf* v4 = PlayerProfile_GetName_NewString(param1, param2);
     Strbuf* v5 = Strbuf_Init(8, param2);
     BOOL v6 = 0;
 

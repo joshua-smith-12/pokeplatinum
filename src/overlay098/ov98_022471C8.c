@@ -53,8 +53,8 @@
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
-#include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "player_data.h"
+#include "options.h"
 #include "unk_0202ACE0.h"
 #include "unk_02030CE8.h"
 #include "unk_020366A0.h"
@@ -654,7 +654,7 @@ static void ov98_02247704 (UnkStruct_ov98_02247704 * param0)
     sub_02007130(v1, 3, 4, 0, 0, 109);
     sub_02002E98(0, 13 * 0x20, 109);
     sub_02002E98(4, 13 * 0x20, 109);
-    sub_0200DD0C(v0, 0, 1, 10, sub_02027B50(param0->unk_00->unk_08), 109);
+    sub_0200DD0C(v0, 0, 1, 10, Options_GetFrame(param0->unk_00->unk_08), 109);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 109);
     sub_0200DAA4(v0, 2, (1 + (18 + 12)), 11, 0, 109);
     sub_020070E8(v1, 2, v0, 1, 0, 0, 0, 109);
@@ -2184,7 +2184,7 @@ static int ov98_02249238 (UnkStruct_ov98_02247704 * param0)
         v0 = sub_020246E0(param0->unk_00->unk_04);
 
         if (v0 == 2) {
-            sub_0200B498(param0->unk_20, 0, sub_02025E38(param0->unk_00->unk_04));
+            sub_0200B498(param0->unk_20, 0, Save_PlayerData_GetProfileAddr(param0->unk_00->unk_04));
             ov98_02249714(param0, param0->unk_34, 33, 0, 0xf0f);
             sub_02005748(1563);
         } else {

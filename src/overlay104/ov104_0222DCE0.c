@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -27,8 +27,8 @@
 #include "unk_0201D15C.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202C858.h"
 #include "unk_020329E0.h"
 #include "unk_02034198.h"
@@ -357,10 +357,10 @@ void ov104_0222E134 (UnkStruct_021C0794 * param0, Pokemon * param1)
     UnkStruct_0200B144 * v2;
     int v3;
     int v4 = 0;
-    UnkStruct_02025E6C * v5 = sub_02025E38(param0);
+    PlayerProfile * v5 = Save_PlayerData_GetProfileAddr(param0);
 
     v0 = GetMonData(param1, MON_DATA_OT_ID, NULL);
-    sub_02077EE4(param1, sub_02025E38(param0), 4, 0, 0, 11);
+    sub_02077EE4(param1, Save_PlayerData_GetProfileAddr(param0), 4, 0, 0, 11);
 
     v3 = sub_0203A138(562);
     sub_0209304C(param1, v5, v4, v3, 11);
@@ -618,13 +618,13 @@ void ov104_0222E5D0 (UnkStruct_0200B358 * param0, u32 param1)
     return;
 }
 
-int ov104_0222E5F0 (const UnkStruct_02025E6C * param0)
+int ov104_0222E5F0 (const PlayerProfile * param0)
 {
     u32 v0;
     int v1, v2;
 
-    v0 = sub_02025F30(param0);
-    v2 = sub_02025FCC(param0);
+    v0 = PlayerProfile_GetGender(param0);
+    v2 = PlayerProfile_GetVersion(param0);
 
     switch (v2) {
     case 12:

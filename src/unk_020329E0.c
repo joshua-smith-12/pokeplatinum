@@ -2,7 +2,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -11,8 +11,8 @@
 #include "struct_defs/struct_0202610C.h"
 
 #include "heap.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202602C.h"
 #include "unk_0202854C.h"
 #include "unk_0202ACE0.h"
@@ -42,11 +42,11 @@ typedef struct {
 } UnkStruct_021C07B4_sub1;
 
 typedef struct {
-    UnkStruct_02025E6C * unk_00;
+    PlayerProfile * unk_00;
     const UnkStruct_0202610C * unk_04;
     UnkStruct_021C0794 * unk_08;
     UnkStruct_02032BEC unk_0C[8];
-    UnkStruct_02025E6C * unk_33C[8];
+    PlayerProfile * unk_33C[8];
     UnkStruct_021C07B4_sub1 unk_35C[8];
     u8 unk_38C[8];
     u8 unk_394;
@@ -59,7 +59,7 @@ static UnkStruct_021C07B4 * Unk_021C07B4;
 void sub_020329E0 (UnkStruct_021C0794 * param0, const UnkStruct_0202610C * param1)
 {
     int v0;
-    UnkStruct_02025E6C * v1 = sub_02025E38(param0);
+    PlayerProfile * v1 = Save_PlayerData_GetProfileAddr(param0);
 
     if (Unk_021C07B4) {
         return;
@@ -69,7 +69,7 @@ void sub_020329E0 (UnkStruct_021C0794 * param0, const UnkStruct_0202610C * param
     MI_CpuClear8(Unk_021C07B4, sizeof(UnkStruct_021C07B4));
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
-        Unk_021C07B4->unk_33C[v0] = (UnkStruct_02025E6C *)&Unk_021C07B4->unk_0C[v0].unk_20[0];
+        Unk_021C07B4->unk_33C[v0] = (PlayerProfile *)&Unk_021C07B4->unk_0C[v0].unk_20[0];
         sub_02032D98(v0);
     }
 
@@ -79,7 +79,7 @@ void sub_020329E0 (UnkStruct_021C0794 * param0, const UnkStruct_0202610C * param
     Unk_021C07B4->unk_08 = param0;
     Unk_021C07B4->unk_04 = param1;
 
-    sub_02025E80(v1, Unk_021C07B4->unk_33C[0]);
+    PlayerProfile_Copy(v1, Unk_021C07B4->unk_33C[0]);
 }
 
 void sub_02032A70 (void)
@@ -107,7 +107,7 @@ BOOL sub_02032AAC (void)
 void sub_02032AC0 (void)
 {
     u16 v0 = sub_0203608C();
-    UnkStruct_02025E6C * v1;
+    PlayerProfile * v1;
     const u16 * v2;
     UnkStruct_0202B4A0 * v3 = sub_0202B4A0(Unk_021C07B4->unk_08);
     UnkStruct_0202B370 * v4 = sub_0202B370(Unk_021C07B4->unk_08);
@@ -116,10 +116,10 @@ void sub_02032AC0 (void)
     if (Unk_021C07B4->unk_00) {
         v1 = Unk_021C07B4->unk_00;
     } else {
-        v1 = sub_02025E38(Unk_021C07B4->unk_08);
+        v1 = Save_PlayerData_GetProfileAddr(Unk_021C07B4->unk_08);
     }
 
-    sub_02025E80(v1, Unk_021C07B4->unk_33C[v0]);
+    PlayerProfile_Copy(v1, Unk_021C07B4->unk_33C[v0]);
     OS_GetMacAddress(&Unk_021C07B4->unk_0C[v0].unk_5C[0]);
 
     v2 = sub_0202B42C(v3, 1, 0);
@@ -175,7 +175,7 @@ void sub_02032BEC (int param0, int param1, void * param2, void * param3)
     MI_CpuCopy8(param2, &Unk_021C07B4->unk_0C[v0->unk_62], sizeof(UnkStruct_02032BEC));
     Unk_021C07B4->unk_396 = v0->unk_62;
 
-    if (sub_02025EA8(Unk_021C07B4->unk_33C[Unk_021C07B4->unk_396]) == 1) {
+    if (PlayerProfile_IsNameEmpty(Unk_021C07B4->unk_33C[Unk_021C07B4->unk_396]) == 1) {
         return;
     }
 
@@ -224,7 +224,7 @@ BOOL sub_02032CE8 (void)
         for (v0 = 0; v0 < (7 + 1); v0++) {
             if (Unk_021C07B4->unk_38C[v0] != 0) {
                 Unk_021C07B4->unk_0C[v0].unk_62 = v0;
-                MI_CpuCopy8(Unk_021C07B4->unk_33C[v0], Unk_021C07B4->unk_0C[v0].unk_20, sub_02025E68());
+                MI_CpuCopy8(Unk_021C07B4->unk_33C[v0], Unk_021C07B4->unk_0C[v0].unk_20, PlayerProfile_sizeof());
                 sub_02035F00(4, &Unk_021C07B4->unk_0C[v0], sizeof(UnkStruct_02032BEC));
             }
         }
@@ -244,7 +244,7 @@ BOOL sub_02032D84 (void)
 
 void sub_02032D98 (int param0)
 {
-    sub_02025E8C(Unk_021C07B4->unk_33C[param0]);
+    PlayerProfile_Init(Unk_021C07B4->unk_33C[param0]);
     Unk_021C07B4->unk_38C[param0] = 0;
 }
 
@@ -326,7 +326,7 @@ BOOL sub_02032E90 (void)
     return v1;
 }
 
-UnkStruct_02025E6C * sub_02032EE8 (int param0)
+PlayerProfile * sub_02032EE8 (int param0)
 {
     if (!Unk_021C07B4) {
         return NULL;
@@ -493,7 +493,7 @@ void sub_020331E0 (UnkStruct_021C0794 * param0, int param1)
     sub_02033114(param0);
 }
 
-void sub_020331F4 (UnkStruct_02025E6C * param0)
+void sub_020331F4 (PlayerProfile * param0)
 {
     Unk_021C07B4->unk_00 = param0;
 }

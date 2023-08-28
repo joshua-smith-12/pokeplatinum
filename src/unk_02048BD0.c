@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -15,8 +15,8 @@
 #include "unk_0200B358.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "player_data.h"
+#include "player_profile.h"
 #include "unk_0202B37C.h"
 #include "unk_0203D1B8.h"
 #include "unk_0203E724.h"
@@ -98,11 +98,11 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
     case 6:
     {
         Strbuf* v14 = Strbuf_Init(64, 32);
-        UnkStruct_02025E6C * v15 = sub_02025E38(param0->unk_34->unk_0C);
+        PlayerProfile * v15 = Save_PlayerData_GetProfileAddr(param0->unk_34->unk_0C);
 
-        sub_02025EF4(v15, v14);
+        PlayerProfile_Name_FlatToString(v15, v14);
         sub_0202B444(v1, 0, 1, v14);
-        sub_0202B470(v1, 0, sub_02025F30(v15));
+        sub_0202B470(v1, 0, PlayerProfile_GetGender(v15));
         sub_0202B494(v1, 0, GAME_LANGUAGE);
         sub_0202B40C(v1, 0, sub_0201D35C());
         Strbuf_Free(v14);

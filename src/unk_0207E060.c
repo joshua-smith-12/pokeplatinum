@@ -1,16 +1,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 
 #include "struct_defs/struct_0207E060.h"
 
 #include "heap.h"
-#include "unk_02025E68.h"
+#include "player_profile.h"
 #include "unk_0207E060.h"
 #include "overlay004/ov4_021D0D80.h"
 
-UnkStruct_0207E060 * sub_0207E060 (const UnkStruct_02025E6C * param0, u32 param1)
+UnkStruct_0207E060 * sub_0207E060 (const PlayerProfile * param0, u32 param1)
 {
     UnkStruct_0207E060 * v0;
     BOOL v1;
@@ -19,10 +19,10 @@ UnkStruct_0207E060 * sub_0207E060 (const UnkStruct_02025E6C * param0, u32 param1
     memset(v0, 0, (sizeof(UnkStruct_0207E060)));
 
     v0->unk_1B = 28;
-    v0->unk_1E = sub_02025F30(param0);
-    v0->unk_1D = sub_02025F8C(param0);
-    v0->unk_18 = sub_02025FCC(param0);
-    v0->unk_19 = sub_02025FD8(param0);
+    v0->unk_1E = PlayerProfile_GetGender(param0);
+    v0->unk_1D = PlayerProfile_GetAvatar(param0);
+    v0->unk_18 = PlayerProfile_GetVersion(param0);
+    v0->unk_19 = PlayerProfile_GetLanguage(param0);
 
     v1 = ov4_021D222C(v0, (sizeof(UnkStruct_0207E060)));
     GF_ASSERT(v1 == 1);

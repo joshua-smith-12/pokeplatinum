@@ -11,7 +11,7 @@
 #include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_0205EC34.h"
 
-#include "unk_02025E08.h"
+#include "player_data.h"
 #include "unk_0202B604.h"
 #include "unk_0202D7A8.h"
 #include "map_header.h"
@@ -153,7 +153,7 @@ static BOOL sub_02070610 (UnkStruct_0203CDB0 * param0)
 
     if (v0->unk_00 != param0->unk_1C->unk_00) {
         sub_0202C5C4(
-            sub_02025E38(param0->unk_0C), param0->unk_9C, param0->unk_1C->unk_00, v0->unk_00, 32);
+            Save_PlayerData_GetProfileAddr(param0->unk_0C), param0->unk_9C, param0->unk_1C->unk_00, v0->unk_00, 32);
         return 1;
     }
 

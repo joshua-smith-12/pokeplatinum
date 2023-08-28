@@ -131,7 +131,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02025E68.h"
+#include "player_profile.h"
 #include "unk_02073C2C.h"
 #include "move_table.h"
 #include "party.h"
@@ -6419,7 +6419,7 @@ static void ov16_0226474C (UnkStruct_0207ADB4 * param0)
 static u8 ov16_02264768 (UnkStruct_0207ADB4 * param0, u8 param1, u8 param2)
 {
     if (ov16_0223DF0C(param0) & 0x4) {
-        if ((sub_02025FCC(ov16_0223E16C(param0, param1)) == 0) && (param2 <= 1)) {
+        if ((PlayerProfile_GetVersion(ov16_0223E16C(param0, param1)) == 0) && (param2 <= 1)) {
             param2 += 103;
         }
     }

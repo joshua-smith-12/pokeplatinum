@@ -9,14 +9,14 @@
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_defs/pokemon.h"
 
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02093BBC.h"
@@ -63,8 +63,8 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "player_profile.h"
+#include "options.h"
 #include "unk_020298BC.h"
 #include "unk_0202CD50.h"
 #include "unk_020363E8.h"
@@ -110,7 +110,7 @@ typedef struct {
     int unk_72C;
     int unk_730;
     UnkStruct_02095C60 * unk_734;
-    const UnkStruct_020279FC * unk_738;
+    const Options * unk_738;
     u32 unk_73C;
     Strbuf* unk_740;
     UnkStruct_0200B358 * unk_744;
@@ -155,16 +155,16 @@ static void ov22_02256B04(UnkStruct_ov22_02259C58 * param0, void * param1);
 static void ov22_02256B24(UnkStruct_ov22_02259C58 * param0, void * param1);
 static void ov22_02256B44(UnkStruct_ov22_02259C58 * param0, void * param1);
 static void ov22_02256B78(UnkStruct_ov22_02259C58 * param0, void * param1);
-static void ov22_02256BAC(UnkStruct_ov22_02255D44 * param0, const UnkStruct_020279FC * param1);
-static void ov22_02256BF4(UnkStruct_ov22_02255D44 * param0, int param1, int param2, UnkStruct_02095C60 * param3, const UnkStruct_020279FC * param4);
+static void ov22_02256BAC(UnkStruct_ov22_02255D44 * param0, const Options * param1);
+static void ov22_02256BF4(UnkStruct_ov22_02255D44 * param0, int param1, int param2, UnkStruct_02095C60 * param3, const Options * param4);
 static void ov22_02256C38(UnkStruct_ov22_02255D44 * param0);
 static void ov22_02256C48(UnkStruct_ov22_02255D44 * param0, BOOL * param1);
 static void ov22_02256C70(UnkStruct_0201CD38 * param0, void * param1);
 static void ov22_02256DB8(UnkStruct_ov22_02255D44 * param0, BOOL * param1);
 static void ov22_02256DE0(UnkStruct_0201CD38 * param0, void * param1);
 static BOOL ov22_02257098(UnkStruct_ov22_02256C48 * param0, int param1, int param2, int param3);
-static void ov22_02256F38(UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 * param1, const UnkStruct_02025E6C * param2);
-static void ov22_02256FD8(UnkStruct_02029C88 * param0, UnkStruct_ov22_02257964 * param1, int param2, const UnkStruct_02025E6C * param3);
+static void ov22_02256F38(UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 * param1, const PlayerProfile * param2);
+static void ov22_02256FD8(UnkStruct_02029C88 * param0, UnkStruct_ov22_02257964 * param1, int param2, const PlayerProfile * param3);
 static void ov22_02257104(UnkStruct_ov22_02255D44 * param0);
 static void ov22_0225718C(UnkStruct_ov22_02255D44 * param0);
 static void ov22_022571D4(UnkStruct_ov22_02255D44 * param0);
@@ -935,7 +935,7 @@ static void ov22_02256B78 (UnkStruct_ov22_02259C58 * param0, void * param1)
     }
 }
 
-static void ov22_02256BAC (UnkStruct_ov22_02255D44 * param0, const UnkStruct_020279FC * param1)
+static void ov22_02256BAC (UnkStruct_ov22_02255D44 * param0, const Options * param1)
 {
     UnkStruct_ov22_02256BAC v0;
 
@@ -951,7 +951,7 @@ static void ov22_02256BAC (UnkStruct_ov22_02255D44 * param0, const UnkStruct_020
     ov22_0225A428(&param0->unk_5C4, &v0, (1 | 2 | 4 | 8));
 }
 
-static void ov22_02256BF4 (UnkStruct_ov22_02255D44 * param0, int param1, int param2, UnkStruct_02095C60 * param3, const UnkStruct_020279FC * param4)
+static void ov22_02256BF4 (UnkStruct_ov22_02255D44 * param0, int param1, int param2, UnkStruct_02095C60 * param3, const Options * param4)
 {
     UnkStruct_ov22_02256BAC v0;
     BOOL v1;
@@ -1144,7 +1144,7 @@ static void ov22_02256DE0 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov22_02256F38 (UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 * param1, const UnkStruct_02025E6C * param2)
+static void ov22_02256F38 (UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 * param1, const PlayerProfile * param2)
 {
     UnkStruct_ov22_02259560 * v0;
     int v1;
@@ -1155,8 +1155,8 @@ static void ov22_02256F38 (UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 
     sub_02029FAC(param0, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);
 
     if (param2) {
-        v2 = sub_02025F04(param2, 13);
-        v3 = sub_02025F30(param2);
+        v2 = PlayerProfile_GetName_NewString(param2, 13);
+        v3 = PlayerProfile_GetGender(param2);
         sub_0202A0EC(param0, v2, v3);
         Strbuf_Free(v2);
     }
@@ -1188,7 +1188,7 @@ static void ov22_02256F38 (UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 
     sub_02029F5C(param0);
 }
 
-static void ov22_02256FD8 (UnkStruct_02029C88 * param0, UnkStruct_ov22_02257964 * param1, int param2, const UnkStruct_02025E6C * param3)
+static void ov22_02256FD8 (UnkStruct_02029C88 * param0, UnkStruct_ov22_02257964 * param1, int param2, const PlayerProfile * param3)
 {
     int v0;
     int v1;
@@ -1203,8 +1203,8 @@ static void ov22_02256FD8 (UnkStruct_02029C88 * param0, UnkStruct_ov22_02257964 
     sub_0202A284(param0, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);
 
     if (param3) {
-        v4 = sub_02025F04(param3, 13);
-        v5 = sub_02025F30(param3);
+        v4 = PlayerProfile_GetName_NewString(param3, 13);
+        v5 = PlayerProfile_GetGender(param3);
         sub_0202A4B4(param0, v4, v5);
         Strbuf_Free(v4);
     }
@@ -1344,7 +1344,7 @@ static void ov22_022572A0 (UnkStruct_ov22_02255D44 * param0, u32 param1, u8 para
 {
     UnkStruct_0200B144 * v0;
     Strbuf* v1;
-    int v2 = sub_02027B50(param0->unk_738);
+    int v2 = Options_GetFrame(param0->unk_738);
 
     sub_02002E98(0, 7 * 32, 14);
     sub_0201A7E8(param0->unk_00.unk_40, param0->unk_718, 3, param2, param3, param4, param5, 7, (0 + (29 * 4) + (18 + 12)));
@@ -1399,7 +1399,7 @@ static u32 ov22_022573EC (UnkStruct_ov22_02255D44 * param0, u32 param1)
     sub_0200C388(param0->unk_744, param0->unk_740, v3);
 
     if (param0->unk_734->unk_16 == 0) {
-        v2 = sub_02027AC0(param0->unk_738);
+        v2 = Options_GetTextFrameDelay(param0->unk_738);
     } else {
         v2 = 1;
     }

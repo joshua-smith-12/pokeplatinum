@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_defs/pokemon.h"
 
 #include "struct_defs/struct_0204B184.h"
@@ -17,7 +17,7 @@
 
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_02025E68.h"
+#include "player_profile.h"
 #include "unk_020329E0.h"
 #include "unk_02034198.h"
 #include "unk_02051D8C.h"
@@ -351,7 +351,7 @@ BattleParams * ov104_0223ABA0 (UnkStruct_ov104_0223ADA0 * param0, UnkStruct_ov10
     UnkStruct_0204B184 * v7;
     UnkStruct_0200B144 * v8;
     Strbuf* v9;
-    UnkStruct_02025E6C * v10;
+    PlayerProfile * v10;
 
     v2 = ov104_0223AA50(param0->unk_04);
     v3 = ov104_0223AA74(param0->unk_04, 0);
@@ -401,7 +401,7 @@ BattleParams * ov104_0223ABA0 (UnkStruct_ov104_0223ADA0 * param0, UnkStruct_ov10
         sub_02052894(v4);
 
         v10 = sub_02032EE8(1 - sub_0203608C());
-        sub_02025E80(v10, v4->unk_D0[2]);
+        PlayerProfile_Copy(v10, v4->unk_D0[2]);
 
         v7 = ov104_0222DD04(&v6, param0->unk_18[param0->unk_06 + 7], 11, 178);
         Heap_FreeToHeap(v7);

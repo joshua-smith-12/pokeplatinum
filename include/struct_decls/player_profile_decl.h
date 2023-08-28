@@ -1,0 +1,6 @@
+#ifndef POKEPLATINUM_PLAYER_PROFILE_DECL_H
+#define POKEPLATINUM_PLAYER_PROFILE_DECL_H
+
+typedef struct PlayerProfile_t PlayerProfile;
+
+#endif // POKEPLATINUM_PLAYER_PROFILE_DECL_H

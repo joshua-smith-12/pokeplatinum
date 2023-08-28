@@ -17,12 +17,12 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_0202442C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/player_profile_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/options.h"
 #include "struct_defs/struct_0202DBAC.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -55,9 +55,9 @@
 #include "strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
-#include "unk_02025E08.h"
-#include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "player_data.h"
+#include "player_profile.h"
+#include "options.h"
 #include "unk_0202DAB4.h"
 #include "unk_020329E0.h"
 #include "unk_02033200.h"
@@ -94,7 +94,7 @@ typedef struct {
     void * unk_2BFC;
     UnkStruct_0202442C * unk_2C00;
     UnkStruct_021C0794 * unk_2C04;
-    UnkStruct_020279FC * unk_2C08;
+    Options * unk_2C08;
     int unk_2C0C;
     int unk_2C10;
     UnkStruct_0202DBAC * unk_2C14[3];
@@ -107,7 +107,7 @@ typedef struct {
     int unk_2C50;
     int unk_2C54;
     u32 unk_2C58[4];
-    UnkStruct_02025E6C * unk_2C68[5];
+    PlayerProfile * unk_2C68[5];
     int unk_2C7C[5];
     int unk_2C90;
     int unk_2C94;
@@ -1047,8 +1047,8 @@ static int ov97_0223161C (UnkStruct_020067E8 * param0, int * param1)
     case 0:
         v4->unk_2C04 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
         v4->unk_2C00 = sub_0202442C(v4->unk_2C04);
-        v4->unk_2C08 = sub_02025E44(v4->unk_2C04);
-        v4->unk_2C0C = sub_02027B50(v4->unk_2C08);
+        v4->unk_2C08 = Save_PlayerData_GetOptionsAddr(v4->unk_2C04);
+        v4->unk_2C0C = Options_GetFrame(v4->unk_2C08);
 
         v4->unk_2C14[0] = sub_0202DB00(v4->unk_2C00, 0);
         v4->unk_2C14[1] = sub_0202DB00(v4->unk_2C00, 1);
@@ -1316,7 +1316,7 @@ static int ov97_02231C48 (int * param0)
 static int ov97_02231C84 (UnkStruct_ov97_02230868 * param0)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    PlayerProfile * v2;
 
     v1 = 0;
 
@@ -1333,7 +1333,7 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, UnkStruct_0205AA50 *
 {
     int v0, v1, v2, v3;
     u32 v4;
-    UnkStruct_02025E6C * v5;
+    PlayerProfile * v5;
     Strbuf* v6;
     UnkStruct_0200B358 * v7;
     UnkStruct_0200B144 * v8;
@@ -1386,14 +1386,14 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, UnkStruct_0205AA50 *
             sub_0200B498(v7, 0, v5);
             v6 = sub_0200B29C(v7, v8, 53, 87);
 
-            if (sub_02025F30(v5) == 0) {
+            if (PlayerProfile_GetGender(v5) == 0) {
                 sub_0201D78C(param1, 0, v6, 0, v2, 0xff, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             } else {
                 sub_0201D78C(param1, 0, v6, 0, v2, 0xff, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             }
 
             Strbuf_Free(v6);
-            sub_0200B60C(v7, 0, sub_02025F20(v5) & 0xFFFF, 5, 2, 1);
+            sub_0200B60C(v7, 0, PlayerProfile_GetTrainerID(v5) & 0xFFFF, 5, 2, 1);
 
             v6 = sub_0200B29C(v7, v8, 54, 87);
 
