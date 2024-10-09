@@ -11,7 +11,7 @@
 
 #include "unk_0200C6E4.h"
 
-__attribute__((aligned(4))) static const u32 Unk_020F0AF0[] = {
+__attribute__((aligned(4))) static const u32 TYPE_ICON_MAP[] = {
     0xEA,
     0xE1,
     0xE3,
@@ -30,6 +30,7 @@ __attribute__((aligned(4))) static const u32 Unk_020F0AF0[] = {
     0xE6,
     0xDD,
     0xE0,
+    0xE0,
     0xF0,
     0xDB,
     0xDC,
@@ -37,7 +38,7 @@ __attribute__((aligned(4))) static const u32 Unk_020F0AF0[] = {
     0xEF
 };
 
-__attribute__((aligned(4))) static const u8 Unk_020F0B4C[] = {
+__attribute__((aligned(4))) static const u8 TYPE_PALETTE_MAP[] = {
     0x0,
     0x0,
     0x1,
@@ -55,6 +56,7 @@ __attribute__((aligned(4))) static const u8 Unk_020F0B4C[] = {
     0x1,
     0x1,
     0x2,
+    0x0,
     0x0,
     0x0,
     0x1,
@@ -77,8 +79,8 @@ __attribute__((aligned(4))) static const u8 Unk_020F0AE0[] = {
 
 u32 sub_0207C908(int param0)
 {
-    GF_ASSERT(param0 < NELEMS(Unk_020F0AF0));
-    return Unk_020F0AF0[param0];
+    GF_ASSERT(param0 < NELEMS(TYPE_ICON_MAP));
+    return TYPE_ICON_MAP[param0];
 }
 
 u32 sub_0207C920(void)
@@ -98,8 +100,8 @@ u32 sub_0207C928(void)
 
 u8 sub_0207C92C(int param0)
 {
-    GF_ASSERT(param0 < NELEMS(Unk_020F0B4C));
-    return Unk_020F0B4C[param0];
+    GF_ASSERT(param0 < NELEMS(TYPE_PALETTE_MAP));
+    return TYPE_PALETTE_MAP[param0];
 }
 
 u32 sub_0207C944(void)

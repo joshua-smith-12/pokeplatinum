@@ -73,4 +73,8 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">DARK</language>
 	</row>
+	<row id="pl_msg_00000624_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">FAIRY</language>
+	</row>
 </body>
