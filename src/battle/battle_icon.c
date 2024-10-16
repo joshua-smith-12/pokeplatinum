@@ -9,13 +9,12 @@
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
+#include "narc.h"
 #include "unk_0200C6E4.h"
 
-#include "narc.h"
-
 /*
-* Maps a type index (e.g. TYPE_WATER) to the corresponding NARC member in pl_batt_obj.narc containing the type icon.
-*/
+ * Maps a type index (e.g. TYPE_WATER) to the corresponding NARC member in pl_batt_obj.narc containing the type icon.
+ */
 __attribute__((aligned(4))) static const u32 BattleIcon_NARCMemberMap[] = {
     0xEA,
     0xE1,
@@ -44,8 +43,8 @@ __attribute__((aligned(4))) static const u32 BattleIcon_NARCMemberMap[] = {
 };
 
 /*
-* Maps a type index (e.g. TYPE_WATER) to the corresponding palette index in NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ__TYPE_PALETTE.
-*/
+ * Maps a type index (e.g. TYPE_WATER) to the corresponding palette index in NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ__TYPE_PALETTE.
+ */
 __attribute__((aligned(4))) static const u8 BattleIcon_PaletteIndexMap[] = {
     0x0,
     0x0,
@@ -74,8 +73,8 @@ __attribute__((aligned(4))) static const u8 BattleIcon_PaletteIndexMap[] = {
 };
 
 /*
-* Maps move types (Physical, Special, Status) to the corresponding NARC member in pl_batt_obj.narc containing the type icon.
-*/
+ * Maps move types (Physical, Special, Status) to the corresponding NARC member in pl_batt_obj.narc containing the type icon.
+ */
 __attribute__((aligned(4))) static const u32 BattleIcon_MoveType_NARCMemberMap[] = {
     0xF4,
     0xF6,
@@ -83,8 +82,8 @@ __attribute__((aligned(4))) static const u32 BattleIcon_MoveType_NARCMemberMap[]
 };
 
 /*
-* Maps a move type (Physical, Special, Status) to the corresponding palette index in NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ__TYPE_PALETTE.
-*/
+ * Maps a move type (Physical, Special, Status) to the corresponding palette index in NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ__TYPE_PALETTE.
+ */
 __attribute__((aligned(4))) static const u8 BattleIcon_MoveType_PaletteIndexMap[] = {
     0x0,
     0x1,
@@ -92,9 +91,9 @@ __attribute__((aligned(4))) static const u8 BattleIcon_MoveType_PaletteIndexMap[
 };
 
 /*
-* Given a type index, return the corresponding NARC member containing the icon for that type.
-* See also BattleIcon_GetNARCIndex.
-*/
+ * Given a type index, return the corresponding NARC member containing the icon for that type.
+ * See also BattleIcon_GetNARCIndex.
+ */
 u32 BattleIcon_TypeIndexToNARCMember(int typeIndex)
 {
     GF_ASSERT(typeIndex < NELEMS(BattleIcon_NARCMemberMap));
@@ -102,9 +101,9 @@ u32 BattleIcon_TypeIndexToNARCMember(int typeIndex)
 }
 
 /*
-* Returns the NARC member within pl_batt_obj containing palettes for battle icons.
-* See also BattleIcon_GetNARCIndex.
-*/
+ * Returns the NARC member within pl_batt_obj containing palettes for battle icons.
+ * See also BattleIcon_GetNARCIndex.
+ */
 u32 BattleIcon_GetPaletteNARCMember(void)
 {
     return NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ__TYPE_PALETTE;
@@ -121,9 +120,9 @@ u32 sub_0207C928(void)
 }
 
 /*
-* Given a type index, return the corresponding palette index to use for that type's icon.
-* See also BattleIcon_GetNARCIndex and BattleIcon_GetPaletteNARCMember.
-*/
+ * Given a type index, return the corresponding palette index to use for that type's icon.
+ * See also BattleIcon_GetNARCIndex and BattleIcon_GetPaletteNARCMember.
+ */
 u8 BattleIcon_TypeIndexToPaletteIndex(int typeIndex)
 {
     GF_ASSERT(typeIndex < NELEMS(BattleIcon_PaletteIndexMap));
@@ -131,8 +130,8 @@ u8 BattleIcon_TypeIndexToPaletteIndex(int typeIndex)
 }
 
 /*
-* Returns the index of the NARC for pl_batt_obj.
-*/
+ * Returns the index of the NARC for pl_batt_obj.
+ */
 u32 BattleIcon_GetNARCIndex(void)
 {
     return NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ;
@@ -193,9 +192,9 @@ void sub_0207CA88(CellActorData *param0)
 }
 
 /*
-* Given a movetype index, return the corresponding NARC member containing the icon for that movetype.
-* See also BattleIcon_GetNARCIndex.
-*/
+ * Given a movetype index, return the corresponding NARC member containing the icon for that movetype.
+ * See also BattleIcon_GetNARCIndex.
+ */
 u32 BattleIcon_MoveTypeIndexToNARCMember(int moveTypeIndex)
 {
     GF_ASSERT(moveTypeIndex < NELEMS(BattleIcon_MoveType_NARCMemberMap));
@@ -203,9 +202,9 @@ u32 BattleIcon_MoveTypeIndexToNARCMember(int moveTypeIndex)
 }
 
 /*
-* Given a movetype index, return the corresponding palette index to use for that movetype's icon.
-* See also BattleIcon_GetNARCIndex and BattleIcon_GetPaletteNARCMember.
-*/
+ * Given a movetype index, return the corresponding palette index to use for that movetype's icon.
+ * See also BattleIcon_GetNARCIndex and BattleIcon_GetPaletteNARCMember.
+ */
 u8 BattleIcon_MoveTypeIndexToPaletteIndex(int moveTypeIndex)
 {
     GF_ASSERT(moveTypeIndex < NELEMS(BattleIcon_MoveType_PaletteIndexMap));
@@ -213,9 +212,9 @@ u8 BattleIcon_MoveTypeIndexToPaletteIndex(int moveTypeIndex)
 }
 
 /*
-* Returns the index of the NARC for pl_batt_obj.
-* (This is identical to BattleIcon_GetNARCIndex).
-*/
+ * Returns the index of the NARC for pl_batt_obj.
+ * (This is identical to BattleIcon_GetNARCIndex).
+ */
 u32 BattleIcon_GetMoveTypeNARCIndex(void)
 {
     return NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ;
