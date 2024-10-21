@@ -787,5 +787,12 @@
         "compressed": true,
         "clobber_size": true,
         "mapping_type": 64
+    },
+    {
+        "target": "type_icon_fairy.png",
+        "compressed": true,
+        "clobber_size": true,
+        "mapping_type": 32,
+        "version101": true
     }
 ]

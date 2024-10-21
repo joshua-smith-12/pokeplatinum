@@ -341,3 +341,4 @@ mud_throw.ncgr
 party_gauge.ncgr
 party_gauge.ncer
 party_gauge.nanr
+type_icon_fairy.ncgr

@@ -122,7 +122,8 @@ pl_batt_obj_sprites = files(
     'park_ball_throw.png',
     'bait_throw.png',
     'mud_throw.png',
-    'party_gauge.png'
+    'party_gauge.png',
+    'type_icon_fairy.png'
 )
 
 pl_batt_obj_sprite_data = files('data.json')
