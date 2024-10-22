@@ -7,6 +7,7 @@
 #include "struct_defs/struct_0205AA50.h"
 
 #include "battle/battle_icon.h"
+#include "data/pst_pal.h"
 #include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay104/struct_ov104_022412F4.h"
@@ -431,7 +432,7 @@ void sub_0208F16C(PokemonSummaryApp *param0)
 static void sub_0208F194(PokemonSummaryApp *param0, u8 param1, u8 param2, u8 param3)
 {
     sub_0200D948(param0->renderer, param0->gfxHandler, BattleIcon_GetNARCIndex(), BattleIcon_GetMoveTypeTiles(param3), 1, param2);
-    sub_0200D414(param0->unk_41C[param1], BattleIcon_GetMoveTypePaletteIndex(param3) + 3);
+    sub_0200D414(param0->unk_41C[param1], BattleIcon_GetMoveTypePaletteIndex(param3) + RESDAT_PST_PAL_NARC_27_MEMBER_74_1_OFFSET);
 }
 
 static void sub_0208F1E4(PokemonSummaryApp *param0, u8 *param1, s16 *param2, s16 *param3)
@@ -466,7 +467,7 @@ void sub_0208F294(PokemonSummaryApp *param0, u32 param1)
     u32 v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CLASS);
 
     sub_0200D948(param0->renderer, param0->gfxHandler, BattleIcon_GetMoveClassPalettteFileIndex(), BattleIcon_GetMoveClassTiles(v0), 1, 10);
-    sub_0200D414(param0->unk_41C[18], BattleIcon_GetMoveClassPaletteIndex(v0) + 3);
+    sub_0200D414(param0->unk_41C[18], BattleIcon_GetMoveClassPaletteIndex(v0) + RESDAT_PST_PAL_NARC_27_MEMBER_74_1_OFFSET);
 }
 
 void sub_0208F2E8(PokemonSummaryApp *param0)
@@ -671,7 +672,7 @@ void sub_0208F71C(PokemonSummaryApp *param0)
     }
 
     sub_0200D948(param0->renderer, param0->gfxHandler, 19, v1, 0, 11);
-    sub_0200D414(param0->unk_41C[19], PokeIconPaletteIndex(param0->monData.species, param0->monData.form, param0->monData.isEgg) + 7);
+    sub_0200D414(param0->unk_41C[19], PokeIconPaletteIndex(param0->monData.species, param0->monData.form, param0->monData.isEgg) + RESDAT_PST_PAL_NARC_20_MEMBER_23_3_OFFSET);
     CellActor_SetFlipMode(param0->unk_41C[19], (PokemonPersonalData_GetFormValue(param0->monData.species, param0->monData.form, 28) ^ 1));
 }
 
@@ -734,7 +735,7 @@ void sub_0208F964(PokemonSummaryApp *param0)
 static void sub_0208F9B0(PokemonSummaryApp *param0, u8 param1, u8 param2)
 {
     sub_0200D948(param0->renderer, param0->gfxHandler, 39, sub_020923C0(param1, 1), 0, 26 + param2);
-    sub_0200D414(param0->unk_41C[55 + param2], sub_020923C0(param1, 2) + 7);
+    sub_0200D414(param0->unk_41C[55 + param2], sub_020923C0(param1, 2) + RESDAT_PST_PAL_NARC_20_MEMBER_23_3_OFFSET);
 }
 
 void sub_0208FA04(PokemonSummaryApp *param0)
