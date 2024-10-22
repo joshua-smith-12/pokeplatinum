@@ -22,6 +22,7 @@
                 "TYPE_ICE",
                 "TYPE_DRAGON",
                 "TYPE_DARK",
+                "TYPE_FAIRY",
                 "NUMBER_OF_MON_TYPES"
             ]
         },

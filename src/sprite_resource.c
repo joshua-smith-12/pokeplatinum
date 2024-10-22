@@ -120,7 +120,7 @@ SpriteResource *SpriteResourceCollection_AddFromTable(SpriteResourceCollection *
             fileEntry->filename,
             fileEntry->id,
             fileEntry->vramType,
-            fileEntry->paletteIndex,
+            fileEntry->paletteCount,
             table->type,
             heapID);
     } else {
@@ -134,7 +134,7 @@ SpriteResource *SpriteResourceCollection_AddFromTable(SpriteResourceCollection *
             narcEntry->compressed,
             narcEntry->id,
             narcEntry->vramType,
-            narcEntry->paletteIndex,
+            narcEntry->paletteCount,
             table->type,
             heapID,
             FALSE);
@@ -703,10 +703,10 @@ int SpriteResourceTable_GetPaletteIndex(const SpriteResourceTable *table, int in
 
     if (table->loadFromNARC == FALSE) {
         SpriteResourceTableEntryFile *fileEntries = table->entries;
-        return fileEntries[index].paletteIndex;
+        return fileEntries[index].paletteCount;
     } else {
         SpriteResourceTableEntryNARC *narcEntries = table->entries;
-        return narcEntries[index].paletteIndex;
+        return narcEntries[index].paletteCount;
     }
 }
 
