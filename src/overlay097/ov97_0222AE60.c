@@ -21,6 +21,7 @@
 
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -31,9 +32,9 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "trainer_info.h"
 #include "unk_02000C88.h"
-#include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
@@ -42,7 +43,6 @@
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_02024358.h"
 #include "unk_02025CB0.h"
@@ -466,9 +466,9 @@ static void ov97_0222B2EC(UnkStruct_0222AE60 *param0)
     G2_SetBG2Priority(0);
     sub_02019690(2, 32, 0, 81);
 
-    sub_0201D710();
-    sub_02002E7C(0, 1 * 32, 81);
-    sub_02002E7C(0, 0 * 32, 81);
+    Text_ResetAllPrinters();
+    Font_LoadTextPalette(0, 1 * 32, 81);
+    Font_LoadTextPalette(0, 0 * 32, 81);
 
     *((u16 *)HW_BG_PLTT + 0) = ((0 & 31) << 10 | (0 & 31) << 5 | (0 & 31));
     *((u16 *)HW_BG_PLTT + 31) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
@@ -533,16 +533,16 @@ static void ov97_0222B4FC(UnkStruct_0222AE60 *param0, int param1, int param2)
     sub_02019448(param0->unk_00, 2);
 }
 
-static void ov97_0222B53C(Window *param0, MessageLoader *param1, StringTemplate *param2, u32 param3, u32 param4, int param5)
+static void ov97_0222B53C(Window *param0, MessageLoader *param1, StringTemplate *param2, TextColor param3, u32 param4, int param5)
 {
     int v0, v1;
     Strbuf *v2;
 
     v2 = MessageUtil_ExpandedStrbuf(param2, param1, param4, 81);
-    v0 = sub_02002D7C(0, v2, sub_02002DF8(0, 2));
+    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
     v1 = sub_0201C294(param0) * 8 - (v0 + 32);
 
-    sub_0201D78C(param0, 0, v2, v1, param5, 0xff, param3, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v2, v1, param5, TEXT_SPEED_NO_TRANSFER, param3, NULL);
     Strbuf_Free(v2);
 }
 
@@ -571,15 +571,15 @@ static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *par
     StringTemplate *v4;
     MessageLoader *v5;
     UnkStruct_0222AE60 *v6 = (UnkStruct_0222AE60 *)param0;
-    u32 v7;
+    TextColor v7;
 
     v5 = MessageLoader_Init(1, 26, 550, 81);
     v4 = StringTemplate_Default(81);
 
     if (TrainerInfo_Gender(v6->unk_0C) == 1) {
-        v7 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)));
+        v7 = TEXT_COLOR(3, 4, 15);
     } else {
-        v7 = ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | ((15 & 0xff) << 0)));
+        v7 = TEXT_COLOR(7, 8, 15);
     }
 
     ov97_0223795C(v6->unk_00, param2, 3, param3, Unk_ov97_0223E014[param1].unk_08);
@@ -590,7 +590,7 @@ static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *par
         }
 
         v3 = MessageUtil_ExpandedStrbuf(v4, v5, Unk_ov97_0223DF40[v0], 81);
-        sub_0201D78C(param2->unk_10, 0, v3, 32, v0 * 16, 0xff, v7, NULL);
+        Text_AddPrinterWithParamsAndColor(param2->unk_10, FONT_SYSTEM, v3, 32, v0 * 16, TEXT_SPEED_NO_TRANSFER, v7, NULL);
         Strbuf_Free(v3);
     }
 

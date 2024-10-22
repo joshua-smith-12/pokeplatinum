@@ -18,19 +18,19 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "core_sys.h"
+#include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "touch_screen.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "unk_02094EDC.h"
 
@@ -537,8 +537,8 @@ static void ov17_02249828(UnkStruct_ov17_022492DC *param0)
     v0 = MessageLoader_GetNewStrbuf(v4, v2);
     v1 = MessageLoader_GetNewStrbuf(v4, v3);
 
-    ov17_02249BC4(param0, &param0->unk_1C[0], v0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0, 33003, 128, (8 * 0x10 - 1), 1);
-    ov17_02249BC4(param0, &param0->unk_1C[1], v1, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0, 33003, 128, (8 * 0x14 - 1), 1);
+    ov17_02249BC4(param0, &param0->unk_1C[0], v0, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33003, 128, (8 * 0x10 - 1), 1);
+    ov17_02249BC4(param0, &param0->unk_1C[1], v1, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33003, 128, (8 * 0x14 - 1), 1);
 
     Strbuf_Free(v0);
     Strbuf_Free(v1);
@@ -567,10 +567,10 @@ static void ov17_022498F4(UnkStruct_ov17_022492DC *param0)
     v2 = MessageLoader_GetNewStrbuf(v4, 3);
     v3 = MessageLoader_GetNewStrbuf(v4, 4);
 
-    ov17_02249BC4(param0, &param0->unk_1C[2], v0, 2, ((u32)(((1 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0xb & 0xff) << 0))), 0, 33003, 128, 24, 1);
-    ov17_02249BC4(param0, &param0->unk_1C[3], v1, 2, ((u32)(((1 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0xb & 0xff) << 0))), 0, 33003, 128, 120, 1);
-    ov17_02249BC4(param0, &param0->unk_1C[4], v2, 2, ((u32)(((1 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0xb & 0xff) << 0))), 0, 33003, 48, 64, 1);
-    ov17_02249BC4(param0, &param0->unk_1C[5], v3, 2, ((u32)(((1 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0xb & 0xff) << 0))), 0, 33003, 208, 64, 1);
+    ov17_02249BC4(param0, &param0->unk_1C[2], v0, FONT_SUBSCREEN, TEXT_COLOR(1, 1, 0xb), 0, 33003, 128, 24, 1);
+    ov17_02249BC4(param0, &param0->unk_1C[3], v1, FONT_SUBSCREEN, TEXT_COLOR(1, 1, 0xb), 0, 33003, 128, 120, 1);
+    ov17_02249BC4(param0, &param0->unk_1C[4], v2, FONT_SUBSCREEN, TEXT_COLOR(1, 1, 0xb), 0, 33003, 48, 64, 1);
+    ov17_02249BC4(param0, &param0->unk_1C[5], v3, FONT_SUBSCREEN, TEXT_COLOR(1, 1, 0xb), 0, 33003, 208, 64, 1);
 
     Strbuf_Free(v0);
     Strbuf_Free(v1);
@@ -693,7 +693,7 @@ static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249B
     v6 = param0->unk_04->unk_5C;
 
     {
-        v7 = sub_02002D7C(param3, param2, 0);
+        v7 = Font_CalcStrbufWidth(param3, param2, 0);
         v8 = v7 / 8;
 
         if (FX_ModS32(v7, 8) != 0) {
@@ -704,7 +704,7 @@ static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249B
     {
         Window_Init(&v1);
         BGL_AddFramelessWindow(v5, &v1, v8, 16 / 8, 0, 0);
-        PrintStringWithColorAndMargins(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
     }
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DSUB, 23);

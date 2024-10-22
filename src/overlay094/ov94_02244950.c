@@ -15,6 +15,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "inlines.h"
@@ -22,13 +23,12 @@
 #include "narc.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "unk_02001AF4.h"
-#include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_02025CB0.h"
 #include "unk_0202ACE0.h"
 #include "unk_02030CE8.h"
@@ -118,7 +118,7 @@ int ov94_02244950(UnkStruct_ov94_0223FD4C *param0, int param1)
 
     if (!DWC_CheckInet()) {
         if (param0->unk_00->unk_40) {
-            ov94_02245824(param0, param0->unk_B98, 1, 1, 0xf0f);
+            ov94_02245824(param0, param0->unk_B98, 1, TEXT_SPEED_FAST, 0xf0f);
             ov94_0223C3F4(param0, 12, 2);
             ov94_0223C5D8(param0);
         } else {
@@ -279,8 +279,8 @@ static void ov94_02244B8C(UnkStruct_ov94_0223FD4C *param0)
 
     sub_02007130(v1, 3, 0, 0, 0, 62);
     sub_02007130(v1, 3, 4, 0, 0, 62);
-    sub_02002E98(0, 13 * 0x20, 62);
-    sub_02002E98(4, 13 * 0x20, 62);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 62);
     sub_0200DD0C(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
     sub_020070E8(v1, 2, v0, 1, 0, 0, 0, 62);
@@ -302,7 +302,7 @@ static void ov94_02244E48(UnkStruct_ov94_0223FD4C *param0)
     BGL_AddWindow(param0->unk_04, &param0->unk_F7C, 0, 4, 1, 24, 2, 13, ((((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16));
     BGL_FillWindow(&param0->unk_F7C, 0x0);
 
-    ov94_022458CC(&param0->unk_F7C, param0->unk_BB0, 0, 1, 1, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)));
+    ov94_022458CC(&param0->unk_F7C, param0->unk_BB0, 0, 1, 1, TEXT_COLOR(15, 14, 0));
 
     BGL_AddWindow(param0->unk_04, &param0->unk_F5C, 0, 2, 19, 27, 4, 13, ((1 + (18 + 12)) + 9));
     BGL_FillWindow(&param0->unk_F5C, 0x0);
@@ -331,7 +331,7 @@ static void ov94_02244F64(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02244F8C(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_02245824(param0, param0->unk_B9C, 17, 1, 0xf0f);
+    ov94_02245824(param0, param0->unk_B9C, 17, TEXT_SPEED_FAST, 0xf0f);
     ov94_0223C3F4(param0, 13, 1);
 
     param0->unk_110E = 1;
@@ -349,7 +349,7 @@ static int ov94_02244FC4(UnkStruct_ov94_0223FD4C *param0)
             ov94_0223C4C0(param0, 0, 0);
             param0->unk_2C = 11;
         } else {
-            ov94_02245824(param0, param0->unk_B98, 1, 1, 0xf0f);
+            ov94_02245824(param0, param0->unk_B98, 1, TEXT_SPEED_FAST, 0xf0f);
             ov94_0223C3F4(param0, 12, 2);
             ov94_0223C5D8(param0);
         }
@@ -360,7 +360,7 @@ static int ov94_02244FC4(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0224502C(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_02245824(param0, param0->unk_B90, 7, 1, 0xf0f);
+    ov94_02245824(param0, param0->unk_B90, 7, TEXT_SPEED_FAST, 0xf0f);
     ov94_0223C3F4(param0, 13, 16);
 
     return 3;
@@ -395,7 +395,7 @@ static int ov94_0224505C(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_022450C0(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_02245824(param0, param0->unk_B9C, 26, 1, 0xf0f);
+    ov94_02245824(param0, param0->unk_B9C, 26, TEXT_SPEED_FAST, 0xf0f);
     ov94_0223C3F4(param0, 12, 18);
 
     return 3;
@@ -414,7 +414,7 @@ static int ov94_022450EC(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0224510C(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_02245824(param0, param0->unk_B9C, 27, 1, 0xf0f);
+    ov94_02245824(param0, param0->unk_B9C, 27, TEXT_SPEED_FAST, 0xf0f);
     ov94_0223C3F4(param0, 20, 11);
 
     return 3;
@@ -826,7 +826,7 @@ static int ov94_02245608(UnkStruct_ov94_0223FD4C *param0)
         break;
     }
 
-    ov94_02245824(param0, param0->unk_B90, v0, 1, 0xf0f);
+    ov94_02245824(param0, param0->unk_B90, v0, TEXT_SPEED_FAST, 0xf0f);
     ov94_0223C3F4(param0, 12, 22);
 
     return 3;
@@ -836,22 +836,22 @@ static int ov94_022456CC(UnkStruct_ov94_0223FD4C *param0)
 {
     switch (param0->unk_14E0) {
     case 0:
-        ov94_02245824(param0, param0->unk_B90, 178, 1, 0xf0f);
+        ov94_02245824(param0, param0->unk_B90, 178, TEXT_SPEED_FAST, 0xf0f);
         param0->unk_14E0++;
         break;
     case 1:
-        if (Message_Printing(param0->unk_BE0) == 0) {
+        if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
             sub_0203848C();
             DWC_CleanupInet();
             param0->unk_14E0++;
         }
         break;
     case 2:
-        ov94_02245824(param0, param0->unk_B90, 179, 1, 0xf0f);
+        ov94_02245824(param0, param0->unk_B90, 179, TEXT_SPEED_FAST, 0xf0f);
         param0->unk_14E0++;
         break;
     case 3:
-        if (Message_Printing(param0->unk_BE0) == 0) {
+        if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
             param0->unk_14E0++;
         }
         break;
@@ -870,7 +870,7 @@ static int ov94_022456CC(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0224579C(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (Message_Printing(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         param0->unk_2C = param0->unk_30;
     }
 
@@ -879,7 +879,7 @@ static int ov94_0224579C(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_022457BC(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (Message_Printing(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         if (param0->unk_10E0 > 30) {
             param0->unk_2C = param0->unk_30;
         }
@@ -892,7 +892,7 @@ static int ov94_022457BC(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_022457F0(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (Message_Printing(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         param0->unk_10D0 = ov94_0223C3C0(param0->unk_04, 13, (((((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16) + 24 * 2));
         param0->unk_2C = param0->unk_30;
     }
@@ -911,7 +911,7 @@ void ov94_02245824(UnkStruct_ov94_0223FD4C *param0, MessageLoader *param1, int p
     BGL_FillWindow(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 
-    param0->unk_BE0 = PrintStringSimple(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param3, NULL);
+    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param3, NULL);
     param0->unk_10E0 = 0;
 }
 
@@ -921,11 +921,11 @@ static int ov94_02245894(Window *param0, Strbuf *param1, int param2, int param3,
 
     switch (param3) {
     case 1:
-        v0 = sub_02002D7C(param5, param1, 0);
+        v0 = Font_CalcStrbufWidth(param5, param1, 0);
         param2 = ((param0->unk_07 * 8) - v0) / 2;
         break;
     case 2:
-        v0 = sub_02002D7C(param5, param1, 0);
+        v0 = Font_CalcStrbufWidth(param5, param1, 0);
         param2 = (param0->unk_07 * 8) - v0;
         break;
     }
@@ -936,13 +936,14 @@ static int ov94_02245894(Window *param0, Strbuf *param1, int param2, int param3,
 void ov94_022458CC(Window *param0, Strbuf *param1, int param2, int param3, int param4, u32 param5)
 {
     param2 = ov94_02245894(param0, param1, param2, param4, param5, 1);
-    sub_0201D78C(param0, 1, param1, param2, param3, 0, param5, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, param1, param2, param3, TEXT_SPEED_INSTANT, param5, NULL);
 }
 
+// TODO: invocations
 void ov94_02245900(Window *param0, Strbuf *param1, int param2, int param3, int param4, u32 param5)
 {
     param2 = ov94_02245894(param0, param1, param2, param4, param5, 0);
-    sub_0201D78C(param0, 0, param1, param2, param3, 0, param5, NULL);
+    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param1, param2, param3, TEXT_SPEED_INSTANT, param5, NULL);
 }
 
 void ov94_02245934(UnkStruct_ov94_0223FD4C *param0)
@@ -960,7 +961,7 @@ static void ov94_0224593C(UnkStruct_ov94_0223FD4C *param0, int param1)
     BGL_FillWindow(&param0->unk_F8C, 15);
     Window_Show(&param0->unk_F8C, 1, (1 + (18 + 12)), 11);
 
-    param0->unk_BE0 = PrintStringSimple(&param0->unk_F8C, 1, param0->unk_BDC, 0, 0, 0, NULL);
+    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F8C, FONT_MESSAGE, param0->unk_BDC, 0, 0, TEXT_SPEED_INSTANT, NULL);
 
     Strbuf_Free(v0);
 }

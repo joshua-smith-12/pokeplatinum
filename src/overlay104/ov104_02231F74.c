@@ -39,21 +39,22 @@
 
 #include "cell_actor.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_options.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "render_text.h"
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
-#include "unk_02002328.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
@@ -62,7 +63,6 @@
 #include "unk_020131EC.h"
 #include "unk_02014A84.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 #include "unk_0201F834.h"
 #include "unk_0207E0B8.h"
 #include "unk_0209B6F8.h"
@@ -108,7 +108,7 @@ typedef struct {
 
 static void ov104_02231FC4(UnkStruct_ov104_022320B4 *param0);
 static void ov104_02232034(UnkStruct_ov104_022320B4 *param0, const MessageLoader *param1, u32 param2);
-static void ov104_02232050(UnkStruct_ov104_022320B4 *param0, int param1, int param2, int param3, int param4);
+static void ov104_02232050(UnkStruct_ov104_022320B4 *param0, enum Font param1, int param2, int param3, int param4);
 static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_02232B5C *param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 *param6, StringTemplate *param7, MessageLoader *param8);
 UnkStruct_ov104_02232B5C *ov104_02232258(UnkStruct_ov104_022320B4 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, MessageLoader *param7);
 void ov104_022322A8(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3);
@@ -157,7 +157,7 @@ void ov104_02231F74(UnkStruct_ov104_022320B4 *param0, const MessageLoader *param
 
         v0 = Options_TextFrameDelay(v4->unk_04);
         v1 = 0;
-        v2 = 1;
+        v2 = FONT_MESSAGE;
     } else {
         v0 = param4->unk_00;
         v1 = param4->unk_01;
@@ -189,12 +189,12 @@ static void ov104_02232034(UnkStruct_ov104_022320B4 *param0, const MessageLoader
     StringTemplate_Format(param0->unk_44, param0->unk_48, param0->unk_4C);
 }
 
-static void ov104_02232050(UnkStruct_ov104_022320B4 *param0, int param1, int param2, int param3, int param4)
+static void ov104_02232050(UnkStruct_ov104_022320B4 *param0, enum Font param1, int param2, int param3, int param4)
 {
-    sub_02002AC8(param3);
-    sub_02002AE4(param4);
-    sub_02002B20(0);
-    param0->unk_50 = PrintStringSimple(&param0->unk_64, param1, param0->unk_48, 0, 0, param2, NULL);
+    RenderControlFlags_SetCanABSpeedUpPrint(param3);
+    RenderControlFlags_SetAutoScrollFlags(param4);
+    RenderControlFlags_SetSpeedUpOnTouch(0);
+    param0->unk_50 = Text_AddPrinterWithParams(&param0->unk_64, param1, param0->unk_48, 0, 0, param2, NULL);
 }
 
 void ov104_02232088(UnkStruct_ov104_022320B4 *param0)
@@ -216,9 +216,9 @@ void ov104_022320B4(UnkStruct_ov104_022320B4 *param0, u8 param1, u16 param2, u16
     ov104_022320FC(param0->unk_48, param2, param3, param4, param5);
 
     if (param6 != 0xFF) {
-        ov104_02232050(param0, 1, param1, param6, 0);
+        ov104_02232050(param0, FONT_MESSAGE, param1, param6, 0);
     } else {
-        ov104_02232050(param0, 1, 0, param6, 0);
+        ov104_02232050(param0, FONT_MESSAGE, TEXT_SPEED_INSTANT, param6, 0);
     }
 }
 
@@ -370,7 +370,7 @@ static u32 ov104_02232414(UnkStruct_ov104_02232B5C *param0)
             break;
         }
 
-        v1 = sub_02002D7C(0, (Strbuf *)param0->unk_B4[v0].unk_00, 0);
+        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, (Strbuf *)param0->unk_B4[v0].unk_00, 0);
 
         if (v2 < v1) {
             v2 = v1;
@@ -471,7 +471,7 @@ static void ov104_022325D8(UnkStruct_ov104_02232B5C *param0)
     v0 = sub_02001DC4(param0->unk_B0);
 
     if (param0->unk_29C[v0] != 0xff) {
-        ov104_02232AC4(param0, param0->unk_29C[v0], 0);
+        ov104_02232AC4(param0, param0->unk_29C[v0], TEXT_SPEED_INSTANT);
     }
 
     return;
@@ -562,7 +562,7 @@ static u32 ov104_022327F0(UnkStruct_ov104_02232B5C *param0)
             break;
         }
 
-        v1 = sub_02002D7C(0, (Strbuf *)param0->unk_1BC[v0].unk_00, 0);
+        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, (Strbuf *)param0->unk_1BC[v0].unk_00, 0);
 
         if (v2 < v1) {
             v2 = v1;
@@ -715,7 +715,7 @@ static void ov104_02232AC4(UnkStruct_ov104_02232B5C *param0, u16 param1, u32 par
 
     StringTemplate_Format(param0->unk_90, v1, v0);
 
-    PrintStringSimple(param0->unk_18, 1, v1, 0, 0, param2, NULL);
+    Text_AddPrinterWithParams(param0->unk_18, 1, v1, 0, 0, param2, NULL);
 
     Strbuf_Free(v0);
     Strbuf_Free(v1);
@@ -727,7 +727,7 @@ static void ov104_02232B2C(UnkStruct_ov104_02232B5C *param0)
     sub_020014D0(param0->unk_1B4, &param0->unk_1BA);
 
     if (param0->unk_29C[param0->unk_1BA] != 0xff) {
-        ov104_02232AC4(param0, param0->unk_29C[param0->unk_1BA], 0);
+        ov104_02232AC4(param0, param0->unk_29C[param0->unk_1BA], TEXT_SPEED_INSTANT);
     }
 
     return;
@@ -1109,7 +1109,7 @@ void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 param2)
 
 static BOOL ov104_02233184(UnkStruct_ov104_0222E930 *param0)
 {
-    if (Message_Printing(param0->unk_00->unk_50) == 0) {
+    if (Text_IsPrinterActive(param0->unk_00->unk_50) == 0) {
         return 1;
     }
 

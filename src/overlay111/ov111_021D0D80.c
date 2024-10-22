@@ -25,6 +25,7 @@
 #include "overlay111/struct_ov111_021D3620.h"
 
 #include "cell_actor.h"
+#include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -35,8 +36,8 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
 #include "touch_screen.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -50,7 +51,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 
@@ -1107,7 +1107,7 @@ static void ov111_021D1C0C(UnkStruct_ov111_021D0F7C *param0)
         ov111_021D3448(param0->unk_3C0);
     }
 
-    sub_02002C60(2);
+    Font_Free(FONT_SUBSCREEN);
     sub_02002FA0(param0->unk_15C, 2);
     sub_02002FA0(param0->unk_15C, 0);
     sub_02002F54(param0->unk_15C);
@@ -1159,11 +1159,11 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
     param0->unk_40 = Strbuf_Init(600, 115);
     param0->unk_44 = Strbuf_Init(600, 115);
 
-    sub_02002E7C(0, 13 * 32, 115);
-    sub_02002E7C(4, 13 * 32, 115);
-    sub_02002E98(0, 12 * 32, 115);
-    sub_02002E98(4, 12 * 32, 115);
-    sub_02002BB8(2, 115);
+    Font_LoadTextPalette(0, 13 * 32, 115);
+    Font_LoadTextPalette(4, 13 * 32, 115);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, 115);
+    Font_LoadScreenIndicatorsPalette(4, 12 * 32, 115);
+    Font_InitManager(FONT_SUBSCREEN, 115);
 
     param0->unk_160 = sub_0200C440(15, 14, 0, 115);
     ov111_021D3548(param0->unk_58, param0->unk_5C);
@@ -1530,7 +1530,7 @@ static u8 ov111_021D23C4(UnkStruct_ov111_021D0F7C *param0, Window *param1, int p
     MessageLoader_GetStrbuf(param0->unk_38, param2, param0->unk_44);
     StringTemplate_Format(param0->unk_3C, param0->unk_40, param0->unk_44);
 
-    return sub_0201D78C(param1, param9, param0->unk_40, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
+    return Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_40, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
 }
 
 static u8 ov111_021D2424(UnkStruct_ov111_021D0F7C *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
@@ -1538,8 +1538,8 @@ static u8 ov111_021D2424(UnkStruct_ov111_021D0F7C *param0, Window *param1, int p
     BGL_FillWindow(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_38, param2, param0->unk_44);
     StringTemplate_Format(param0->unk_3C, param0->unk_40, param0->unk_44);
-    param3 -= (sub_02002D7C(param9, param0->unk_40, 0) + 1) / 2;
-    return sub_0201D78C(param1, param9, param0->unk_40, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
+    param3 -= (Font_CalcStrbufWidth(param9, param0->unk_40, 0) + 1) / 2;
+    return Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_40, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
 }
 
 static u8 ov111_021D2494(UnkStruct_ov111_021D0F7C *param0)
@@ -1547,7 +1547,7 @@ static u8 ov111_021D2494(UnkStruct_ov111_021D0F7C *param0)
     u8 v0;
 
     ov111_021D3594(param0->unk_58, &param0->unk_5C[0]);
-    v0 = ov111_021D23C4(param0, &param0->unk_5C[0], 6, 1, 1, 0, 1, 2, 15, 0);
+    v0 = ov111_021D23C4(param0, &param0->unk_5C[0], 6, 1, 1, TEXT_SPEED_INSTANT, 1, 2, 15, FONT_SYSTEM);
     sub_0201A9A4(&param0->unk_5C[0]);
 
     return v0;
@@ -1558,7 +1558,7 @@ static u8 ov111_021D24D4(UnkStruct_ov111_021D0F7C *param0)
     u8 v0;
 
     ov111_021D26CC(param0, 0, (param0->unk_0E + 1));
-    v0 = ov111_021D23C4(param0, &param0->unk_5C[15], 12, 1, 1, 0, 1, 2, 15, 1);
+    v0 = ov111_021D23C4(param0, &param0->unk_5C[15], 12, 1, 1, TEXT_SPEED_INSTANT, 1, 2, 15, FONT_MESSAGE);
     sub_0201A9A4(&param0->unk_5C[15]);
 
     return v0;
@@ -1569,7 +1569,7 @@ static u8 ov111_021D2518(UnkStruct_ov111_021D0F7C *param0)
     u8 v0;
 
     ov111_021D26CC(param0, 0, (param0->unk_0E + 1));
-    v0 = ov111_021D2424(param0, &param0->unk_5C[10], 9, 8 * 6, 1 + 4, 0, 1, 2, 0, 0);
+    v0 = ov111_021D2424(param0, &param0->unk_5C[10], 9, 8 * 6, 1 + 4, TEXT_SPEED_INSTANT, 1, 2, 0, FONT_SYSTEM);
     sub_0201A9A4(&param0->unk_5C[10]);
 
     return v0;
@@ -1599,7 +1599,7 @@ static u8 ov111_021D25BC(UnkStruct_ov111_021D0F7C *param0)
     u8 v0;
 
     Sound_PlayEffect(1523);
-    v0 = ov111_021D2424(param0, &param0->unk_5C[12], 11, 8 * 6, 1 + 4, 0, 1, 2, 0, 0);
+    v0 = ov111_021D2424(param0, &param0->unk_5C[12], 11, 8 * 6, 1 + 4, TEXT_SPEED_INSTANT, 1, 2, 0, FONT_SYSTEM);
     sub_0201A9A4(&param0->unk_5C[12]);
 
     return v0;
@@ -1609,7 +1609,7 @@ static u8 ov111_021D2604(UnkStruct_ov111_021D0F7C *param0)
 {
     u8 v0;
 
-    v0 = ov111_021D2424(param0, &param0->unk_5C[13], 4, 8 * 6, 1, 0, 1, 1, 0, 2);
+    v0 = ov111_021D2424(param0, &param0->unk_5C[13], 4, 8 * 6, 1, TEXT_SPEED_INSTANT, 1, 1, 0, FONT_SUBSCREEN);
     sub_0201A9A4(&param0->unk_5C[13]);
 
     return v0;
@@ -1619,7 +1619,7 @@ static u8 ov111_021D263C(UnkStruct_ov111_021D0F7C *param0)
 {
     u8 v0;
 
-    v0 = ov111_021D2424(param0, &param0->unk_5C[14], 5, 8 * 3, 1, 0, 1, 1, 0, 2);
+    v0 = ov111_021D2424(param0, &param0->unk_5C[14], 5, 8 * 3, 1, TEXT_SPEED_INSTANT, 1, 1, 0, FONT_SUBSCREEN);
     sub_0201A9A4(&param0->unk_5C[14]);
 
     return v0;
@@ -1637,7 +1637,7 @@ static u8 ov111_021D2674(UnkStruct_ov111_021D0F7C *param0, u8 param1)
     u8 v0;
 
     StringTemplate_SetItemName(param0->unk_3C, 0, param0->unk_3CE[param1]);
-    v0 = ov111_021D2424(param0, &param0->unk_5C[2 + param1], 1, 8 * 6 - 4, Unk_ov111_021D3814[param1], 0, 1, 2, 0, 0);
+    v0 = ov111_021D2424(param0, &param0->unk_5C[2 + param1], 1, 8 * 6 - 4, Unk_ov111_021D3814[param1], TEXT_SPEED_INSTANT, 1, 2, 0, FONT_SYSTEM);
     sub_0201A9A4(&param0->unk_5C[2 + param1]);
 
     return v0;

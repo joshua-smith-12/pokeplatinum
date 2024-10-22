@@ -39,6 +39,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "core_sys.h"
+#include "font.h"
 #include "game_records.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -52,8 +53,8 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "text.h"
 #include "trainer_info.h"
-#include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -64,7 +65,6 @@
 #include "unk_02017728.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
@@ -358,7 +358,7 @@ static void ov109_021D2714(UnkStruct_ov109_021D0F70 *param0, u32 param1, u32 par
 static void ov109_021D2788(UnkStruct_ov109_021D0F70 *param0);
 static void ov109_021D27AC(UnkStruct_ov109_021D0F70 *param0, int param1);
 static void ov109_021D27F0(UnkStruct_ov109_021D0F70 *param0);
-static void ov109_021D2820(UnkStruct_ov109_021D0F70 *param0, Strbuf *param1, int param2, u32 param3);
+static void ov109_021D2820(UnkStruct_ov109_021D0F70 *param0, Strbuf *param1, int param2, TextColor param3);
 static void ov109_021D2874(UnkStruct_ov109_021D0F70 *param0, Strbuf *param1, int param2, int param3);
 static void ov109_021D28A0(UnkStruct_ov109_021D0F70 *param0, int param1);
 static void ov109_021D28C4(UnkStruct_ov109_021D0F70 *param0);
@@ -1362,7 +1362,7 @@ static int ov109_021D1A14(UnkStruct_ov109_021D0F70 *param0)
 
     v0 = sub_0202C244(95, 17);
 
-    sub_0202B758(param0->unk_CC->unk_14.unk_18, v0, 4);
+    Journal_SaveData(param0->unk_CC->unk_14.unk_18, v0, 4);
     GameRecords_IncrementRecordValue(param0->unk_CC->unk_14.records, RECORD_UNK_119);
     GameRecords_IncrementTrainerScore(param0->unk_CC->unk_14.records, TRAINER_SCORE_EVENT_UNK_45);
     ov109_021D2634(param0, 11);
@@ -2077,7 +2077,7 @@ static void ov109_021D2634(UnkStruct_ov109_021D0F70 *param0, u32 param1)
     sub_0200E060(v1, 1, (1 + 9), 14);
     BGL_FillWindow(v1, 15);
     MessageLoader_GetStrbuf(v0->unk_04, param1, v0->unk_6C);
-    PrintStringSimple(v1, 1, v0->unk_6C, 0, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(v1, FONT_MESSAGE, v0->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     sub_0201A9A4(v1);
 }
 
@@ -2097,7 +2097,7 @@ static void ov109_021D268C(UnkStruct_ov109_021D0F70 *param0, u32 param1, const T
     Strbuf_Free(v0);
     sub_0200E060(v2, 1, (1 + 9), 14);
     BGL_FillWindow(v2, 15);
-    PrintStringSimple(v2, 1, v1->unk_6C, 0, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(v2, FONT_MESSAGE, v1->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     sub_0201A9A4(v2);
 }
 
@@ -2116,7 +2116,7 @@ static void ov109_021D2714(UnkStruct_ov109_021D0F70 *param0, u32 param1, u32 par
     Strbuf_Free(v0);
     sub_0200E060(v2, 1, (1 + 9), 14);
     BGL_FillWindow(v2, 15);
-    PrintStringSimple(v2, 1, v1->unk_6C, 0, 0, 0xff, NULL);
+    Text_AddPrinterWithParams(v2, FONT_MESSAGE, v1->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     sub_0201A9A4(v2);
 }
 
@@ -2154,22 +2154,22 @@ static void ov109_021D27F0(UnkStruct_ov109_021D0F70 *param0)
     }
 }
 
-static void ov109_021D2820(UnkStruct_ov109_021D0F70 *param0, Strbuf *param1, int param2, u32 param3)
+static void ov109_021D2820(UnkStruct_ov109_021D0F70 *param0, Strbuf *param1, int param2, TextColor param3)
 {
     UnkStruct_ov109_021D24F8 *v0 = &param0->unk_C9C;
     Window *v1 = &v0->unk_1C[param2];
     Window_Show(v1, 1, 1, 14);
     BGL_FillWindow(v1, 15);
-    sub_0201D78C(v1, 0, param1, sub_02002EEC(0, param1, 0, 8 * 8), 0, 0xFF, param3, NULL);
+    Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param1, Font_CalcCenterAlignment(FONT_SYSTEM, param1, 0, 8 * 8), 0, TEXT_SPEED_NO_TRANSFER, param3, NULL);
     sub_0201A9A4(v1);
 }
 
 static void ov109_021D2874(UnkStruct_ov109_021D0F70 *param0, Strbuf *param1, int param2, int param3)
 {
-    u32 v0 = ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
+    TextColor v0 = TEXT_COLOR(1, 2, 0);
 
     if (param3 == CommSys_CurNetId()) {
-        v0 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0)));
+        v0 = TEXT_COLOR(3, 4, 0);
     }
 
     ov109_021D2820(param0, param1, param2, v0);

@@ -5,17 +5,16 @@
 #include <string.h>
 
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_020149F0_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
 
 #include "overlay084/struct_ov84_02240FA8.h"
 
+#include "colored_arrow.h"
 #include "core_sys.h"
+#include "font.h"
 #include "heap.h"
-#include "unk_02002B7C.h"
-#include "unk_020149F0.h"
+#include "text.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 typedef struct {
     u8 unk_00_0 : 4;
@@ -30,7 +29,7 @@ typedef struct {
 typedef struct UnkStruct_0200112C_t {
     UnkStruct_ov84_02240FA8 unk_00;
     UnkStruct_0200112C_sub1 unk_1F;
-    UnkStruct_020149F0 *unk_24;
+    ColoredArrow *unk_24;
     u16 unk_28;
     u16 unk_2A;
     u8 unk_2C;
@@ -54,7 +53,7 @@ BmpList *sub_0200112C(const UnkStruct_ov84_02240FA8 *param0, u16 param1, u16 par
     BmpList *v0 = (BmpList *)Heap_AllocFromHeap(param3, sizeof(BmpList));
 
     v0->unk_00 = *param0;
-    v0->unk_24 = sub_020149F0(param3);
+    v0->unk_24 = ColoredArrow_New(param3);
     v0->unk_28 = param1;
     v0->unk_2A = param2;
     v0->unk_2C = 0;
@@ -74,7 +73,7 @@ BmpList *sub_0200112C(const UnkStruct_ov84_02240FA8 *param0, u16 param1, u16 par
         v0->unk_00.unk_12 = v0->unk_00.unk_10;
     }
 
-    sub_02014A40(v0->unk_24, (u32)((((v0->unk_00.unk_17_4) & 0xff) << 16) | (((v0->unk_00.unk_18_4) & 0xff) << 8) | (((v0->unk_00.unk_18_0) & 0xff) << 0)));
+    ColoredArrow_SetColor(v0->unk_24, TEXT_COLOR(v0->unk_00.unk_17_4, v0->unk_00.unk_18_4, v0->unk_00.unk_18_0));
     BGL_FillWindow(v0->unk_00.unk_0C, v0->unk_00.unk_18_0);
     sub_02001688(v0, v0->unk_28, 0, v0->unk_00.unk_12);
     sub_02001720(v0);
@@ -159,7 +158,7 @@ void sub_02001384(BmpList *param0, u16 *param1, u16 *param2)
         *param2 = param0->unk_2A;
     }
 
-    sub_02014A20(param0->unk_24);
+    ColoredArrow_Free(param0->unk_24);
     Heap_FreeToHeapExplicit(param0->unk_30, param0);
 }
 
@@ -270,7 +269,7 @@ u32 sub_02001504(BmpList *param0, u8 param1)
         v0 = (u32)param0->unk_00.unk_17_0;
         break;
     case 9:
-        v0 = (u32)sub_02002DF8(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
+        v0 = (u32)Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
         break;
     case 10:
         v0 = (u32)param0->unk_00.unk_17_4;
@@ -321,9 +320,9 @@ static void sub_020015D0(BmpList *param0, void *param1, u8 param2, u8 param3)
     }
 
     if (param0->unk_1F.unk_04_7) {
-        PrintStringWithColorAndMargins(param0->unk_00.unk_0C, param0->unk_1F.unk_04_0, param1, param2, param3, 0xff, (u32)((((param0->unk_1F.unk_00_0) & 0xff) << 16) | (((param0->unk_1F.unk_01_0) & 0xff) << 8) | (((param0->unk_1F.unk_00_4) & 0xff) << 0)), param0->unk_1F.unk_02_0, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(param0->unk_00.unk_0C, param0->unk_1F.unk_04_0, param1, param2, param3, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(param0->unk_1F.unk_00_0, param0->unk_1F.unk_01_0, param0->unk_1F.unk_00_4), param0->unk_1F.unk_02_0, 0, NULL);
     } else {
-        PrintStringWithColorAndMargins(param0->unk_00.unk_0C, param0->unk_00.unk_1A_9, param1, param2, param3, 0xff, (u32)((((param0->unk_00.unk_17_4) & 0xff) << 16) | (((param0->unk_00.unk_18_4) & 0xff) << 8) | (((param0->unk_00.unk_18_0) & 0xff) << 0)), param0->unk_00.unk_1A_0, 0, NULL);
+        Text_AddPrinterWithParamsColorAndSpacing(param0->unk_00.unk_0C, param0->unk_00.unk_1A_9, param1, param2, param3, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(param0->unk_00.unk_17_4, param0->unk_00.unk_18_4, param0->unk_00.unk_18_0), param0->unk_00.unk_1A_0, 0, NULL);
     }
 }
 
@@ -332,7 +331,7 @@ static void sub_02001688(BmpList *param0, u16 param1, u16 param2, u16 param3)
     int v0;
     u8 v1, v2, v3;
 
-    v3 = sub_02002DF8(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
+    v3 = Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
 
     for (v0 = 0; v0 < param3; v0++) {
         if (param0->unk_00.unk_00[param1].unk_04 != 0xfffffffd) {
@@ -356,13 +355,13 @@ static void sub_02001720(BmpList *param0)
 {
     u8 v0, v1, v2;
 
-    v2 = sub_02002DF8(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
+    v2 = Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
     v0 = param0->unk_00.unk_16;
     v1 = (u8)((param0->unk_2A * v2) + param0->unk_00.unk_17_0);
 
     switch (param0->unk_00.unk_1A_15) {
     case 0:
-        sub_02014A58(param0->unk_24, param0->unk_00.unk_0C, v0, v1);
+        ColoredArrow_Print(param0->unk_24, param0->unk_00.unk_0C, v0, v1);
         break;
     case 1:
         break;
@@ -379,7 +378,7 @@ static void sub_02001778(BmpList *param0, u16 param1)
 
     switch (param0->unk_00.unk_1A_15) {
     case 0:
-        v0 = sub_02002DF8(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
+        v0 = Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
         BGL_WindowColor(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, param0->unk_00.unk_16, (u16)(param1 * v0 + param0->unk_00.unk_17_0), 8, 16);
         break;
     case 1:
@@ -478,7 +477,7 @@ static void sub_02001900(BmpList *param0, u8 param1, u8 param2)
         return;
     }
 
-    v0 = sub_02002DF8(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
+    v0 = Font_GetAttribute(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
 
     if (param2 == 0) {
         sub_0201C04C(param0->unk_00.unk_0C, 1, (u8)(param1 * v0), (u8)((param0->unk_00.unk_18_0 << 4) | param0->unk_00.unk_18_0));

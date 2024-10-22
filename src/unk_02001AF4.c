@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_020149F0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -12,20 +11,20 @@
 
 #include "overlay061/struct_ov61_0222C884.h"
 
+#include "colored_arrow.h"
 #include "core_sys.h"
+#include "font.h"
 #include "heap.h"
 #include "message.h"
-#include "unk_02002B7C.h"
+#include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_020149F0.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
 
 typedef struct UIControlData_t {
     UnkStruct_02081CF4 unk_00;
-    UnkStruct_020149F0 *unk_0C;
+    ColoredArrow *unk_0C;
     u32 unk_10;
     u8 unk_14;
     u8 unk_15;
@@ -52,15 +51,15 @@ UIControlData *sub_02001AF4(const UnkStruct_02081CF4 *param0, u8 param1, u8 para
     UIControlData *v0 = (UIControlData *)Heap_AllocFromHeap(param4, sizeof(UIControlData));
 
     v0->unk_00 = *param0;
-    v0->unk_0C = sub_020149F0(param4);
+    v0->unk_0C = ColoredArrow_New(param4);
     v0->unk_10 = param5;
     v0->unk_15 = param3;
     v0->unk_16 = sub_02001F1C(v0);
     v0->unk_1C = param4;
     v0->unk_17 = param1;
     v0->unk_18 = param2;
-    v0->unk_19 = sub_02002DF8(param0->unk_08, 0) + sub_02002DF8(param0->unk_08, 2);
-    v0->unk_1A = sub_02002DF8(param0->unk_08, 1) + sub_02002DF8(param0->unk_08, 3);
+    v0->unk_19 = Font_GetAttribute(param0->unk_08, 0) + Font_GetAttribute(param0->unk_08, 2);
+    v0->unk_1A = Font_GetAttribute(param0->unk_08, 1) + Font_GetAttribute(param0->unk_08, 3);
 
     sub_02001F5C(v0);
     sub_02001FE8(v0);
@@ -78,7 +77,7 @@ UIControlData *sub_02001B7C(const UnkStruct_02081CF4 *param0, u8 param1, u8 para
 
 UIControlData *sub_02001B9C(const UnkStruct_02081CF4 *param0, u8 param1, u8 param2)
 {
-    return sub_02001B7C(param0, sub_02002DF8(param0->unk_08, 0), 0, param1, param2, PAD_BUTTON_B);
+    return sub_02001B7C(param0, Font_GetAttribute(param0->unk_08, 0), 0, param1, param2, PAD_BUTTON_B);
 }
 
 void sub_02001BC4(UIControlData *param0, u8 *param1)
@@ -87,7 +86,7 @@ void sub_02001BC4(UIControlData *param0, u8 *param1)
         *param1 = param0->unk_15;
     }
 
-    sub_02014A20(param0->unk_0C);
+    ColoredArrow_Free(param0->unk_0C);
     Heap_FreeToHeapExplicit(param0->unk_1C, param0);
 }
 
@@ -237,7 +236,7 @@ static BOOL sub_02001DCC(UIControlData *param0, u8 param1, u16 param2)
         u8 v1, v2;
         u8 v3;
 
-        v3 = sub_02002DF8(param0->unk_00.unk_08, 6);
+        v3 = Font_GetAttribute(param0->unk_00.unk_08, 6);
 
         sub_02002018(param0, &v1, &v2, v0);
         BGL_WindowColor(param0->unk_00.unk_04, v3, v1, v2, 8, param0->unk_1A);
@@ -325,7 +324,7 @@ static u8 sub_02001F1C(UIControlData *param0)
     u8 v1, v2;
 
     for (v1 = 0; v1 < param0->unk_00.unk_09 * param0->unk_00.unk_0A; v1++) {
-        v2 = sub_02002D7C(param0->unk_00.unk_08, param0->unk_00.unk_00[v1].unk_00, 0);
+        v2 = Font_CalcStrbufWidth(param0->unk_00.unk_08, param0->unk_00.unk_00[v1].unk_00, 0);
 
         if (v0 < v2) {
             v0 = v2;
@@ -341,7 +340,7 @@ static void sub_02001F5C(UIControlData *param0)
     u8 v1, v2, v3;
     u8 v4, v5;
 
-    BGL_FillWindow(param0->unk_00.unk_04, sub_02002DF8(param0->unk_00.unk_08, 6));
+    BGL_FillWindow(param0->unk_00.unk_04, Font_GetAttribute(param0->unk_00.unk_08, 6));
 
     v1 = param0->unk_17;
     v3 = param0->unk_16 + param0->unk_19 * 2;
@@ -351,7 +350,7 @@ static void sub_02001F5C(UIControlData *param0)
             v0 = param0->unk_00.unk_00[v4 * param0->unk_00.unk_0A + v5].unk_00;
             v2 = (param0->unk_1A + param0->unk_00.unk_0B_0) * v5 + param0->unk_18;
 
-            PrintStringSimple(param0->unk_00.unk_04, param0->unk_00.unk_08, v0, v1, v2, 0xff, NULL);
+            Text_AddPrinterWithParams(param0->unk_00.unk_04, param0->unk_00.unk_08, v0, v1, v2, TEXT_SPEED_NO_TRANSFER, NULL);
         }
 
         v1 += v3;
@@ -367,7 +366,7 @@ static void sub_02001FE8(UIControlData *param0)
     }
 
     sub_02002018(param0, &v0, &v1, param0->unk_15);
-    sub_02014A58(param0->unk_0C, param0->unk_00.unk_04, v0, v1);
+    ColoredArrow_Print(param0->unk_0C, param0->unk_00.unk_04, v0, v1);
 }
 
 static void sub_02002018(UIControlData *param0, u8 *param1, u8 *param2, u8 param3)

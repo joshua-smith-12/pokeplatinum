@@ -1,40 +1,40 @@
+#include "overlay110/ov110_021D0D80.h"
+
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
-#include "savedata.h"
-
-#include "game_options.h"
 #include "struct_defs/struct_0203E564.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
+
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
+#include "overlay110/ov110_021D2124.h"
 
-#include "unk_02002B7C.h"
-#include "unk_02002F38.h"
-#include "overlay_manager.h"
-#include "narc.h"
-#include "unk_02006E3C.h"
+#include "core_sys.h"
+#include "font.h"
+#include "game_options.h"
+#include "gx_layers.h"
+#include "heap.h"
 #include "message.h"
+#include "narc.h"
+#include "overlay_manager.h"
+#include "save_player.h"
+#include "savedata.h"
+#include "strbuf.h"
 #include "string_template.h"
+#include "text.h"
+#include "unk_02002F38.h"
+#include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201D670.h"
-#include "gx_layers.h"
-#include "strbuf.h"
-#include "save_player.h"
 #include "unk_0202D05C.h"
 #include "unk_0202FF4C.h"
 #include "unk_020302D0.h"
@@ -42,8 +42,6 @@
 #include "unk_0203061C.h"
 #include "unk_02030880.h"
 #include "unk_0205DFC4.h"
-#include "overlay110/ov110_021D0D80.h"
-#include "overlay110/ov110_021D2124.h"
 
 typedef struct {
     OverlayManager * unk_00;
@@ -136,8 +134,8 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
     v1->unk_118 = Strbuf_Init(800, 114);
     v1->unk_11C = Strbuf_Init(800, 114);
 
-    sub_02002E7C(0, 13 * 32, 114);
-    sub_02002E98(0, 12 * 32, 114);
+    Font_LoadTextPalette(0, 13 * 32, 114);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, 114);
     ov110_021D2124(v1->unk_0C, v1->unk_10, ov110_021D1208(v1->unk_06));
     SetMainCallback(ov110_021D1048, (void *)v1);
     (*param1) = 0;
@@ -489,19 +487,19 @@ static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, Window * param1, in
     
     switch(param10) {
     case 1:
-        param3 -= (sub_02002D7C(0, param0->unk_118, 0) + 1) / 2;
+        param3 -= (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_118, 0) + 1) / 2;
         break;
     case 2:
-        param3 -= sub_02002D7C(0, param0->unk_118, 0);
+        param3 -= Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_118, 0);
         break;
     }
-    
-    sub_0201D78C(param1, param8, param0->unk_118, param3, param4, 0, ((((u32)(param5) & 0xFF) << 16) | (((param6) & 0xFF) << 8) | (((param7) & 0xFF))), NULL);
+
+    Text_AddPrinterWithParamsAndColor(param1, param8, param0->unk_118, param3, param4, TEXT_SPEED_INSTANT, TEXT_COLOR(param5, param6, param7), NULL);
 }
 
 static u8 ov110_021D13CC (UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u8 param3)
 {
-    return ov110_021D1324 (param0, param1, param2, 0, 0, 1, 2, 0, 0, param3, 0);
+    return ov110_021D1324(param0, param1, param2, 0, 0, 1, 2, 0, FONT_SYSTEM, param3, 0);
 }
 
 static void ov110_021D13F0 (UnkStruct_ov110_021D0F78 * param0, u32 param1, s32 param2)
@@ -552,8 +550,8 @@ static void ov110_021D1468 (UnkStruct_ov110_021D0F78 * param0)
     
     v0 = 0;
     BGL_FillWindow(&param0->unk_10[v0], 0);
-    ov110_021D1324(param0, &param0->unk_10[v0], 22, 8, 0, 1, 2, 0, 0, 0, 0);
-    
+    ov110_021D1324(param0, &param0->unk_10[v0], 22, 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
+
     if (param0->unk_05 == 0) {
         v2 = 26;
         v3 = 216;
@@ -564,26 +562,26 @@ static void ov110_021D1468 (UnkStruct_ov110_021D0F78 * param0)
         v2 = 28;
         v3 = 216;
     }
-    
-    ov110_021D1324(param0, &param0->unk_10[v0], v2, v3, 0, 1, 2, 0, 0, 0, 2);
+
+    ov110_021D1324(param0, &param0->unk_10[v0], v2, v3, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
     sub_0201A9A4(&param0->unk_10[v0]);
     v0 = 1;
     ov110_021D13CC(param0, &param0->unk_10[v0], 34, 1);
-    ov110_021D1324(param0, &param0->unk_10[v0], 36, 28 * 8, 0, 1, 2, 0, 0, 0, 2);
+    ov110_021D1324(param0, &param0->unk_10[v0], 36, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
     sub_0201A9A4(&param0->unk_10[v0]);
     v0 = 2;
     ov110_021D13CC(param0, &param0->unk_10[v0], ov110_021D17AC(param0, 0), 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E430(0, param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, 0, 0, 1);
+    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E488(0, param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, 0, 0, 2);
+    ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
     sub_0201A9A4(&param0->unk_10[v0]);
     v0 = 3;
     ov110_021D13CC(param0, &param0->unk_10[v0], 31, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E45C(0, param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, 0, 0, 1);
+    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E4B4(0, param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, 0, 0, 2);
+    ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
     sub_0201A9A4(&param0->unk_10[v0]);
 }
 
