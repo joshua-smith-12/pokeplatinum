@@ -104,12 +104,23 @@ static void SetHBlankEnabled(BOOL enabled)
     OS_EnableIrq();
 }
 
+// with optimizations disabled, there is not enough space in OS_ARENA_MAIN for these heaps.
+// allocate them into MAINEX instead (this only works on an emulator which supports 8mb memory).
+#ifdef GDB_DEBUGGING
+static const HeapParam Unk_020E5674[] = {
+    { 0xD200, OS_ARENA_MAINEX },
+    { 0x20E00, OS_ARENA_MAINEX },
+    { 0x10, OS_ARENA_MAINEX },
+    { 0x10D800, OS_ARENA_MAINEX }
+};
+#else
 static const HeapParam Unk_020E5674[] = {
     { 0xD200, OS_ARENA_MAIN },
     { 0x20E00, OS_ARENA_MAIN },
     { 0x10, OS_ARENA_MAIN },
     { 0x10D800, OS_ARENA_MAIN }
 };
+#endif
 
 static void sub_02017850(void)
 {
@@ -138,6 +149,12 @@ static void sub_02017850(void)
 void sub_0201789C(void)
 {
     OS_Init();
+#ifdef GDB_DEBUGGING
+    OS_EnableMainExArena(); // - enable MAINEX arena (upper 4mb RAM, 0x02400000 - 0x027FFFFF)
+    OS_SetArenaLo(OS_ARENA_MAINEX, HW_MAIN_MEM_END); // - set low end of MAINEX to end of MAIN (0x02400000)
+    OS_SetArenaHi(OS_ARENA_MAINEX, HW_MAIN_MEM_EX_END); // - set high end of MAINEX to 0x02800000
+    OS_SetProtectionRegion(1, HW_MAIN_MEM_MAIN, 8MB); // - change memory protection on MAIN to cover full 8mb (MAIN+MAINEX)
+#endif
     FX_Init();
 
     GX_SetPower(GX_POWER_ALL);

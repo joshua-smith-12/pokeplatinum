@@ -68,7 +68,15 @@ void Heap_InitSystem(const HeapParam *templates, u32 nTemplates, u32 totalNumHea
             ptr = OS_AllocFromMainArenaLo(templates[i].size, 4);
             break;
         case OS_ARENA_MAINEX:
+#ifdef GDB_DEBUGGING
+            // in debug builds the main heaps are all allocated from MAINEX (upper 4mb).
+            // these have to be allocated from low end of that range to match what the consumers of those heaps expect.
+            // (the `OS_AllocFromMainExArenaHi` is never actually called in non-debug builds, 
+            //  suspect this is a holdover from official debug builds)
+            ptr = OS_AllocFromMainExArenaLo(templates[i].size, 4);
+#else
             ptr = OS_AllocFromMainExArenaHi(templates[i].size, 4);
+#endif
             break;
         }
 

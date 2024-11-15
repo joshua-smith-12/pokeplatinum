@@ -36,8 +36,7 @@ c_args = [
 
 if get_option('gdb_debugging')
     c_args += [
-        '-O1,p',
-        '-inline', 'off'
+        '-O0,p'
     ]
 else
     c_args += '-O4,p'
